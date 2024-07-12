@@ -1,0 +1,21 @@
+name: tests
+
+on: [push]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+      - name: install dependencies
+        run: npm ci
+      - name: run build
+        run: npm run build
+      - name: run tests
+      - run: npm run tests
