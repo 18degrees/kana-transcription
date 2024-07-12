@@ -1,0 +1,67 @@
+{
+	"name": "kana-transcription",
+	"version": "1.0.0",
+
+	"description": "Allows to transcript japanese syllabaries to en/ru letters and vice versa; provides function to transform kana from one to the other syllabary",
+	"keywords": [
+		"transcription",
+		"hiragana",
+		"katakana",
+		"kana",
+		"romanji",
+		"japanese",
+		"english",
+		"russian"
+	],
+
+	"type": "module",
+	"types": "./type/index.d.ts",
+	"main": "./lib/cjs/index.cjs",
+	"module": "./lib/esm/index.mjs",
+	"exports": {
+		"types": "./type/index.d.ts",
+		"module": "./lib/esm/index.mjs",
+		"import": "./lib/esm/index.mjs",
+		"require": "./lib/cjs/index.cjs",
+		"default": "./lib/esm/index.mjs"
+	},
+
+	"scripts": {
+		"build:rollup": "rollup -c",
+		"build:type": "tsc",
+		"build": "npm run build:rollup && npm run build:type",
+
+
+		"test:reverse": "mocha --recursive ./tests/reverseKana-test.js",
+
+		"test:ru:tokana": "mocha --recursive ./tests/ru/transformToKana-test.js",
+		"test:ru:fromkana": "mocha --recursive ./tests/ru/transcriptKana-test.js",
+		"test:ru": "npm run test:ru:tokana & npm run test:ru:fromkana",
+
+		"test:en:tokana": "mocha --recursive ./tests/en/transformToKana-test.js",
+		"test:en:fromkana": "mocha --recursive ./tests/en/transcriptKana-test.js",
+		"test:en": "npm run test:en:tokana & npm run test:en:fromkana",
+
+		"test": "npm run test:reverse & npm run test:ru & npm run test:en"
+	},
+
+	"author": "Mikhail Izotov <mikhaili.dev@gmail.com>",
+	"repository": "github:18degrees/kana-transcription",
+	"license": "Apache-2.0",
+
+	"devDependencies": {
+		"@rollup/plugin-typescript": "^11.1.6",
+		"chai": "^5.1.1",
+		"mocha": "^10.4.0",
+		"rollup": "^4.18.0",
+		"tslib": "^2.6.3",
+		"typescript": "^5.5.2"
+	},
+
+	"files": [
+		"lib",
+		"type"
+	],
+	
+	"sideEffects": "false"
+}

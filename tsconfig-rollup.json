@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig-checks.json",
+    "compilerOptions": {
+        "target": "ES6",
+        "lib": ["ES2016", "DOM"],
+        "rootDir": "./src",
+    },
+    "files": ["src/index.ts"]
+}
