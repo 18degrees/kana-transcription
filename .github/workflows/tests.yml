@@ -1,4 +1,4 @@
-name: tests
+name: test
 
 on: [push]
 
@@ -15,4 +15,4 @@ jobs:
           node-version: '18.x'
       - run: npm ci
       - run: npm run build
-      - run: npm run tests
+      - run: npm run test
