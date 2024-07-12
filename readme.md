@@ -18,7 +18,7 @@ _Проблемы, которые стали причиной появления
 
 <details>
 
-  <summary>`transformToKana(text, fromLang, toKana)`</summary>
+  <summary>transformToKana(text, fromLang, toKana)</summary>
 
   #### Что делает
   
@@ -56,7 +56,7 @@ _Проблемы, которые стали причиной появления
 
 <details>
 
-<summary>`transcriptKana(text, toLang)`</summary>
+<summary>transcriptKana(text, toLang)</summary>
 
 #### Что делает
 Преобразует кану к русским (по системе Поливанова) или английским (по пересмотренной системе Хепбёрна) слогам.
@@ -77,7 +77,7 @@ _Обращаю внимание, что указанные системы не 
 
 <details>
 
-<summary>`reverseKana(text, toKana)`</summary>
+<summary>reverseKana(text, toKana)</summary>
 
 #### Что делает
 
