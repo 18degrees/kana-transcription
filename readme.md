@@ -1,6 +1,8 @@
 
 # kana-transcription
 
+[![test](https://github.com/18degrees/kana-transcription/actions/workflows/tests.yml/badge.svg?event=push)](https://github.com/18degrees/kana-transcription/actions/workflows/tests.yml) ![NPM Version](https://img.shields.io/npm/v/kana-transcription) ![NPM License](https://img.shields.io/npm/l/kana-transcription)
+
 Мини-библиотека, с помощью который вы сможете:
 - Привести хирагану/катакану к русскому или английскому алфавиту
 - Преобразовать слоги русского или английского алфавита к хирагане/катакане
