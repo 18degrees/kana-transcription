@@ -16,7 +16,9 @@ _Проблемы, которые стали причиной появления
 
 ## Установка
 
-`npm install kana-transcription`
+```bash
+npm install kana-transcription
+```
 
 ## Примеры использования
 
