@@ -38,7 +38,7 @@ const textEN = "skoshii"
 const textRU = "скощии"
 
 const transformedFromEN = transformToKana(textEN)
-const transformedFromRU = transformToKana(textRU)
+const transformedFromRU = transformToKana(textRU, 'ru')
 
 //transformedFromEN = "すこしい"
 //transformedFromRU = "すこしい"
