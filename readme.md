@@ -18,6 +18,32 @@ _Проблемы, которые стали причиной появления
 
 `npm install kana-transcription`
 
+## Примеры использования
+
+```javascript
+import { transcriptKana } from 'kana-transcription'
+
+const kanaText = "わたし は うち へ いきます"
+
+const transcriptedEN = transcriptKana(kanaText)
+const transcriptedRU = transcriptKana(kanaText, 'ru')
+
+//transcriptedEN = "watashi wa uchi e ikimasu"
+//transcriptedRU = "ватаси ва ути э икимасу"
+
+
+import { transformToKana } from 'kana-transcription'
+
+const textEN = "skoshii"
+const textRU = "скощии"
+
+const transformedFromEN = transformToKana(textEN)
+const transformedFromRU = transformToKana(textRU)
+
+//transformedFromEN = "すこしい"
+//transformedFromRU = "すこしい"
+```
+
 ## Функции
 
 Общая рекомендация для всех функций: если вы обрабатываете сразу нескольких слов, разделяйте их пробелом (в т. ч. частицы). Это позволит отследить положение слога в слове, от чего нередко зависит его произношение.
