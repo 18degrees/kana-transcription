@@ -1,6 +1,6 @@
 {
 	"name": "kana-transcription",
-	"version": "1.0.2",
+	"version": "1.0.3",
 
 	"description": "Allows to transcript japanese syllabaries to en/ru letters and vice versa; provides function to transform kana from one to the other syllabary",
 	"keywords": [
