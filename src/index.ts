@@ -19,7 +19,7 @@ export function transcriptKana(kanaText: string, toLang: lang = 'en'): string | 
     )
 }
 
-export function transformToKana(text: string, fromLang: lang, toKana: kana): string | null {
+export function transformToKana(text: string, fromLang: lang = 'en', toKana: kana = 'hiragana'): string | null {
     return (
         fromLang === 'en' ? transformToKanaEN(text, toKana) : 
         fromLang === 'ru' ? transformToKanaRU(text, toKana) : null
