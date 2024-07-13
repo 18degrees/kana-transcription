@@ -416,6 +416,8 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 return true
             }
             function isItDevoicedVowel(): boolean {
+                if (!hasOnlyConsonants(syllable)) return false
+                
                 const consonants = getConsonants(syllable)
 
                 if (!consonants) return false
