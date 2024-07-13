@@ -309,7 +309,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'ん': {
                     const nextKana: string | undefined = splitedWord[index + 1]
-                    const nextSyllableTranscription: string | null = transcriptKanaEN(nextKana)
+                    const nextSyllableTranscription: string | null | undefined = nextKana ? transcriptKanaEN(nextKana) : undefined
 
                     const nextLetter = nextSyllableTranscription ? nextSyllableTranscription[0] : undefined
 
