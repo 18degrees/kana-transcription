@@ -3,7 +3,7 @@ import { reverseKana } from "../common/reverseKana.js"
 import type { kana } from "../type-common/index.js"
 
 export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): string | null {
-    const splitRegExp = /[ksztfdnhbpmrwj]?y?[aiueo]|ts[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|[ksztfdnhbpmrwj]/g
+    const splitRegExp = /[kszgtfdnhbpmrwj]?y?[aiueo]|ts[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|[kszgtfdnhbpmrwj]/g
 
     const splitedSentence = text.toLowerCase().split(' ')
 
@@ -457,12 +457,12 @@ function isItVoicelessConsonants(letters: string) {
 }
 
 function hasOnlyConsonants(str: string) {
-    const nonConsonantRegExp = /[^ksztfdnhbpmrwj]/
+    const nonConsonantRegExp = /[^kszgtfdnhbpmrwj]/
 
     return !str.match(nonConsonantRegExp)
 }
 function getConsonants(str: string) {
-    const consonantRegExp = /[ksztfdnhbpmrwj]/g
+    const consonantRegExp = /[kszgtfdnhbpmrwj]/g
 
     const consonants = str.match(consonantRegExp)?.join('')
 
