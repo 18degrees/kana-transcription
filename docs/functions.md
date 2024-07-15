@@ -13,9 +13,9 @@
 
 _Быстрая навигация:_
 
-1. [transcriptKana()](#transcriptKanatext,-toLang)
-2. [transformToKana()](#transformToKanatext,-fromLang,-toKana)
-3. [reverseKana()](#reverseKanatext,-toKana)
+1. [transcriptKana()](#transcriptKanatext-toLang)
+2. [transformToKana()](#transformToKanatext-fromLang-toKana)
+3. [reverseKana()](#reverseKanatext-toKana)
 
 ## transcriptKana(text, toLang)
 
