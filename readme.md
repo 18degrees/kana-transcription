@@ -2,25 +2,27 @@
 
 ![NPM Version](https://img.shields.io/npm/v/kana-transcription) [![test](https://github.com/18degrees/kana-transcription/actions/workflows/tests.yml/badge.svg?event=push)](https://github.com/18degrees/kana-transcription/actions/workflows/tests.yml) ![NPM License](https://img.shields.io/npm/l/kana-transcription)
 
-Мини-библиотека, с помощью который вы сможете:
-- Привести хирагану/катакану к русскому или английскому алфавиту
-- Преобразовать слоги русского или английского алфавита к хирагане/катакане
-- Перевести одну кану в другую
+_Switch the language to: [Russian](readme-ru.md)_
 
-Для выполнения каждого пункта есть своя функция. Перед использованием посмотрите в [обзоре функций](docs/functions.md) ограничения и рекомендации. Учёт рекомендаций повысит точность, а учёт ограничений подготовит к недостаткам алгоритма.
+A mini-library that you can use to:
+- Translate hiragana/katakana to the Russian or English alphabet
+- Transform syllables of Russian or English alphabet to hiragana/katakana
+- Convert one kana to the other
 
-## Документация
+There is a function to perform each item. Before using them, see [function overview](docs/en/functions.md) for limitations and recommendations. Keeping the recommendations in mind will improve accuracy, and keeping the limitations in mind will prepare you for the shortcomings of the algorithm.
 
-- [Обзор функций](docs/functions.md)
-- [Причины появления рекомендаций и ограничений](docs/explanation.md)
+## Documentation
 
-## Установка
+- [Function overview](docs/en/functions.md)
+- [Reasons for recommendations and limitations](docs/en/explanation.md)
+
+## Installation
 
 ```bash
 npm install kana-transcription
 ```
 
-## Примеры использования
+## Usage examples
 
 ```javascript
 import { transcriptKana } from 'kana-transcription'
@@ -46,6 +48,6 @@ const transformedFromRU = transformToKana(textRU, 'ru')
 //transformedFromRU = "すこしい"
 ```
 
-## Лицензия
+## License
 
 [Apache-2.0](LICENSE)
