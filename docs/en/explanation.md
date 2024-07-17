@@ -147,7 +147,7 @@ _The symbol ー_ is **not used** as a result. As with hiragana - some (and even 
 
 
 
-#### Separating row _na_ and syllabic _n_
+#### Separation of row _na_ and syllabic _n_
 
 The syllabic _n_ can be confused with the _na_ row, since the former can also be followed by vowels. The result is an incorrect entry.
 
