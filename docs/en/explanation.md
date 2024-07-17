@@ -10,14 +10,14 @@ Some peculiarities of Japanese pronunciation and writing are described here. The
 >
 >1. [Dependence of syllable reading on position](#dependence-of-syllable-reading-on-position)
 >2. [Different notation of vowel longness](#different-notation-of-vowel-longness)
->3. [Separation of row _on_ and syllabic _n_](#separation-of-row-on-and-syllabic-n)
+>3. [Separation of row _na_ and syllabic _n_](#separation-of-row-na-and-syllabic-n)
 >4. [Defenition of a devoiced vowel and a long consonant](#definition-of-a-devoiced-vowel-and-a-long-consonant)
 >5. [Devoiced vowel: _i_ or _u_?](#devoiced-vowel-i-or-u)
 >
 >_transcriptKana()_
 >
 >6. [Particle recognition](#particle-recognition)
->7. [Understanding syllable _n_](#understanding-syllable-n)
+>7. [Understanding the syllable _n_](#understanding-the-syllable-n)
 >8. [Recognizing long vowels](#recognizing-long-vowels)
 >
 >_reverseKana()_
