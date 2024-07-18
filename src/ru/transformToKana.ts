@@ -1,10 +1,11 @@
+import { spacesRegExp } from '../const-common/index.js'
 import { reverseKana } from "../common/reverseKana.js"
 import type { kana } from "../type-common/index.js"
 
 export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): string | null {
     const splitRegExp = /[цкнгшщзхфвпрлджчсмтб]?[аеёийоуэюя]|дз[аеёийоуэюя]|нъ|[цкнгшщзхфвпрлджчсмтб]ь?/g
 
-    const splitedSentence = text.toLowerCase().split(' ')
+    const splitedSentence = text.toLowerCase().split(spacesRegExp)
 
     const isThereOnlyOneWord = splitedSentence.length === 1
 

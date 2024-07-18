@@ -1,7 +1,9 @@
+import { spacesRegExp } from '../const-common/index.js'
+
 export function transcriptKanaEN(kanaText: string): string | null {
     const allKanaRegExp = /\p{Script=Kana}{1}|\p{Script=Hira}{1}|ー/ug
 
-    const splitedSentence = kanaText.toLowerCase().split(' ')
+    const splitedSentence = kanaText.toLowerCase().split(spacesRegExp)
 
     const isThereOnlyOneWord = splitedSentence.length === 1
 
