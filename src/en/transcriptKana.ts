@@ -1,4 +1,5 @@
-import { kanaRegExp, spacesRegExp } from '../common/consts.js'
+import { spacesRegExp } from '../common/consts.js'
+import { isThereKanaAround } from '../common/funcs.js'
 
 export function transcriptKanaEN(kanaText: string): string | null {
     const splitedSentence = kanaText.toLowerCase().split(spacesRegExp)
@@ -8,7 +9,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
     const transcriptedWords: string[] = []
 
     for (const word of splitedSentence) {
-        const splitedWord = word.match(kanaRegExp)
+        const splitedWord = word.split('')
 
         if (!splitedWord) continue
         
@@ -17,7 +18,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
         const transcriptedSplitedWord: string[] = []
         
         splitedWord.forEach((kana, index) => {
-            let transcriptedSyllable = ''
+            let transcriptedSyllable = kana
 
             switch (kana) {
                 case 'あ':
@@ -180,9 +181,24 @@ export function transcriptKanaEN(kanaText: string): string | null {
                 case 'ノ':
                     transcriptedSyllable = 'no'
                     break
-                case 'は':
-                    transcriptedSyllable = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'wa' : 'ha'
+                case 'は': {
+                    if (!isThereOnlyOneWord) {
+                        if (isItTheOnlySyllable) {
+                            transcriptedSyllable = 'wa'
+                            break
+                        } else {
+                            const nextSyllable: string | undefined = splitedWord[index + 1]
+                            const prevSyllable: string | undefined = splitedWord[index - 1]
+
+                            if (!isThereKanaAround(prevSyllable, nextSyllable)) {
+                                transcriptedSyllable = 'wa'
+                                break
+                            }
+                        }
+                    }
+                    transcriptedSyllable = 'ha'
                     break
+                }
                 case 'ハ':
                     transcriptedSyllable = 'ha'
                     break
@@ -194,9 +210,24 @@ export function transcriptKanaEN(kanaText: string): string | null {
                 case 'フ':
                     transcriptedSyllable = 'fu'
                     break
-                case 'へ':
-                    transcriptedSyllable = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'e' : 'he'
+                case 'へ': {
+                    if (!isThereOnlyOneWord) {
+                        if (isItTheOnlySyllable) {
+                            transcriptedSyllable = 'e'
+                            break
+                        } else {
+                            const nextSyllable: string | undefined = splitedWord[index + 1]
+                            const prevSyllable: string | undefined = splitedWord[index - 1]
+
+                            if (!isThereKanaAround(prevSyllable, nextSyllable)) {
+                                transcriptedSyllable = 'e'
+                                break
+                            }
+                        }
+                    }
+                    transcriptedSyllable = 'he'
                     break
+                }
                 case 'ヘ':
                     transcriptedSyllable = 'he'
                     break
@@ -300,10 +331,24 @@ export function transcriptKanaEN(kanaText: string): string | null {
                 case 'ワ':
                     transcriptedSyllable = 'wa'
                     break
-                case 'を':
-                    transcriptedSyllable = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'o' : 'wo'
-                    
+                case 'を': {
+                    if (!isThereOnlyOneWord) {
+                        if (isItTheOnlySyllable) {
+                            transcriptedSyllable = 'o'
+                            break
+                        } else {
+                            const nextSyllable: string | undefined = splitedWord[index + 1]
+                            const prevSyllable: string | undefined = splitedWord[index - 1]
+
+                            if (!isThereKanaAround(prevSyllable, nextSyllable)) {
+                                transcriptedSyllable = 'o'
+                                break
+                            }
+                        }
+                    }
+                    transcriptedSyllable = 'wo'
                     break
+                }
                 case 'ヲ':
                     transcriptedSyllable = 'wo'
                     break
