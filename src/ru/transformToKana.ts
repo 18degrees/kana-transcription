@@ -1,6 +1,6 @@
-import { spacesRegExp } from '../const-common/index.js'
-import { reverseKana } from "../common/reverseKana.js"
-import type { kana } from "../type-common/index.js"
+import { spacesRegExp } from '../common/consts.js'
+import { reverseKana } from "../reverseKana.js"
+import type { kana } from "../common/types.js"
 
 export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): string | null {
     const splitRegExp = /[цкнгшщзхфвпрлджчсмтб]?[аеёийоуэюя]|дз[аеёийоуэюя]|нъ|[цкнгшщзхфвпрлджчсмтб]ь?/g

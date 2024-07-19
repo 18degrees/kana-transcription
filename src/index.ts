@@ -9,7 +9,7 @@ import { transcriptKanaRU } from "./ru/transcriptKana.js"
 import { transformToKanaEN } from "./en/transformToKana.js"
 import { transformToKanaRU } from "./ru/transformToKana.js"
 
-import type { kana, lang } from "./type-common/index.js"
+import type { kana, lang } from "./common/types.js"
 
 
 export function transcriptKana(kanaText: string, toLang: lang = 'en'): string | null {
@@ -26,4 +26,4 @@ export function transformToKana(text: string, fromLang: lang = 'en', toKana: kan
     ) 
 }
 
-export { reverseKana } from './common/reverseKana.js'
+export { reverseKana } from './reverseKana.js'

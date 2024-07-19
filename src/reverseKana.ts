@@ -1,5 +1,5 @@
-import { transcriptKanaEN } from "../en/transcriptKana.js"
-import type { kana } from '../type-common/index.js'
+import { transcriptKanaEN } from "./en/transcriptKana.js"
+import type { kana } from './common/types.js'
 
 export function reverseKana(text: string, toKana: kana = 'hiragana'): string | null {
     const allKanaRegExp = /\p{Script=Kana}{1}|\p{Script=Hira}{1}|ー/ug

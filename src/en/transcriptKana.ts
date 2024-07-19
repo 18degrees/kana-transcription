@@ -1,4 +1,4 @@
-import { spacesRegExp } from '../const-common/index.js'
+import { spacesRegExp } from '../common/consts.js'
 
 export function transcriptKanaEN(kanaText: string): string | null {
     const allKanaRegExp = /\p{Script=Kana}{1}|\p{Script=Hira}{1}|ー/ug
