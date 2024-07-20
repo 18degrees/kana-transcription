@@ -10,3 +10,7 @@ export function isThereKanaAround(prevSyllable: string | undefined, nextSyllable
 function isKana(string: string) {
     return !!string.match(kanaRegExp)
 }
+
+export function isItSmallKana(string: string) {
+    return !!string.match(/[ァィゥェォゃャゅュょョ]/)
+}
