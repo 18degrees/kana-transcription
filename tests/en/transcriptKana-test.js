@@ -20,10 +20,33 @@ describe('TranscriptKana function: makes kana transcription to english syllables
             
             assert.equal(transcriptKana('はつおん'), 'hatsuon')
         })
-    })
-    describe('Test-core', () => {
-        //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
+        it('punctuation marks', () => {
+            //все знаки препинания, кроме пробела, не изменяются
 
-        assert.equal()
+            assert.equal(transcriptKana(
+                '「わかい　ひとたち　は　マナー　が　わるい」と　にじゅういっさい の おんなのがくせい が かんがえています。'),
+                '「wakai hitotachi wa manaa ga warui」to nijyuuissai no onnanogakusei ga kangaeteimasu。'
+            )
+        })
+        it('extended katakana', () => {
+            assert.equal(transcriptKana('ウゥルカーヌス'), 'wurukaanusu')
+            assert.equal(transcriptKana('ミネルウァ'), 'mineruwa')
+            assert.equal(transcriptKana('イェビス'), 'yebisu')
+            assert.equal(transcriptKana('フィクション'), 'fikushon')
+            assert.equal(transcriptKana('ジェスチャー'), 'jesuchaa')
+            assert.equal(transcriptKana('エスクァイア'), 'esukwaia')
+            assert.equal(transcriptKana('インテルメッツォ'), 'interumettso')
+            assert.equal(transcriptKana('ハロウィーン'), 'harowiin')
+        })
+    })
+
+    //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
+    it('other cases', () => {
+        assert.equal(transcriptKana('わたし　は　きのう　はは　に　だいじな　てがみ　を　よんだ'), 'watashi wa kinou haha ni daijina tegami o yonda')
+
+        assert.equal(transcriptKana(
+            'しごと　の　すききらい　が　はっきり　していない　わかもの　でも、じぶん　に　いちばん　あう　もの　が　みつかったら、かんがえかた　も　いきかた　も　かわる　はずです'), 
+            'shigoto no sukikirai ga hakkiri shiteinai wakamono demo、jibun ni ichiban au mono ga mitsukattara、kangaekata mo ikikata mo kawaru hazudesu'
+        )
     })
 })

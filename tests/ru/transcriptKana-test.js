@@ -20,10 +20,34 @@ describe('TranscriptKana function: makes kana transcription to russian syllables
             
             assert.equal(transcriptKana('はつおん', 'ru'), 'хацуон')
         })
+        it('punctuation marks', () => {
+            //все знаки препинания, кроме пробела, не изменяются
+            
+            assert.equal(transcriptKana(
+                '「わかい　ひとたち　は　マナー　が　わるい」と　にじゅういっさい の おんなのがくせい が かんがえています。', 'ru'),
+                '「вакаи хитотати ва манаа га варуи」то нидзюуиссаи но оннаногакусэи га кангаэтэимасу。'
+            )
+        })
+        it('extended katakana', () => {
+            assert.equal(transcriptKana('ウゥルカーヌス', 'ru'), 'вурукаанусу')
+            assert.equal(transcriptKana('ミネルウァ', 'ru'), 'минэрува')
+            assert.equal(transcriptKana('イェビス', 'ru'), 'йэбису')
+            assert.equal(transcriptKana('フィクション', 'ru'), 'фикусён')
+            assert.equal(transcriptKana('ジェスチャー', 'ru'), 'дзэсутяа')
+            assert.equal(transcriptKana('エスクァイア', 'ru'), 'эсукваиа')
+            assert.equal(transcriptKana('インテルメッツォ', 'ru'), 'интэрумэтцо')
+            assert.equal(transcriptKana('ハロウィーン', 'ru'), 'харовиин')
+        })
     })
-    describe('Test-core', () => {
-        //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
+    
+    //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
+    it('other cases', () => {
+        assert.equal(transcriptKana('わたし　は　きのう　はは　に　だいじな　てがみ　を　よんだ', 'ru'), 'ватаси ва киноу хаха ни даидзина тэгами о ёнда')
 
-        assert.equal()
+        assert.equal(transcriptKana(
+            'しごと　の　すききらい　が　はっきり　していない　わかもの　でも、じぶん　に　いちばん　あう　もの　が　みつかったら、かんがえかた　も　いきかた　も　かわる　はずです', 'ru'), 
+            'сигото но сукикираи га хаккири ситэинаи вакамоно дэмо、дзибун ни итибан ау моно га мицукаттара、кангаэката мо икиката мо кавару хадзудэсу'
+        )
     })
+    
 })

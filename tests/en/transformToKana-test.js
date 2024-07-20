@@ -37,9 +37,9 @@ describe('TransformToKana function: transforms english syllables to japanese syl
             assert.equal(transformToKana('keeki', 'en', 'katakana'), 'ケエキ');
         })
     })
-    describe('Test-core', () => {
-        //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
 
-        assert.equal()
+    //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
+    it('other cases', () => {
+        assert.equal(transformToKana('watashi wa kinoo haha ni daijina tegami o yonda'), 'わたし は きのお はは に だいじな てがみ を よんだ')
     })
 });

@@ -53,9 +53,9 @@ describe('TransformToKana function: transforms russian syllables to japanese syl
         })
         
     })
-    describe('Test-core', () => {
-        //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
 
-        assert.equal()
+    //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
+    it('other cases', () => {
+        assert.equal(transformToKana('ватаси ва киноо хаха ни даидзина тэгами о ёнда', 'ru'), 'わたし は きのお はは に だいじな てがみ を よんだ')
     })
 });
