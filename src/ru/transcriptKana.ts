@@ -432,7 +432,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
 
                     if (!hasOnlyConsonants(nextLetter)) break
 
-                    transcriptedSyllable = nextKana === 'つ' ? 'т' : nextLetter                                     //По Поливанову っつ пишется как тцу
+                    transcriptedSyllable = (nextKana === 'つ' || nextKana === 'ツ') ? 'т' : nextLetter                                     //По Поливанову っつ пишется как тцу
                     break
                 }
                 case 'ー': {

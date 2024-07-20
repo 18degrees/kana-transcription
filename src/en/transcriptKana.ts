@@ -427,7 +427,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
 
                     if (!hasOnlyConsonants(nextLetter)) break
 
-                    transcriptedSyllable = nextKana === 'ち' ? 't' : nextLetter                                     //По Хепбёрну っち пишется как tchi
+                    transcriptedSyllable = (nextKana === 'ち' || nextKana === 'チ') ? 't' : nextLetter                                     //По Хепбёрну っち пишется как tchi
                     break
                 }
                 case 'ー': {
