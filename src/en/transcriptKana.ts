@@ -470,7 +470,7 @@ function hasOnlyConsonants(str: string) {
     return !str.match(consonantRegExp)
 }
 function getConsonants(str: string) {
-    const consonantRegExp = /[ksztfdnhbpmrwj]/g
+    const consonantRegExp = /[ksztcfdnhbpmrwj]/g
 
     const consonants = str.match(consonantRegExp)?.join('')
 
