@@ -460,12 +460,12 @@ export function transcriptKanaEN(kanaText: string): string | null {
 }
 
 function hasOnlyVowel(str: string) {
-    const vowelRegExp = /[^aiueoyаеёийоуэюя]/
+    const vowelRegExp = /[^aiueoy]/
 
     return !str.match(vowelRegExp)
 }
 function hasOnlyConsonants(str: string) {
-    const consonantRegExp = /[^цкнгшщзхфвпрлджчсмтбksztfdnhbpmrwj]/
+    const consonantRegExp = /[^ksztfdnhbpmrwj]/
 
     return !str.match(consonantRegExp)
 }
