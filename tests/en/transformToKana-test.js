@@ -7,6 +7,8 @@ describe('TransformToKana function: transforms english syllables to japanese syl
             // Подробнее: п.4 и п.5 в /docs/explanation.md
 
             assert.equal(transformToKana('skoshii'), 'すこしい')
+
+            assert.equal(transformToKana('mashta'), 'ました')
         })
         it('long vowel', () => {
             /*
@@ -29,7 +31,6 @@ describe('TransformToKana function: transforms english syllables to japanese syl
             assert.equal(transformToKana("ten'in"), 'てんいん')
             assert.equal(transformToKana('minna'), 'みんな')
         })
-    
         it('long vowel (to katakana)', () => {
             /*
                 Подробнее: п.2 в /docs/explanation.md
