@@ -457,12 +457,12 @@ function isItVoicelessConsonants(letters: string) {
 }
 
 function hasOnlyConsonants(str: string) {
-    const nonConsonantRegExp = /[^kszgtfdnhbpmrwj]/
+    const nonConsonantRegExp = /[^ksztcgfdnhbpmrwj]/
 
     return !str.match(nonConsonantRegExp)
 }
 function getConsonants(str: string) {
-    const consonantRegExp = /[kszgtfdnhbpmrwj]/g
+    const consonantRegExp = /[ksztcgfdnhbpmrwj]/g
 
     const consonants = str.match(consonantRegExp)?.join('')
 
