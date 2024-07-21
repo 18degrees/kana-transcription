@@ -388,8 +388,12 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
             if (isItDevoicedVowel()) {
                 let correctedSyllable = syllable
 
-                correctedSyllable += 'u'                    //так как в английском нет мягкого знака, отличить неслышную "u" от "i" не получается
-                
+                if (isItDevoicedI()) {
+                    correctedSyllable+= 'i'
+                } else {
+                    correctedSyllable += 'u'                    //так как в английском нет мягкого знака, отличить неслышную "u" от "i" не получается
+                }
+
                 const correctedKana = transformToKanaEN(correctedSyllable)
                 
                 kana = correctedKana ? correctedKana : ''
@@ -437,7 +441,11 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 if (consonants === 't' && nextSyllableConsonants === 'ch') return false
 
                 return true
+            }
+            function isItDevoicedI() {
+                if (syllable === 'sh' || syllable === 'ch' || syllable === 'j') return true                            //эти звуки не употребляются с /u/
                 
+                return false
             }
         }))
         hiraganaWords.push(hiraganaWord)
