@@ -176,7 +176,7 @@ Depending on the languages, the accuracy will vary.
 
 ##### Solution (_English_)
 
-Again, there is no solution - **every** devoiced vowel is interpreted as _u_ - just from the fact that it is used more often.
+There are some consonants that aren't used with _u_ vowel: 'sh', 'ch', 'j'. So, devoiced vowel is considered as _i_ if only written earlier consonants are used. If not - vowel is understood as _u_.
 
 ##### Solution (_Russian_)
 

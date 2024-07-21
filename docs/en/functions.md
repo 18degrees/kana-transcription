@@ -70,7 +70,7 @@ Transforms text written in Russian or English syllables to one of the Japanese s
   
 - The longness of vowels is shown only by their repetition
 - Devoiced い 
-  - _(from English)_ is not derived
+  - _(from English)_ is derived only from 'sh', 'ch', 'j' consonants
   - _(from Russian)_ is derived when a soft sign is used or always soft consonants are used
 - Two identical consonants in a row in the same word **always** are understood as a double consonant
 - ***The sign ー is not used***
