@@ -42,5 +42,14 @@ describe('TransformToKana function: transforms english syllables to japanese syl
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
     it('other cases', () => {
         assert.equal(transformToKana('watashi wa kinoo haha ni daijina tegami o yonda'), 'わたし は きのお はは に だいじな てがみ を よんだ')
+
+        assert.equal(transformToKana(
+            'shigoto no sukikirai ga hakkiri shiteinai wakamono demo jibun ni ichiban au mono ga mitsukattara kangaekata mo ikikata mo kawaru hazudesu'), 
+            'しごと の すききらい が はっきり していない わかもの でも じぶん に いちばん あう もの が みつかったら かんがえかた も いきかた も かわる はずです'
+        )
+        assert.equal(transformToKana(
+            'atsukau tsuushin omoitsuku nyuugaku suidoo byooin'),
+            'あつかう つうしん おもいつく にゅうがく すいどお びょおいん'
+        )
     })
 });

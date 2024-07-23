@@ -48,5 +48,13 @@ describe('TranscriptKana function: makes kana transcription to english syllables
             'しごと　の　すききらい　が　はっきり　していない　わかもの　でも、じぶん　に　いちばん　あう　もの　が　みつかったら、かんがえかた　も　いきかた　も　かわる　はずです'), 
             'shigoto no sukikirai ga hakkiri shiteinai wakamono demo、jibun ni ichiban au mono ga mitsukattara、kangaekata mo ikikata mo kawaru hazudesu'
         )
+        assert.equal(transcriptKana(
+            'あつかう、つうしん、おもいつく、にゅうがく、すいどう、びょういん'),
+            'atsukau、tsuushin、omoitsuku、nyuugaku、suidou、byouin'
+        )
+        assert.equal(transcriptKana(
+            'さいきん　は　ちいさいい　とき　から ファミコン　ばかりしている　から　にちがいありません。'),
+            'saikin wa chiisaii toki kara famikon bakarishiteiru kara nichigaiarimasen。'
+        )
     })
 })
