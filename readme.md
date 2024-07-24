@@ -27,25 +27,25 @@ npm install kana-transcription
 ```javascript
 import { transcriptKana } from 'kana-transcription'
 
-const kanaText = "わたし は うち へ いきます"
+const kanaText = 'わたし は うち へ いきます'
 
 const transcriptedEN = transcriptKana(kanaText)
 const transcriptedRU = transcriptKana(kanaText, 'ru')
 
-//transcriptedEN = "watashi wa uchi e ikimasu"
-//transcriptedRU = "ватаси ва ути э икимасу"
+//transcriptedEN = 'watashi wa uchi e ikimasu'  - according to the Hepburn system
+//transcriptedRU = 'ватаси ва ути э икимасу'    - according to the Polivanov system
 
 
 import { transformToKana } from 'kana-transcription'
 
-const textEN = "skoshii"
-const textRU = "скощии"
+const textEN = 'watashi wa kinoo haha ni daijina tegami o yonda'
+const textRU = 'ватащи ва киноо хаха ни даидзина тэгами о ёнда'
 
 const transformedFromEN = transformToKana(textEN)
 const transformedFromRU = transformToKana(textRU, 'ru')
 
-//transformedFromEN = "すこしい"
-//transformedFromRU = "すこしい"
+//transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
+//transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'
 ```
 
 ## License
