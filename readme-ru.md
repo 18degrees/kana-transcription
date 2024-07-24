@@ -48,6 +48,10 @@ const transformedFromRU = transformToKana(textRU, 'ru')
 //transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'
 ```
 
+## Содействие
+
+Если хотите поучаствовать в работе над проектом, смело используйте [issues](https://github.com/18degrees/kana-transcription/issues) и [pull requests](https://github.com/18degrees/kana-transcription/pulls).
+
 ## Лицензия
 
 [Apache-2.0](LICENSE)
