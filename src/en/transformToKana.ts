@@ -3,7 +3,7 @@ import { reverseKana } from "../reverseKana.js"
 import type { kana } from "../common/types.js"
 
 export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): string | null {
-    const splitRegExp = /[kszgtfdnhbpmrwj]?y?[aiueo]|ts[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|[kszgtfdnhbpmrwj]|./g
+    const splitRegExp = /[kszgtfdnhbpmrwjvl]?y?[aiueo]|ts?y?[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|[kszgtfdnhbpmrwjvl]|./g
 
     const splitedSentence = text.toLowerCase().split(spacesRegExp)
 
@@ -372,7 +372,264 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 case 'pyo':
                     kana = 'ぴょ'
                     break;
-        
+
+                //расширенная азбука
+
+                case 'yi':
+                    kana = 'いぃ'
+                    break
+                case 'ye':
+                    kana = 'いぇ'
+                    break
+
+                case 'wi':
+                    kana = 'うぃ'
+                    break
+                case 'wu':
+                    kana = 'うぅ'
+                    break
+                case 'we':
+                    kana = 'うぇ'
+                    break
+
+                case 'wya':
+                    kana = 'うゃ'
+                    break
+                case 'wyu':
+                    kana = 'うゅ'
+                    break
+                case 'wye':
+                    kana = 'うぃぇ'
+                    break
+                case 'wyo':
+                    kana = 'うょ'
+                    break
+
+                case 'va':
+                    kana = 'ゔぁ'
+                    break
+                case 'vi':
+                    kana = 'ゔぃ'
+                    break
+                case 'vu':
+                    kana = 'ゔぅ'
+                    break
+                case 've':
+                    kana = 'ゔぇ'
+                    break
+                case 'vo':
+                    kana = 'ゔぉ'
+                    break
+
+                case 'vya':
+                    kana = 'ゔゃ'
+                    break
+                case 'vyu':
+                    kana = 'ゔゅ'
+                    break
+                case 'vye':
+                    kana = 'ゔぃぇ'
+                    break
+                case 'vyo':
+                    kana = 'ゔょ'
+                    break
+
+                case 'kye':
+                    kana = 'きぇ'
+                    break
+                case 'gye':
+                    kana = 'ぎぇ'
+                    break
+
+                case 'kwa':
+                case 'kwi':
+                case 'kwe':
+                case 'kwo':
+
+                case 'gwa':
+                case 'gwi':
+                case 'gwe':
+                case 'gwo':
+
+                case 'nga':
+                case 'ngi':
+                case 'ngu':
+                case 'nge':
+                case 'ngo':
+
+                case 'si':
+                    break
+
+                case 'she':
+                    kana = 'しぇ'
+                    break
+                case 'je':
+                    kana = 'じぇ'
+                    break
+
+                case 'tsa':
+                    kana = 'つぁ'
+                    break
+                case 'tsi':
+                    kana = 'つぃ'
+                    break
+                case 'tse':
+                    kana = 'つぇ'
+                    break
+                case 'tso':
+                    kana = 'つぉ'
+                    break
+
+                case 'tsya':
+                    kana = 'つゃ'
+                    break
+                case 'tsyu':
+                    kana = 'つゅ'
+                    break
+                case 'tsye':
+                    kana = 'つぃぇ'
+                    break
+                case 'tsyo':
+                    kana = 'つョ'
+                    break
+
+                case 'zi':
+                    kana = 'づぃ'
+                    break
+
+                case 'zya':
+                    kana = 'づぉ'
+                    break
+                case 'zyu':
+                    kana = 'づぉ'
+                    break
+                case 'zye':
+                    kana = 'づぉ'
+                    break
+                case 'zyo':
+                    kana = 'づぉ'
+                    break
+
+                case 'twi':
+                    break
+                case 'tyu':
+                    kana = 'てゅ'
+                    break
+
+                case 'di':
+                    kana = 'でぃ'
+                    break
+                case 'du':
+                    kana = 'どぅ'
+                    break
+
+                case 'dwi':
+                    break
+                case 'dyu':
+                    kana = 'でゅ'
+                    break
+
+                case 'nwi':
+                    break
+                case 'nye':
+                    kana = 'にぇ'
+                    break
+
+                case 'hyu':
+                    kana = 'ひぇ'
+                    break
+
+                case 'bwi':
+                    break
+                case 'bye':
+                    kana = 'びぇ'
+                    break
+
+                case 'pwi':
+                    break
+                case 'pye':
+                    kana = 'ぴぇ'
+                    break
+
+                case 'fa':
+                    kana = 'ふぁ'
+                    break
+                case 'fi':
+                    kana = 'ふぃ'
+                    break
+                case 'fe':
+                    kana = 'ふぇ'
+                    break
+                case 'fo':
+                    kana = 'ふぉ'
+                    break
+
+                case 'fya':
+                    kana = 'ふゃ'
+                    break
+                case 'fyu':
+                    kana = 'ふゅ'
+                    break
+                case 'fye':
+                    kana = 'ふぃぇ'
+                    break
+                case 'fyo':
+                    kana = 'ふょ'
+                    break
+
+                case 'mwi':
+                    break
+                case 'mye':
+                    kana = 'みぃぇ'
+                    break
+
+                case 'rwi':
+                    break
+                case 'rye':
+                    kana = 'りぃぇ'
+                    break
+            
+                case 'la':
+                    kana = 'ら゚'
+                    break
+                case 'li':
+                    kana = 'り゚'
+                    break
+                case 'lu':
+                    kana = 'る゚'
+                    break
+                case 'le':
+                    kana = 'れ゚'
+                    break
+                case 'lo':
+                    kana = 'ろ゚'
+                    break
+
+                case 'lya':
+                    kana = 'り゚ゃ'
+                    break
+                case 'lyu':
+                    kana = 'り゚ゅ'
+                    break
+                case 'lye':
+                    kana = 'り゚ぇ'
+                    break
+                case 'lyo':
+                    kana = 'り゚ょ'
+                    break
+
+                case 'va':
+                    kana = 'わ゙'
+                    break
+                case 'vi':
+                    kana = 'ゐ゙'
+                    break
+                case 've':
+                    kana = 'ゑ゙'
+                    break
+                case 'vo':
+                    kana = 'を゙'
+                    break
                 default:
                     break;
             }
@@ -465,12 +722,12 @@ function isItVoicelessConsonants(letters: string) {
 }
 
 function hasOnlyConsonants(str: string) {
-    const nonConsonantRegExp = /[^ksztcgfdnhbpmrwj]/
+    const nonConsonantRegExp = /[^ksztcgfdnhbpmrwjvl]/
 
     return !str.match(nonConsonantRegExp)
 }
 function getConsonants(str: string) {
-    const consonantRegExp = /[ksztcgfdnhbpmrwj]/g
+    const consonantRegExp = /[ksztcgfdnhbpmrwjvl]/g
 
     const consonants = str.match(consonantRegExp)?.join('')
 
