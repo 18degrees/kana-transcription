@@ -3,7 +3,7 @@ import { reverseKana } from "../reverseKana.js"
 import type { kana } from "../common/types.js"
 
 export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): string | null {
-    const splitRegExp = /[kszgtfdnhbpmrwj]?y?[aiueo]|ts[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|[kszgtfdnhbpmrwj]/g
+    const splitRegExp = /[kszgtfdnhbpmrwj]?y?[aiueo]|ts[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|[kszgtfdnhbpmrwj]|./g
 
     const splitedSentence = text.toLowerCase().split(spacesRegExp)
 
@@ -23,7 +23,7 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
         splitedWord.forEach(((syllable, index) => {
             const prevSyllable: string | undefined = splitedWord[index - 1]
 
-            let kana = ''
+            let kana = syllable
 
             switch (syllable) {
                 case 'a':
