@@ -339,6 +339,95 @@ export function reverseKana(text: string, toKana: kana = 'hiragana'): string | n
                     const prevKanaLetter = getKanaVowel(prevLetter)
 
                     return prevKanaLetter
+
+                // расширенная кана
+
+                case 'ぁ':
+                case 'ァ':
+                    return toKana === 'hiragana' ? 'ぁ' : 'ァ'
+                case 'ぃ':
+                case 'ィ':
+                    return toKana === 'hiragana' ? 'ぃ' : 'ィ'
+                case 'ぅ':
+                case 'ゥ':
+                    return toKana === 'hiragana' ? 'ぅ' : 'ゥ'
+                case 'ぇ':
+                case 'ェ':
+                    return toKana === 'hiragana' ? 'ぇ' : 'ェ'
+                case 'ぉ':
+                case 'ォ':
+                    return toKana === 'hiragana' ? 'ぉ' : 'ォ'
+
+                case 'ゎ':
+                case 'ヮ':
+                    return toKana === 'hiragana' ? 'ゎ' : 'ヮ'
+
+                case 'ゕ':
+                case 'ヵ':
+                    return toKana === 'hiragana' ? 'ゕ' : 'ヵ'
+                case 'ゖ':
+                case 'ヶ':
+                    return toKana === 'hiragana' ? 'ゖ' : 'ヶ'
+
+                case 'ゔ':
+                case 'ヴ':
+                    return toKana === 'hiragana' ? 'ゔ' : 'ヴ'
+
+                case 'か゚':
+                case 'カ゚':
+                    return toKana === 'hiragana' ? 'か゚' : 'カ゚'
+                case 'き゚':
+                case 'キ゚':
+                    return toKana === 'hiragana' ? 'き゚' : 'キ゚'
+                case 'く゚':
+                case 'ク゚':
+                    return toKana === 'hiragana' ? 'く゚' : 'ク゚'
+                case 'け゚':
+                case 'ケ゚':
+                    return toKana === 'hiragana' ? 'け゚' : 'ケ゚'
+                case 'こ゚':
+                case 'コ゚':
+                    return toKana === 'hiragana' ? 'こ゚' : 'コ゚'
+
+                case 'ら゚':
+                case 'ラ゚':
+                    return toKana === 'hiragana' ? 'ら゚' : 'ラ゚'
+                case 'り゚':
+                case 'リ゚':
+                    return toKana === 'hiragana' ? 'り゚' : 'リ゚'
+                case 'る゚':
+                case 'ル゚':
+                    return toKana === 'hiragana' ? 'る゚' : 'ル゚'
+                case 'れ゚':
+                case 'レ゚':
+                    return toKana === 'hiragana' ? 'れ゚' : 'レ゚'
+                case 'ろ゚':
+                case 'ロ゚':
+                    return toKana === 'hiragana' ? 'ろ゚' : 'ロ゚'
+
+                case 'わ゙':
+                case 'ヷ':
+                    return toKana === 'hiragana' ? 'わ゙' : 'ヷ'
+
+                
+                case 'ゐ':
+                case 'ヰ':
+                    return toKana === 'hiragana' ? 'ゐ' : 'ヰ'
+                case 'ゐ゙':
+                case 'ヸ':
+                    return toKana === 'hiragana' ? 'ゐ゙' : 'ヸ'
+
+                case 'ゑ':
+                case 'ヱ':
+                    return toKana === 'hiragana' ? 'ゑ' : 'ヱ'
+                case 'ゑ゙':
+                case 'ヹ':
+                    return toKana === 'hiragana' ? 'ゑ゙' : 'ヹ'
+
+                case 'を゙':
+                case 'ヺ':
+                    return toKana === 'hiragana' ? 'を゙' : 'ヺ'
+                
                 default:
                     return kana
             }
