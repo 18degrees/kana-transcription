@@ -28,10 +28,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'а'
                     break
                 case 'い':
-                    transcriptedSyllable = 'и'
-                    break
                 case 'イ': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -42,10 +40,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 }
                 case 'う':
-                    transcriptedSyllable = 'у'
-                    break
                 case 'ウ': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -72,10 +68,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'ки'
                     break
                 case 'く':
-                    transcriptedSyllable = 'ку'
-                    break
                 case 'ク': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && nextSyllable === 'ヮ') {
@@ -104,10 +98,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'ги'
                     break
                 case 'ぐ':
-                    transcriptedSyllable = 'гу'
-                    break
                 case 'グ': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && nextSyllable === 'ヮ') {
@@ -184,10 +176,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'тэ'
                     break
                 case 'と':
-                    transcriptedSyllable = 'то'
-                    break
                 case 'ト': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -215,10 +205,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'дэ'
                     break
                 case 'ど':
-                    transcriptedSyllable = 'до'
-                    break
                 case 'ド': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -237,10 +225,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'ни'
                     break
                 case 'ぬ':
-                    transcriptedSyllable = 'ну'
-                    break
                 case 'ヌ': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -258,7 +244,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                 case 'ノ':
                     transcriptedSyllable = 'но'
                     break
-                case 'は': {
+                case 'は':
+                case 'ハ': {
                     if (!isThereOnlyOneWord) {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'ва'
@@ -276,9 +263,6 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'ха'
                     break
                 }
-                case 'ハ':
-                    transcriptedSyllable = 'ха'
-                    break
                 case 'ひ':
                 case 'ヒ':
                     transcriptedSyllable = 'хи'
@@ -287,7 +271,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                 case 'フ':
                     transcriptedSyllable = 'фу'
                     break
-                case 'へ': {
+                case 'へ':
+                case 'ヘ': {
                     if (!isThereOnlyOneWord) {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'э'
@@ -305,9 +290,6 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'хэ'
                     break
                 }
-                case 'ヘ':
-                    transcriptedSyllable = 'хэ'
-                    break
                 case 'ほ':
                 case 'ホ':
                     transcriptedSyllable = 'хо'
@@ -321,10 +303,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'би'
                     break
                 case 'ぶ':
-                    transcriptedSyllable = 'бу'
-                    break
                 case 'ブ': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -351,10 +331,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'пи'
                     break
                 case 'ぷ':
-                    transcriptedSyllable = 'пу'
-                    break
                 case 'プ': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -381,10 +359,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'ми'
                     break
                 case 'む':
-                    transcriptedSyllable = 'му'
-                    break
                 case 'ム': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -423,10 +399,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'ри'
                     break
                 case 'る':
-                    transcriptedSyllable = 'ру'
-                    break
                 case 'ル': {
-                    //для учёта расширенной катаканы
+                    //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
@@ -448,7 +422,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                 case 'ワ':
                     transcriptedSyllable = 'ва'
                     break
-                case 'を': {
+                case 'を': 
+                case 'ヲ': {
                     if (!isThereOnlyOneWord) {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'о'
@@ -466,10 +441,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'во'
                     break
                 }
-                case 'ヲ':
-                    transcriptedSyllable = 'во'
-                    break
-                case 'ん': {
+                case 'ん': 
+                case 'ン': {
                     const nextKana: string | undefined = splitedWord[index + 1]
                     const nextSyllableTranscription: string | null | undefined = nextKana ? transcriptKanaRU(nextKana): undefined
 
@@ -487,9 +460,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'н'
                     break
                 }
-                case 'ン':
-                    transcriptedSyllable = 'н'
-                    break
+
                 case 'ゃ':
                 case 'ャ': {
                     const prevKana: string | undefined = splitedWord[index - 1]
@@ -574,38 +545,49 @@ export function transcriptKanaRU(kanaText: string): string | null {
 
                 //расширенная кана (преимущественно катакана)
 
+                case 'か゚':
                 case 'カ゚':
                     transcriptedSyllable = 'нга'
                     break
+                case 'き゚':
                 case 'キ゚':
                     transcriptedSyllable = 'нги'
                     break
+                case 'く゚':
                 case 'ク゚':
                     transcriptedSyllable = 'нгу'
                     break
+                case 'け゚':
                 case 'ケ゚':
                     transcriptedSyllable = 'нгэ'
                     break
+                case 'こ゚':
                 case 'コ゚':
                     transcriptedSyllable = 'нго'
                     break
 
+                case 'ら゚':
                 case 'ラ゚':
                     transcriptedSyllable = 'ла'
                     break
+                case 'り゚':
                 case 'リ゚':
                     transcriptedSyllable = 'ли'
                     break
+                case 'る゚':
                 case 'ル゚':
                     transcriptedSyllable = 'лу'
                     break
+                case 'れ゚':
                 case 'レ゚':
                     transcriptedSyllable = 'лэ'
                     break
+                case 'ろ゚':
                 case 'ロ゚':
                     transcriptedSyllable = 'ло'
                     break
 
+                case 'ぁ':
                 case 'ァ': {
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
@@ -621,6 +603,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'а'
                     break
                 }
+                case 'ぃ':
                 case 'ィ': {
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
@@ -642,6 +625,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     }
                     break
                 }
+                case 'ぅ':
                 case 'ゥ': {
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
@@ -657,6 +641,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'у'
                     break
                 }
+                case 'ぇ':
                 case 'ェ': {
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
@@ -677,6 +662,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     )
                     break
                 }
+                case 'ぉ':
                 case 'ォ': {
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
@@ -692,7 +678,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'о'
                     break
                 }
-
+                case 'ゎ':
                 case 'ヮ': {
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
@@ -709,8 +695,8 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 }
 
-                case 'ヴ': 
                 case 'ゔ': 
+                case 'ヴ': 
                     transcriptedSyllable = 'ву'
                     break
 
@@ -718,25 +704,29 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     transcriptedSyllable = 'н'
                     break
 
-                case 'ヰ':
                 case 'ゐ':
+                case 'ヰ':
                     transcriptedSyllable = 'ви'
                     break
-                case 'ヱ':
                 case 'ゑ':
+                case 'ヱ':
                     transcriptedSyllable = 'вэ'
                     break
 
+                case 'わ゙':
                 case 'ヷ':
                     transcriptedSyllable = 'ва'
                     break
+                case 'ゐ゙':
                 case 'ヸ':
                     transcriptedSyllable = 'ви'
                     break
+                case 'ゑ゙':
                 case 'ヹ':
                     transcriptedSyllable = 'вэ'
                     break
                 case 'ヺ':
+                case 'を゙':
                     transcriptedSyllable = 'во'
                     break
                 default:

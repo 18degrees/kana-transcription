@@ -12,5 +12,6 @@ function isKana(string: string) {
 }
 
 export function isItSmallKana(string: string) {
-    return !!string.match(/[ァィゥェォゃャゅュょョ]/)
+    return !!string.match(/[ぁァぃィぅゥぇェぉォゎヮゕヵゖヶゃャゅュょョ]/)
+}
 }
