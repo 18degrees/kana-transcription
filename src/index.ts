@@ -30,6 +30,13 @@ export function transcriptKana(kanaText: string, options?: fromKanaOptions | lan
         const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
 
         if (lang) optionsModified.toLang = lang
+
+        if (
+            options === 'hepbern' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
+            options === 'nonstandard-ru' || options === 'polivanov' || options === 'static-ru'
+        ) {
+            optionsModified.system = options
+        }
     }
 
     return (
@@ -44,7 +51,7 @@ export function transformToKana(text: string, toKana?: kana): string | null
 export function transformToKana(text: string, guess?: boolean): string | null
 export function transformToKana(text: string, options?: toKanaOptions): string | null
 
-export function transformToKana(text: string, options?: toKanaOptions | boolean | string): string | null {
+export function transformToKana(text: string, options?: toKanaOptions | boolean | lang | systems | kana): string | null {
     const optionsModified: toKanaOptions = typeof options === 'object' ? options : {fromLang: 'en'}
 
     if (typeof options === 'object' && !options.fromLang) {
@@ -58,6 +65,15 @@ export function transformToKana(text: string, options?: toKanaOptions | boolean 
         const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
 
         if (lang) optionsModified.fromLang = lang
+
+        if (options === 'hiragana' || options === 'katakana') optionsModified.toKana = options
+
+        if (
+            options === 'hepbern' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
+            options === 'nonstandard-ru' || options === 'polivanov' || options === 'static-ru'
+        ) {
+            optionsModified.system = options
+        }
     }
 
     return (
