@@ -72,7 +72,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
-                    if (nextSyllable && nextSyllable === 'ヮ') {
+                    if (nextSyllable && (nextSyllable === 'ゎ' || nextSyllable === 'ヮ')) {
                         transcriptedSyllable = 'к'
                     } else if (nextSyllable && isItSmallKana(nextSyllable)) {
                         transcriptedSyllable = 'кв'
@@ -102,7 +102,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
-                    if (nextSyllable && nextSyllable === 'ヮ') {
+                    if (nextSyllable && (nextSyllable === 'ゎ' || nextSyllable === 'ヮ')) {
                         transcriptedSyllable = 'г'
                     } else if (nextSyllable && isItSmallKana(nextSyllable)) {
                         transcriptedSyllable = 'гв'
@@ -656,8 +656,13 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     
                     transcriptedSyllable = (
                         (
-                            prevKana === 'ニ' || prevKana === 'ヒ' || prevKana === 'ピ' || prevKana === 'ピ' || 
-                            prevKana === 'ミ' || prevKana === 'リ' || prevKana === 'リ゚'
+                            prevKana === 'に' || prevKana === 'ニ' || 
+                            prevKana === 'ひ' || prevKana === 'ヒ' || 
+                            prevKana === 'び' || prevKana === 'ビ' || 
+                            prevKana === 'ぴ' || prevKana === 'ピ' || 
+                            prevKana === 'み' || prevKana === 'ミ' || 
+                            prevKana === 'り' || prevKana === 'リ' || 
+                            prevKana === 'り゚' || prevKana === 'リ゚'
                         ) ? 'йэ' : 'э'
                     )
                     break
