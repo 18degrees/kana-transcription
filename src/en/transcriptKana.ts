@@ -212,7 +212,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
                         transcriptedSyllable = 'dw'
                     } else {
-                        transcriptedSyllable = 'to'
+                        transcriptedSyllable = 'do'
                     }
                     break
                 }
