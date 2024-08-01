@@ -2,8 +2,9 @@
 
 import { spacesRegExp } from '../common/consts.js'
 import { isItSmallKana, isThereKanaAround } from '../common/funcs.js'
+import { systemsRU } from '../common/types.js'
 
-export function transcriptKanaRU(kanaText: string): string | null {
+export function transcriptKanaRU(kanaText: string, system: systemsRU = 'polivanov'): string | null {
     const splitedSentence = kanaText.toLowerCase().split(spacesRegExp)
 
     const isThereOnlyOneWord = splitedSentence.length === 1
@@ -125,7 +126,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 case 'し':
                 case 'シ':
-                    transcriptedSyllable = 'си'
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'щи' : 'си'
                     break
                 case 'す':
                 case 'ス':
@@ -145,7 +146,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 case 'じ':
                 case 'ジ':
-                    transcriptedSyllable = 'дзи'
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'джи' : 'дзи'
                     break
                 case 'ず':
                 case 'ズ':
@@ -165,7 +166,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 case 'ち':
                 case 'チ':
-                    transcriptedSyllable = 'ти'
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'чи' : 'ти'
                     break
                 case 'つ':
                 case 'ツ':
@@ -194,7 +195,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 case 'ぢ':
                 case 'ヂ':
-                    transcriptedSyllable = 'дзи'
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'джи' : 'дзи'
                     break
                 case 'づ':
                 case 'ヅ':
@@ -246,7 +247,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 case 'は':
                 case 'ハ': {
-                    if (!isThereOnlyOneWord) {
+                    if (!isThereOnlyOneWord && system !== 'static-ru') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'ва'
                             break
@@ -273,7 +274,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 case 'へ':
                 case 'ヘ': {
-                    if (!isThereOnlyOneWord) {
+                    if (!isThereOnlyOneWord && system !== 'static-ru') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'э'
                             break
@@ -424,7 +425,7 @@ export function transcriptKanaRU(kanaText: string): string | null {
                     break
                 case 'を': 
                 case 'ヲ': {
-                    if (!isThereOnlyOneWord) {
+                    if (!isThereOnlyOneWord && system !== 'static-ru') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'о'
                             break

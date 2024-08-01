@@ -2,8 +2,9 @@
 
 import { spacesRegExp } from '../common/consts.js'
 import { isItSmallKana, isThereKanaAround } from '../common/funcs.js'
+import { systemsEN } from '../common/types.js'
 
-export function transcriptKanaEN(kanaText: string): string | null {
+export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'): string | null {
     const splitedSentence = kanaText.toLowerCase().split(spacesRegExp)
 
     const isThereOnlyOneWord = splitedSentence.length === 1
@@ -125,7 +126,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'し':
                 case 'シ':
-                    transcriptedSyllable = 'shi'
+                    transcriptedSyllable = system === 'hepbern' ? 'shi' : 'si'
                     break
                 case 'す':
                 case 'ス':
@@ -145,7 +146,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'じ':
                 case 'ジ':
-                    transcriptedSyllable = 'ji'
+                    transcriptedSyllable = system === 'hepbern' ? 'ji' : 'zi'
                     break
                 case 'ず':
                 case 'ズ':
@@ -165,11 +166,11 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'ち':
                 case 'チ':
-                    transcriptedSyllable = 'chi'
+                    transcriptedSyllable = system === 'hepbern' ? 'chi' : 'ti'
                     break
                 case 'つ':
                 case 'ツ':
-                    transcriptedSyllable = 'tsu'
+                    transcriptedSyllable = system === 'hepbern' ? 'tsu' : 'tu'
                     break
                 case 'て':
                 case 'テ':
@@ -194,7 +195,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'ぢ':
                 case 'ヂ':
-                    transcriptedSyllable = 'ji'
+                    transcriptedSyllable = system === 'hepbern' ? 'ji' : 'zi'
                     break
                 case 'づ':
                 case 'ヅ':
@@ -247,7 +248,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'は': 
                 case 'ハ':{
-                    if (!isThereOnlyOneWord) {
+                    if (!isThereOnlyOneWord && system !== 'nihon-shiki') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'wa'
                             break
@@ -274,7 +275,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'へ': 
                 case 'ヘ':{
-                    if (!isThereOnlyOneWord) {
+                    if (!isThereOnlyOneWord && system !== 'nihon-shiki') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'e'
                             break
@@ -431,7 +432,7 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     break
                 case 'を': 
                 case 'ヲ':{
-                    if (!isThereOnlyOneWord) {
+                    if (!isThereOnlyOneWord && system !== 'nihon-shiki') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'o'
                             break
@@ -476,7 +477,9 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     }
                     
                     transcriptedSyllable = (
-                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || prevKana === 'ツ' ? 'ya' : 'a'
+                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
+                        //учёт расширенной каны つゃ/ツャ - tsya
+                        (system === 'hepbern' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'ya' : 'a'
                     )
                     break
                 }
@@ -494,7 +497,9 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     }
                     
                     transcriptedSyllable = (
-                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || prevKana === 'ツ' ? 'yu' : 'u'
+                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
+                        //учёт расширенной каны つゅ/ツュ - tsya
+                        (system === 'hepbern' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yu' : 'u'
                     )
                     break
                 }
@@ -512,7 +517,9 @@ export function transcriptKanaEN(kanaText: string): string | null {
                     }
                     
                     transcriptedSyllable = (
-                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || prevKana === 'ツ' ? 'yo' : 'o'
+                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
+                        //учёт расширенной каны つょ/ツョ - tsya
+                        (system === 'hepbern' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yo' : 'o'
                     )
                     break
                 }

@@ -1,9 +1,18 @@
 import { spacesRegExp } from '../common/consts.js'
 import { reverseKana } from "../reverseKana.js"
-import type { kana } from "../common/types.js"
+import type { systemsEN, toKanaCommonOptions } from "../common/types.js"
 
-export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): string | null {
-    const splitRegExp = /[kszgtfdnhbpmrwjvl]?y?[aiueo]|ts?y?[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|[kszgtfdnhbpmrwjvl]|./g
+interface extraProps extends toKanaCommonOptions {
+    system?: systemsEN
+}
+
+export function transformToKanaEN(text: string, options?: extraProps): string | null {
+    const {toKana = 'hiragana', system = 'hepbern', guess = false} = options ? options : {}
+
+    const splitRegExp = (
+        guess ? /[kszgtfdnhbpmrwjvl]?y?[aiueo]|ts?y?[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|./g :
+        /[kszgtfdnhbpmrwjvl]?w?y?[aiueo]|ts?y?[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|./g 
+    )
 
     const splitedSentence = text.toLowerCase().split(spacesRegExp)
 
@@ -36,10 +45,10 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'う'
                     break;
                 case 'e':
-                    kana = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'へ' : 'え'        //также может быть 絵
+                    kana = (system !== 'nihon-shiki' && isItTheOnlySyllable && !isThereOnlyOneWord) ? 'へ' : 'え'        //также может быть 絵
                     break;
                 case 'o':
-                    kana = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'を' : 'お'        //если длина слова 1, и единственный звук в нём - [о] - видимо, речь идёт об を
+                    kana = (system !== 'nihon-shiki' && isItTheOnlySyllable && !isThereOnlyOneWord) ? 'を' : 'お'        //если длина слова 1, и единственный звук в нём - [о] - видимо, речь идёт об を
                     break;
                 case 'ka':
                     kana = 'か'
@@ -76,9 +85,8 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 case 'sa':
                     kana = 'さ'
                     break;
-                case 'si':
                 case 'shi':
-                    kana = 'し'
+                    if (system === 'hepbern') kana = 'し'
                     break;
                 case 'su':
                     kana = 'す'
@@ -93,12 +101,11 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 case 'za':
                     kana = 'ざ'
                     break;
-                case 'zi':
                 case 'ji':
-                    kana = prevSyllable && (prevSyllable === 'ti' || prevSyllable === 'chi') ? 'ぢ' : 'じ'
+                    if (system === 'hepbern') kana = prevSyllable && prevSyllable === 'chi' ? 'ぢ' : 'じ'
                     break;
                 case 'zu':
-                    kana = prevSyllable && (prevSyllable === 'tsu' || prevSyllable === 'tu') ? 'づ' : 'ず'
+                    kana = prevSyllable && ( (system === 'hepbern' && prevSyllable ==='tsu') || (system !== 'hepbern' && prevSyllable === 'tu') ) ? 'づ' : 'ず'
                     break;
                 case 'ze':
                     kana = 'ぜ'
@@ -110,13 +117,11 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 case 'ta':
                     kana = 'た'
                     break;
-                case 'ti':
                 case 'chi':
-                    kana = 'ち'
+                    if (system === 'hepbern') kana = 'ち'
                     break;
-                case 'tu':
                 case 'tsu':
-                    kana = 'つ'
+                    if (system === 'hepbern') kana = 'つ'
                     break;
                 case 'te':
                     kana = 'て'
@@ -157,9 +162,8 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 case 'hi':
                     kana = 'ひ'
                     break;
-                case 'hu':
                 case 'fu':
-                    kana = 'ふ'
+                    if (system === 'hepbern') kana = 'ふ'
                     break;
                 case 'he':
                     kana = 'へ'
@@ -243,7 +247,7 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     break;
                 
                 case 'wa':
-                    kana = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'は' : 'わ'
+                    kana = (system !== 'nihon-shiki' && isItTheOnlySyllable && !isThereOnlyOneWord) ? 'は' : 'わ'
                     break;
                 case 'wo':
                     kana = 'を'
@@ -264,30 +268,24 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'きょ'
                     break;
 
-                case 'sya':
                 case 'sha':
-                    kana = 'しゃ'
+                    if (system === 'hepbern') kana = 'しゃ'
                     break;
-                case 'syu':
                 case 'shu':
-                    kana = 'しゅ'
+                    if (system === 'hepbern') kana = 'しゅ'
                     break;
-                case 'syo':
                 case 'sho':
-                    kana = 'しょ'
+                    if (system === 'hepbern') kana = 'しょ'
                     break;
                 
-                case 'tya':
                 case 'cha':
-                    kana = 'ちゃ'
+                    if (system === 'hepbern') kana = 'ちゃ'
                     break;
-                case 'tyu':
                 case 'chu':
-                    kana = 'ちゅ'
+                    if (system === 'hepbern') kana = 'ちゅ'
                     break;
-                case 'tyo':
                 case 'cho':
-                    kana = 'ちょ'
+                    if (system === 'hepbern') kana = 'ちょ'
                     break;
         
                 case 'nya':
@@ -340,17 +338,14 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ぎょ'
                     break;
                 
-                case 'zya':
                 case 'ja':
-                    kana = 'じゃ'
+                    if (system === 'hepbern') kana = 'じゃ'
                     break;
-                case 'zyu':
                 case 'ju':
-                    kana = 'じゅ'
+                    if (system === 'hepbern') kana = 'じゅ'
                     break;
-                case 'zyo':
                 case 'jo':
-                    kana = 'じょ'
+                    if (system === 'hepbern') kana = 'じょ'
                     break;
         
                 case 'bya':
@@ -373,7 +368,7 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ぴょ'
                     break;
 
-                //расширенная азбука
+                //расширенная кана и системы не по Хёпберну
 
                 case 'yi':
                     kana = 'いぃ'
@@ -412,7 +407,7 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ゔぃ'
                     break
                 case 'vu':
-                    kana = 'ゔぅ'
+                    kana = 'ゔ'
                     break
                 case 've':
                     kana = 'ゔぇ'
@@ -442,78 +437,120 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     break
 
                 case 'kwa':
+                    kana = 'くぁ'
+                    break
                 case 'kwi':
+                    kana = 'くぃ'
+                    break
                 case 'kwe':
+                    kana = 'くぇ'
+                    break
                 case 'kwo':
+                    kana = 'くぉ'
+                    break
 
                 case 'gwa':
+                    kana = 'ぐぁ'
+                    break
                 case 'gwi':
+                    kana = 'ぐぃ'
+                    break
                 case 'gwe':
+                    kana = 'ぐぇ'
+                    break
                 case 'gwo':
+                    kana = 'ぐぉ'
+                    break
 
-                case 'nga':
-                case 'ngi':
-                case 'ngu':
-                case 'nge':
-                case 'ngo':
-
-                case 'si':
+                case 'sya':
+                    if (system !== 'hepbern') kana = 'しゃ'
+                    break
+                case 'syu':
+                    if (system !== 'hepbern') kana = 'しゅ'
+                    break
+                case 'syo':
+                    if (system !== 'hepbern') kana = 'しょ'
                     break
 
                 case 'she':
-                    kana = 'しぇ'
+                    if (system !== 'hepbern') kana = 'しぇ'
                     break
                 case 'je':
-                    kana = 'じぇ'
+                    if (system !== 'hepbern') kana = 'じぇ'
+                    break
+                    
+                case 'si':
+                    kana = system === 'hepbern' ? 'すぃ' : 'し'
+                    break
+
+                case 'tya':
+                    if (system !== 'hepbern') kana = 'ちゃ'
+                    break
+                case 'tyu':
+                    if (system !== 'hepbern') kana = 'ちゅ'
+                    break
+                case 'tyo':
+                    if (system !== 'hepbern') kana = 'ちょ'
                     break
 
                 case 'tsa':
-                    kana = 'つぁ'
+                    if (system === 'hepbern') kana = 'つぁ'
                     break
                 case 'tsi':
-                    kana = 'つぃ'
+                    if (system === 'hepbern') kana = 'つぃ'
                     break
                 case 'tse':
-                    kana = 'つぇ'
+                    if (system === 'hepbern') kana = 'つぇ'
                     break
                 case 'tso':
-                    kana = 'つぉ'
+                    if (system === 'hepbern') kana = 'つぉ'
                     break
 
                 case 'tsya':
-                    kana = 'つゃ'
+                    if (system === 'hepbern') kana = 'つゃ'
                     break
                 case 'tsyu':
-                    kana = 'つゅ'
+                    if (system === 'hepbern') kana = 'つゅ'
                     break
                 case 'tsye':
-                    kana = 'つぃぇ'
+                    if (system === 'hepbern') kana = 'つぃぇ'
                     break
                 case 'tsyo':
-                    kana = 'つョ'
+                    if (system === 'hepbern') kana = 'つョ'
                     break
 
                 case 'zi':
-                    kana = 'づぃ'
-                    break
+                    if (system === 'hepbern') {
+                        kana = 'づぃ'
+                    } else {
+                        kana = prevSyllable && prevSyllable === 'ti' ? 'ぢ' : 'じ'
+                    }
+                    break;
 
                 case 'zya':
-                    kana = 'づぉ'
+                    kana = system === 'hepbern' ? 'づゃ' : 'じゃ'
                     break
                 case 'zyu':
-                    kana = 'づぉ'
+                    kana = system === 'hepbern' ? 'づゅ' : 'じゅ'
                     break
                 case 'zye':
-                    kana = 'づぉ'
+                    kana = 'づぃぇ'
                     break
                 case 'zyo':
-                    kana = 'づぉ'
+                    kana = system === 'hepbern' ? 'づョ' : 'じョ'
                     break
 
+                case 'ti':
+                    kana = system === 'hepbern' ? 'てぃ' : 'ち'
+                    break
+                case 'tu':
+                    kana = system === 'hepbern' ? 'とぅ' : 'つ'
+                    break;
                 case 'twi':
+                    kana = 'とぃ'
                     break
                 case 'tyu':
-                    kana = 'てゅ'
+                    kana = system === 'hepbern' ? kana = 'てゅ' : 'ちゅ'
                     break
 
                 case 'di':
@@ -524,12 +561,14 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     break
 
                 case 'dwi':
+                    kana = 'どぃ'
                     break
                 case 'dyu':
                     kana = 'でゅ'
                     break
 
                 case 'nwi':
+                    kana = 'ぬぃ'
                     break
                 case 'nye':
                     kana = 'にぇ'
@@ -540,53 +579,61 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     break
 
                 case 'bwi':
+                    kana = 'ぶぃ'
                     break
                 case 'bye':
                     kana = 'びぇ'
                     break
 
                 case 'pwi':
+                    kana = 'ぷぃ'
                     break
                 case 'pye':
                     kana = 'ぴぇ'
                     break
 
                 case 'fa':
-                    kana = 'ふぁ'
+                    if (system === 'hepbern') kana = 'ふぁ'
                     break
                 case 'fi':
-                    kana = 'ふぃ'
+                    if (system === 'hepbern') kana = 'ふぃ'
                     break
                 case 'fe':
-                    kana = 'ふぇ'
+                    if (system === 'hepbern') kana = 'ふぇ'
                     break
                 case 'fo':
-                    kana = 'ふぉ'
+                    if (system === 'hepbern') kana = 'ふぉ'
                     break
 
                 case 'fya':
-                    kana = 'ふゃ'
+                    if (system === 'hepbern') kana = 'ふゃ'
                     break
                 case 'fyu':
-                    kana = 'ふゅ'
+                    if (system === 'hepbern') kana = 'ふゅ'
                     break
                 case 'fye':
-                    kana = 'ふぃぇ'
+                    if (system === 'hepbern') kana = 'ふぃぇ'
                     break
                 case 'fyo':
-                    kana = 'ふょ'
+                    if (system === 'hepbern') kana = 'ふょ'
+                    break
+
+                case 'hu':
+                    kana = system === 'hepbern' ? 'ほぅ' : 'ふ'
                     break
 
                 case 'mwi':
+                    kana = 'むぃ'
                     break
                 case 'mye':
-                    kana = 'みぃぇ'
+                    kana = 'みぇ'
                     break
 
                 case 'rwi':
+                    kana = 'るぃ'
                     break
                 case 'rye':
-                    kana = 'りぃぇ'
+                    kana = 'りぇ'
                     break
             
                 case 'la':
@@ -617,19 +664,6 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                 case 'lyo':
                     kana = 'り゚ょ'
                     break
-
-                case 'va':
-                    kana = 'わ゙'
-                    break
-                case 'vi':
-                    kana = 'ゐ゙'
-                    break
-                case 've':
-                    kana = 'ゑ゙'
-                    break
-                case 'vo':
-                    kana = 'を゙'
-                    break
                 default:
                     break;
             }
@@ -642,7 +676,7 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
             
             if (isItLongConsonant()) kana = 'っ'
 
-            if (isItDevoicedVowel()) {
+            if (guess && isItDevoicedVowel()) {
                 let correctedSyllable = syllable
 
                 if (isItDevoicedI()) {
@@ -651,7 +685,7 @@ export function transformToKanaEN(text: string, toKana: kana = 'hiragana'): stri
                     correctedSyllable += 'u'                    //так как в английском нет мягкого знака, отличить неслышную "u" от "i" не получается
                 }
 
-                const correctedKana = transformToKanaEN(correctedSyllable)
+                const correctedKana = transformToKanaEN(correctedSyllable, options)
                 
                 kana = correctedKana ? correctedKana : ''
             }

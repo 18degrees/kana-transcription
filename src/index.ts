@@ -9,21 +9,59 @@ import { transcriptKanaRU } from "./ru/transcriptKana.js"
 import { transformToKanaEN } from "./en/transformToKana.js"
 import { transformToKanaRU } from "./ru/transformToKana.js"
 
-import type { kana, lang } from "./common/types.js"
+import type { lang, systems, kana, toKanaOptions, fromKanaOptions } from "./common/types.js"
+import { getLangFromSystem } from "./common/funcs.js"
 
+export { reverseKana } from './reverseKana.js'
 
-export function transcriptKana(kanaText: string, toLang: lang = 'en'): string | null {
+export function transcriptKana(kanaText: string, toLang?: lang): string | null
+export function transcriptKana(kanaText: string, system?: systems): string | null
+export function transcriptKana(kanaText: string, options?: fromKanaOptions): string | null
+
+export function transcriptKana(kanaText: string, options?: fromKanaOptions | lang | systems): string | null {
+    const optionsModified: fromKanaOptions = typeof options === 'object' ? options : {toLang: 'en'}
+
+    if (typeof options === 'object' && !options.toLang) {
+        const langFromSystem = options.system ? getLangFromSystem(options.system) : 'en'
+
+        if (langFromSystem) optionsModified.toLang = langFromSystem
+
+    } else if (typeof options === 'string') {
+        const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
+
+        if (lang) optionsModified.toLang = lang
+    }
+
     return (
-        toLang === 'en' ? transcriptKanaEN(kanaText) : 
-        toLang === 'ru' ? transcriptKanaRU(kanaText) : null
+        optionsModified.toLang === 'en' ? transcriptKanaEN(kanaText, optionsModified.system) : 
+        optionsModified.toLang === 'ru' ? transcriptKanaRU(kanaText, optionsModified.system) : null
     )
 }
 
-export function transformToKana(text: string, fromLang: lang = 'en', toKana: kana = 'hiragana'): string | null {
+export function transformToKana(text: string, fromLang?: lang): string | null
+export function transformToKana(text: string, system?: systems): string | null
+export function transformToKana(text: string, toKana?: kana): string | null
+export function transformToKana(text: string, guess?: boolean): string | null
+export function transformToKana(text: string, options?: toKanaOptions): string | null
+
+export function transformToKana(text: string, options?: toKanaOptions | boolean | string): string | null {
+    const optionsModified: toKanaOptions = typeof options === 'object' ? options : {fromLang: 'en'}
+
+    if (typeof options === 'object' && !options.fromLang) {
+        const langFromSystem = options.system ? getLangFromSystem(options.system) : 'en'
+
+        if (langFromSystem) optionsModified.fromLang = langFromSystem
+
+    } else if (typeof options === 'boolean') {
+        optionsModified.guess = options
+    } else if (typeof options === 'string') {
+        const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
+
+        if (lang) optionsModified.fromLang = lang
+    }
+
     return (
-        fromLang === 'en' ? transformToKanaEN(text, toKana) : 
-        fromLang === 'ru' ? transformToKanaRU(text, toKana) : null
+        optionsModified.fromLang === 'en' ? transformToKanaEN(text, optionsModified) : 
+        optionsModified.fromLang === 'ru' ? transformToKanaRU(text, optionsModified) : null
     ) 
 }
-
-export { reverseKana } from './reverseKana.js'

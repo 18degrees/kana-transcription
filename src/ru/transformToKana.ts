@@ -1,9 +1,18 @@
 import { spacesRegExp } from '../common/consts.js'
 import { reverseKana } from "../reverseKana.js"
-import type { kana } from "../common/types.js"
+import type { systemsRU, toKanaCommonOptions } from "../common/types.js"
 
-export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): string | null {
-    const splitRegExp = /[цкнгшщзхфвпрлджчсмтб]?[аеёийоуэюя]|дз[аеёийоуэюя]|нъ|[цкнгшщзхфвпрлджчсмтб]ь?|./g
+interface extraProps extends toKanaCommonOptions {
+    system?: systemsRU
+}
+
+export function transformToKanaRU(text: string, options?: extraProps): string | null {
+    const {toKana = 'hiragana', system = 'polivanov', guess = false} = options ? options : {}
+
+    const splitRegExp = (
+        guess ? /[цкнгшщзхфвпрлджчсмтб]?й?[аеёийоуэюя]|дз[аеёийоуэюя]|дж[аеёийоуэюя]|нъ|[цкнгшщзхфвпрлджчсмтб]ь|./g :
+        /[цкнгшщзхфвпрлджчсмтб]?в?й?[аеёийоуэюя]|дз[аеёийоуэюя]|дж[аеёийоуэюя]|нъ|[цкнгшщзхфвпрлджчсмтб]ь|./g
+    )
 
     const splitedSentence = text.toLowerCase().split(spacesRegExp)
 
@@ -37,11 +46,10 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'う'
                     break;
                 case 'э':
-                case 'е':
-                    kana = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'へ' : 'え'        //также может быть 絵
+                    kana = (system !== 'static-ru' && isItTheOnlySyllable && !isThereOnlyOneWord) ? 'へ' : 'え'        //также может быть 絵
                     break;
                 case 'о':
-                    kana = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'を' : 'お'        //если длина слова 1, и единственный звук в нём - [о] - видимо, речь идёт об を
+                    kana = (system !== 'static-ru' && isItTheOnlySyllable && !isThereOnlyOneWord) ? 'を' : 'お'        //если длина слова 1, и единственный звук в нём - [о] - видимо, речь идёт об を
                     break;
                 case 'ка':
                     kana = 'か'
@@ -53,7 +61,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'く'
                     break;
                 case 'кэ':
-                case 'ке':
                     kana = 'け'
                     break;
                 case 'ко':
@@ -70,7 +77,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ぐ'
                     break;
                 case 'гэ':
-                case 'ге':
                     kana = 'げ'
                     break;
                 case 'го':
@@ -81,14 +87,12 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'さ'
                     break;
                 case 'си':
-                case 'щи':
-                    kana = 'し'
+                    kana = system === 'polivanov' ? 'し' : 'すぃ'
                     break;
                 case 'су':
                     kana = 'す'
                     break;
                 case 'сэ':
-                case 'се':
                     kana = 'せ'
                     break;
                 case 'со':
@@ -96,25 +100,22 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     break;
         
                 case 'дза':
-                case 'за':
                     kana = 'ざ'
                     break;
                 case 'дзи':
-                case 'зи':
-                    kana = prevSyllable && (prevSyllable === 'ти' || prevSyllable === 'чи') ? 'ぢ' : 'じ'
+                    if (system !== 'nonstandard-ru') {
+                        kana = prevSyllable && prevSyllable === 'ти'  ? 'ぢ' : 'じ'
+                    } else {
+                        kana = 'づぃ'
+                    }
                     break;
                 case 'дзу':
-                case 'зу':
                     kana = prevSyllable && prevSyllable === 'цу' ? 'づ' : 'ず'
                     break;
                 case 'дзэ':
-                case 'зэ':
-                case 'дзе':
-                case 'зе':
                     kana = 'ぜ'
                     break;
                 case 'дзо':
-                case 'зо':
                     kana = 'ぞ'
                     break;
         
@@ -122,14 +123,12 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'た'
                     break;
                 case 'ти':
-                case 'чи':
-                    kana = 'ち'
+                    kana = system !== 'nonstandard-ru' ? 'ち' : 'てぃ'
                     break;
                 case 'цу':
                     kana = 'つ'
                     break;
                 case 'тэ':
-                case 'те':
                     kana = 'て'
                     break;
                 case 'то':
@@ -140,7 +139,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'だ'
                     break;
                 case 'дэ':
-                case 'де':
                     kana = 'で'
                     break;
                 case 'до':
@@ -157,7 +155,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ぬ'
                     break;
                 case 'нэ':
-                case 'не':
                     kana = 'ね'
                     break;
                 case 'но':
@@ -174,7 +171,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ふ'
                     break;
                 case 'хэ':
-                case 'хе':
                     kana = 'へ'
                     break;
                 case 'хо':
@@ -191,7 +187,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ぶ'
                     break;
                 case 'бэ':
-                case 'бе':
                     kana = 'べ'
                     break;
                 case 'бо':
@@ -208,7 +203,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ぷ'
                     break;
                 case 'пэ':
-                case 'пе':
                     kana = 'ぺ'
                     break;
                 case 'по':
@@ -225,7 +219,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'む'
                     break;
                 case 'мэ':
-                case 'ме':
                     kana = 'め'
                     break;
                 case 'мо':
@@ -252,7 +245,6 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'る'
                     break;
                 case 'рэ':
-                case 'ре':
                     kana = 'れ'
                     break;
                 case 'ро':
@@ -260,7 +252,7 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     break;
                 
                 case 'ва':
-                    kana = (isItTheOnlySyllable && !isThereOnlyOneWord) ? 'は' : 'わ'
+                    kana = (system !== 'static-ru' && isItTheOnlySyllable && !isThereOnlyOneWord) ? 'は' : 'わ'
                     break;
                 case 'во':
                     kana = 'を'
@@ -282,31 +274,23 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     break;
         
                 case 'ся':
-                case 'щя':
-                    kana = 'しゃ'
+                    if (system === 'polivanov') kana = 'しゃ'
                     break;
                 case 'сю':
-                case 'щю':
-                    kana = 'しゅ'
+                    if (system === 'polivanov') kana = 'しゅ'
                     break;
                 case 'сё':
-                case 'щё':
-                    kana = 'しょ'
+                    if (system === 'polivanov') kana = 'しょ'
                     break;
                 
                 case 'тя':
-                case 'чя':
-                case 'ча':
-                    kana = 'ちゃ'
+                    if (system === 'polivanov') kana = 'ちゃ'
                     break;
                 case 'тю':
-                case 'чю':
-                case 'чу':
-                    kana = 'ちゅ'
+                    kana = system !== 'nonstandard-ru' ? 'ちゅ' : 'てゅ'
                     break;
                 case 'тё':
-                case 'чё':
-                    kana = 'ちょ'
+                    if (system === 'polivanov') kana = 'ちょ'
                     break;
         
                 case 'ня':
@@ -360,16 +344,13 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     break;
                 
                 case 'дзя':
-                case 'зя':
-                    kana = 'じゃ'
+                    kana = system !== 'nonstandard-ru' ? 'じゃ' : 'づゃ'
                     break;
                 case 'дзю':
-                case 'зю':
-                    kana = 'じゅ'
+                    kana = system !== 'nonstandard-ru' ? 'じゅ' : 'づゅ'
                     break;
                 case 'дзё':
-                case 'зё':
-                    kana = 'じょ'
+                    kana = system !== 'nonstandard-ru' ? 'じょ' : 'づょ'
                     break;
         
                 case 'бя':
@@ -392,6 +373,276 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     kana = 'ぴょ'
                     break;
         
+                //расширенная кана и системы не по Поливанову
+
+                case 'щи':
+                    if (system === 'nonstandard-ru') kana = 'し'
+                    break
+
+                case 'джи':
+                    if (system === 'nonstandard-ru') kana = prevSyllable && prevSyllable === 'чи' ? 'ぢ' : 'じ'
+                    break
+
+                case 'чи':
+                    if (system === 'nonstandard-ru') kana = 'ち'
+                    break
+
+                case 'щя':
+                    if (system === 'nonstandard-ru') kana = 'しゃ'
+                    break;
+                case 'щю':
+                    if (system === 'nonstandard-ru') kana = 'しゅ'
+                    break;
+                case 'щё':
+                    if (system === 'nonstandard-ru') kana = 'しょ'
+                    break;
+
+                case 'чя':
+                    if (system === 'nonstandard-ru') kana = 'ちゃ'
+                    break;
+                case 'чю':
+                    if (system === 'nonstandard-ru') kana = 'ちゅ'
+                    break;
+                case 'чё':
+                    if (system === 'nonstandard-ru') kana = 'ちょ'
+                    break;
+
+                case 'джя':
+                    if (system === 'nonstandard-ru') kana = 'じゃ'
+                    break;
+                case 'джю':
+                    if (system === 'nonstandard-ru') kana = 'じゅ'
+                    break;
+                case 'джё':
+                    if (system === 'nonstandard-ru') kana = 'じょ'
+                    break;
+
+                case 'йи':
+                    kana = 'いぃ'
+                    break
+                case 'йэ':
+                    kana = 'いぇ'
+                    break
+
+                case 'ви':
+                    kana = 'ゔぃ'
+                    break
+                case 'ву':
+                    kana = 'ゔ'
+                    break
+                case 'вэ':
+                    kana = 'ゔぇ'
+                    break
+                case 'во':
+                    kana = 'ゔぉ'
+                    break
+
+                case 'вя':
+                    kana = 'ゔゃ'
+                    break
+                case 'вю':
+                    kana = 'ゔゅ'
+                    break
+                case 'вйэ':
+                    kana = 'ゔぃぇ'
+                    break
+                case 'вё':
+                    kana = 'ゔょ'
+                    break
+
+                case 'кйэ':
+                    kana = 'きぇ'
+                    break
+                case 'гйэ':
+                    kana = 'ぎぇ'
+                    break
+
+                case 'ква':
+                    kana = 'くぁ'
+                    break
+                case 'кви':
+                    kana = 'くぃ'
+                    break
+                case 'квэ':
+                    kana = 'くぇ'
+                    break
+                case 'кво':
+                    kana = 'くぉ'
+                    break
+
+                case 'гва':
+                    kana = 'ぐぁ'
+                    break
+                case 'гви':
+                    kana = 'ぐぃ'
+                    break
+                case 'гвэ':
+                    kana = 'ぐぇ'
+                    break
+                case 'гво':
+                    kana = 'ぐぉ'
+                    break
+
+                case 'щэ':
+                    if (system !== 'nonstandard-ru') kana = 'しぇ'
+                    break
+                case 'джэ':
+                    if (system !== 'nonstandard-ru') kana = 'じぇ'
+                    break
+
+                case 'чэ':
+                    if (system !== 'nonstandard-ru') kana = 'ちぇ'
+                    break
+
+
+                case 'ца':
+                    if (system === 'nonstandard-ru') kana = 'つぁ'
+                    break
+                case 'ци':
+                    if (system === 'nonstandard-ru') kana = 'つぃ'
+                    break
+                case 'цэ':
+                    if (system === 'nonstandard-ru') kana = 'つぇ'
+                    break
+                case 'цо':
+                    if (system === 'nonstandard-ru') kana = 'つぉ'
+                    break
+
+                case 'ця':
+                    if (system === 'nonstandard-ru') kana = 'つゃ'
+                    break
+                case 'цю':
+                    if (system === 'nonstandard-ru') kana = 'つゅ'
+                    break
+                case 'цйэ':
+                    if (system === 'nonstandard-ru') kana = 'つぃぇ'
+                    break
+                case 'цё':
+                    if (system === 'nonstandard-ru') kana = 'つョ'
+                    break
+
+                case 'дзйэ':
+                    kana = 'づぃぇ'
+                    break
+
+                case 'ту':
+                    kana = 'とぅ'
+                    break;
+                case 'тви':
+                    kana = 'とぃ'
+                    break
+
+                case 'ди':
+                    kana = 'でぃ'
+                    break
+                case 'ду':
+                    kana = 'どぅ'
+                    break
+
+                case 'дви':
+                    kana = 'どぃ'
+                    break
+                case 'дю':
+                    kana = 'でゅ'
+                    break
+
+                case 'нви':
+                    kana = 'ぬぃ'
+                    break
+                case 'нйэ':
+                    kana = 'にぇ'
+                    break
+
+                case 'хйэ':
+                    kana = 'ひぇ'
+                    break
+
+                case 'бви':
+                    kana = 'ぶぃ'
+                    break
+                case 'бйэ':
+                    kana = 'びぇ'
+                    break
+
+                case 'пви':
+                    kana = 'ぷぃ'
+                    break
+                case 'пйэ':
+                    kana = 'ぴぇ'
+                    break
+
+                case 'фа':
+                    kana = 'ふぁ'
+                    break
+                case 'фи':
+                    kana = 'ふぃ'
+                    break
+                case 'фэ':
+                    kana = 'ふぇ'
+                    break
+                case 'фо':
+                    kana = 'ふぉ'
+                    break
+
+                case 'фя':
+                    kana = 'ふゃ'
+                    break
+                case 'фю':
+                    kana = 'ふゅ'
+                    break
+                case 'фйэ':
+                    kana = 'ふぃぇ'
+                    break
+                case 'фё':
+                    kana = 'ふょ'
+                    break
+
+                case 'ху':
+                    kana = 'ほぅ'
+                    break
+
+                case 'мви':
+                    kana = 'むぃ'
+                    break
+                case 'мйэ':
+                    kana = 'みぇ'
+                    break
+
+                case 'рви':
+                    kana = 'るぃ'
+                    break
+                case 'рйэ':
+                    kana = 'りぇ'
+                    break
+            
+                case 'ла':
+                    kana = 'ら゚'
+                    break
+                case 'ли':
+                    kana = 'り゚'
+                    break
+                case 'лу':
+                    kana = 'る゚'
+                    break
+                case 'лэ':
+                    kana = 'れ゚'
+                    break
+                case 'ло':
+                    kana = 'ろ゚'
+                    break
+
+                case 'ля':
+                    kana = 'り゚ゃ'
+                    break
+                case 'лю':
+                    kana = 'り゚ゅ'
+                    break
+                case 'лйэ':
+                    kana = 'り゚ぇ'
+                    break
+                case 'лё':
+                    kana = 'り゚ょ'
+                    break
                 default:
                     break;
             }
@@ -406,7 +657,7 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
             
             if (isItLongConsonant()) kana = 'っ'
 
-            if (isItDevoicedVowel()) {
+            if (guess && isItDevoicedVowel()) {
                 let correctedSyllable = syllable
 
                 if (isThereSoftSign || isItAlwaysSoftConsonant(correctedSyllable)) {
@@ -416,7 +667,7 @@ export function transformToKanaRU(text: string, toKana: kana = 'hiragana'): stri
                     correctedSyllable += 'у'
                 }
                 
-                const correctedKana = transformToKanaRU(correctedSyllable)
+                const correctedKana = transformToKanaRU(correctedSyllable, options)
                 
                 kana = correctedKana ? correctedKana : ''
             }
