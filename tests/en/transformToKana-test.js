@@ -6,9 +6,9 @@ describe('TransformToKana function: transforms english syllables to japanese syl
         it('devoiced vowel', () => {
             // Подробнее: п.4 и п.5 в /docs/explanation.md
 
-            assert.equal(transformToKana('skoshii'), 'すこしい')
+            assert.equal(transformToKana('skoshii', {guess: true}), 'すこしい')
 
-            assert.equal(transformToKana('mashta'), 'ました')
+            assert.equal(transformToKana('mashta', {guess: true}), 'ました')
         })
         it('long vowel', () => {
             /*
@@ -35,7 +35,12 @@ describe('TransformToKana function: transforms english syllables to japanese syl
             /*
                 Подробнее: п.2 в /docs/explanation.md
             */
-            assert.equal(transformToKana('keeki', 'en', 'katakana'), 'ケエキ');
+            assert.equal(transformToKana('keeki', {toKana: 'katakana'}), 'ケエキ');
+        })
+        it("systems' difference", () => {
+            assert.equal(transformToKana('watashi wa jibun ni ocha o tatemashita', 'hepburn'), 'わたし は じぶん に おちゃ を たてました')
+            assert.equal(transformToKana('watasi wa zibun ni otya o tatemasita', 'kunrei-shiki'), 'わたし は じぶん に おちゃ を たてました')
+            assert.equal(transformToKana('watasi ha zibun ni otya wo tatemasita', 'nihon-shiki'), 'わたし は じぶん に おちゃ を たてました')
         })
     })
 

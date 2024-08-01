@@ -38,6 +38,11 @@ describe('TranscriptKana function: makes kana transcription to english syllables
             assert.equal(transcriptKana('インテルメッツォ'), 'interumettso')
             assert.equal(transcriptKana('ハロウィーン'), 'harowiin')
         })
+        it("systems' difference", () => {
+            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'hepburn'), 'watashi wa jibun ni ocha o tatemashita')
+            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'kunrei-shiki'), 'watasi wa zibun ni otya o tatemasita')
+            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'nihon-shiki'), 'watasi ha zibun ni otya wo tatemasita')
+        })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей

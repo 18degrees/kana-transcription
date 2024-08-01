@@ -6,10 +6,10 @@ describe('TransformToKana function: transforms russian syllables to japanese syl
         it('devoiced vowel', () => {
             // Подробнее: п.4 и п.5 в /docs/explanation.md
 
-            assert.equal(transformToKana('скощии', 'ru'), 'すこしい')
+            assert.equal(transformToKana('скощии', {guess: true, system: 'nonstandard-ru'}), 'すこしい')
 
-            assert.equal(transformToKana('мащта', 'ru'), 'ました')
-            assert.equal(transformToKana('дес', 'ru'), 'です')
+            assert.equal(transformToKana('мащта', {guess: true, system: 'nonstandard-ru'}), 'ました')
+            assert.equal(transformToKana('дэс', {guess: true, system: 'nonstandard-ru'}), 'です')
         })
         it('long vowel', () => {
             /*
@@ -49,17 +49,22 @@ describe('TransformToKana function: transforms russian syllables to japanese syl
                 упор делается то, чтобы верное чтение по крайней мере было представлено, хоть и не было однозначно.
                 Таким образом, не используется символ ー 
             */
-            assert.equal(transformToKana('кээки', 'ru', 'katakana'), 'ケエキ');
+            assert.equal(transformToKana('кээки', {toKana: 'katakana', fromLang: 'ru'}), 'ケエキ');
+        })
+        it("systems' difference", () => {
+            assert.equal(transformToKana('ватащи ва джибун ни очя о татэмащита', 'nonstandard-ru'), 'わたし は じぶん に おちゃ を たてました')
+            assert.equal(transformToKana('ватаси ва дзибун ни отя о татэмасита', 'polivanov'), 'わたし は じぶん に おちゃ を たてました')
+            assert.equal(transformToKana('ватаси ха дзибун ни отя во татэмасита', 'static-ru'), 'わたし は じぶん に おちゃ を たてました')
         })
         
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
     it('other cases', () => {
-        assert.equal(transformToKana('ватащи ва киноо хаха ни даидзина тэгами о ёнда', 'ru'), 'わたし は きのお はは に だいじな てがみ を よんだ')
+        assert.equal(transformToKana('ватаси ва киноо хаха ни даидзина тэгами о ёнда', 'ru'), 'わたし は きのお はは に だいじな てがみ を よんだ')
         
         assert.equal(transformToKana(
-            'сигото но сукикираи га хаккири ситэинаи вакамоно дэмо дзибун ни итибан ау моно га мицукаттара кангаэката мо икиката мо кавару хазудэсу', 'ru'), 
+            'сигото но сукикираи га хаккири ситэинаи вакамоно дэмо дзибун ни итибан ау моно га мицукаттара кангаэката мо икиката мо кавару хадзудэсу', 'ru'), 
             'しごと の すききらい が はっきり していない わかもの でも じぶん に いちばん あう もの が みつかったら かんがえかた も いきかた も かわる はずです'
         )
         assert.equal(transformToKana(

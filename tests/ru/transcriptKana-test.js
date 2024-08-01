@@ -38,6 +38,11 @@ describe('TranscriptKana function: makes kana transcription to russian syllables
             assert.equal(transcriptKana('インテルメッツォ', 'ru'), 'интэрумэтцо')
             assert.equal(transcriptKana('ハロウィーン', 'ru'), 'харовиин')
         })
+        it("systems' difference", () => {
+            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'nonstandard-ru'), 'ватащи ва джибун ни очя о татэмащита')
+            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'polivanov'), 'ватаси ва дзибун ни отя о татэмасита')
+            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'static-ru'), 'ватаси ха дзибун ни отя во татэмасита')
+        })
     })
     
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
