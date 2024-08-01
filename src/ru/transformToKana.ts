@@ -87,7 +87,7 @@ export function transformToKanaRU(text: string, options?: extraProps): string | 
                     kana = 'さ'
                     break;
                 case 'си':
-                    kana = system === 'polivanov' ? 'し' : 'すぃ'
+                    kana = system !== 'nonstandard-ru' ? 'し' : 'すぃ'
                     break;
                 case 'су':
                     kana = 'す'
@@ -274,23 +274,23 @@ export function transformToKanaRU(text: string, options?: extraProps): string | 
                     break;
         
                 case 'ся':
-                    if (system === 'polivanov') kana = 'しゃ'
+                    if (system !== 'nonstandard-ru') kana = 'しゃ'
                     break;
                 case 'сю':
-                    if (system === 'polivanov') kana = 'しゅ'
+                    if (system !== 'nonstandard-ru') kana = 'しゅ'
                     break;
                 case 'сё':
-                    if (system === 'polivanov') kana = 'しょ'
+                    if (system !== 'nonstandard-ru') kana = 'しょ'
                     break;
                 
                 case 'тя':
-                    if (system === 'polivanov') kana = 'ちゃ'
+                    if (system !== 'nonstandard-ru') kana = 'ちゃ'
                     break;
                 case 'тю':
                     kana = system !== 'nonstandard-ru' ? 'ちゅ' : 'てゅ'
                     break;
                 case 'тё':
-                    if (system === 'polivanov') kana = 'ちょ'
+                    if (system !== 'nonstandard-ru') kana = 'ちょ'
                     break;
         
                 case 'ня':
