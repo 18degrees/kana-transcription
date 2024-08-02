@@ -1,6 +1,6 @@
 {
 	"name": "kana-transcription",
-	"version": "1.2.1",
+	"version": "2.0.0",
 
 	"description": "Transcribe japanese syllabaries to en/ru letters and vice versa; transform kana from one to the other syllabary",
 	"keywords": [
@@ -12,6 +12,8 @@
 		"romanji",
 		"japanese",
 		"hepburn-system",
+		"kunrai-shiki",
+		"nihon-shiki",
 		"polivanov-system"
 	],
 
