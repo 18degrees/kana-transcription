@@ -13,16 +13,17 @@ Some peculiarities of Japanese pronunciation and writing are described here. The
 >3. [Separation of row _na_ and syllabic _n_](#separation-of-row-na-and-syllabic-n)
 >4. [Defenition of a devoiced vowel and a long consonant](#definition-of-a-devoiced-vowel-and-a-long-consonant)
 >5. [Devoiced vowel: _i_ or _u_?](#devoiced-vowel-i-or-u)
+>6. [Extended kana. Two consonants](#еxtended-kana-two-consonants)
 >
 >_transcriptKana()_
 >
->6. [Particle recognition](#particle-recognition)
->7. [Understanding the syllable _n_](#understanding-the-syllable-n)
->8. [Recognizing long vowels](#recognizing-long-vowels)
+>7. [Particle recognition](#particle-recognition)
+>8. [Understanding the syllable _n_](#understanding-the-syllable-n)
+>9. [Recognizing long vowels](#recognizing-long-vowels)
 >
 >_reverseKana()_
 >
->9. [Recognizing long vowels in hiragana](#recognizing-long-vowels-in-hiragana)
+>10. [Recognizing long vowels in hiragana](#recognizing-long-vowels-in-hiragana)
 
 
 ## Introduction
@@ -41,6 +42,8 @@ In addition to hieroglyphs, Japanese writing uses two syllabic alphabets (kana):
 |ん/ン (n)|
 
 Japanese has more than 46 syllables. Some of the missing ones are indicated in writing by adding special characters to the basic symbols: _nigori ゛_ or _hannigori ゜_.
+
+Extended kana are used to convey sounds that have no counterparts in Japanese. These kana, for example, can convey syllables with two consonants in a row.
 
 #### Hiragana
 
@@ -183,6 +186,15 @@ There are some consonants that aren't used with _u_ vowel: 'sh', 'ch', 'j'. So, 
 For Russian, everything is simpler: since the _usually_ devoiced _i_ is used with soft consonants, it remains to distinguish soft from hard consonants. To do this, a soft sign _ь_ must be placed after such a consonant (or the consonant must always be soft, like [щ], [ч]).
 
 
+
+
+#### Extended kana. Two consonants
+
+In extended kana there are a number of symbols that are interpreted as syllables with two consonants in a row. Since the function implies the insertion of vowels between two consonants (understood as two different syllables, the first of which has an devoiced vowel), it is impossible to process such syllables correctly.
+
+##### Solution
+
+Starting from version 2.0.0 with extended kana support, the function does not work by default in the mode of recognizing devoiced vowels. To activate it, you need to set the `guess: true` option. The choice is either to guess devoiced vowels or to support more extended kana.
 
 
 ### Transcription of kana

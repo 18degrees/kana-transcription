@@ -15,6 +15,7 @@ _Переключить язык на: [английский](readme.md)_
 
 - [Обзор функций](docs/ru/functions.md)
 - [Причины появления рекомендаций и ограничений](docs/ru/explanation.md)
+- [Поддерживаемые системы транскрипции/транслитерации](docs/ru/systems.md)
 
 ## Установка
 
@@ -27,22 +28,41 @@ npm install kana-transcription
 ```javascript
 import { transcriptKana } from 'kana-transcription'
 
-const kanaText = 'わたし は うち へ いきます'
+const kanaText = 'わたし は じぶん に おちゃ を たてました'
 
-const transcriptedEN = transcriptKana(kanaText)
-const transcriptedRU = transcriptKana(kanaText, 'ru')
+//Понимать по системе Хепбёрна - по умолчанию
+const hepburnText = transcriptKana(kanaText)
 
-//transcriptedEN = 'watashi wa uchi e ikimasu'  - по системе Хепбёрна
-//transcriptedRU = 'ватаси ва ути э икимасу'    - по системе Поливанова
+//Понимать по Кунрэй-сики
+const kunreiShikiText = transcriptKana(kanaText, 'kunrei-shiki')
+
+//Понимать по системе Поливанова; для русского - по умолчанию
+const polivanovText = transcriptKana(kanaText, 'ru')
+
+//Понимать по нестандартной системе
+const nonstandardRuText = transcriptKana(kanaText, 'nonstandard-ru')
+
+//hepburnText =         'watashi wa jibun ni ocha o tatemashita'
+//kunreiShikiText =     'watasi wa zibun ni otya o tatemasita'
+
+//polivanovText =       'ватаси ва дзибун ни отя о татэмасита'
+//nonstandardRuText =   'ватащи ва джибун ни очя о татэмащита'
+
 
 
 import { transformToKana } from 'kana-transcription'
 
-const textEN = 'watashi wa kinoo haha ni daijina tegami o yonda'
-const textRU = 'ватащи ва киноо хаха ни даидзина тэгами о ёнда'
+//Текст по Хепбёрну
+const hepburnText = 'watashi wa kinoo haha ni daijina tegami o yonda'
 
-const transformedFromEN = transformToKana(textEN)
-const transformedFromRU = transformToKana(textRU, 'ru')
+//Текст по Поливанову
+const polivanovText = 'ватаси ва киноо хаха ни даидзина тэгами о ёнда'
+
+//Понимать по системе Хепбёрна - по умолчанию
+const transformedFromEN = transformToKana(hepburnText)
+
+//Понимать по системе Поливанова; для русского - по умолчанию
+const transformedFromRU = transformToKana(polivanovText, 'ru')
 
 //transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
 //transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'

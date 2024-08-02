@@ -15,6 +15,7 @@ There is a function to perform each item. Before using them, see [function overv
 
 - [Function overview](docs/en/functions.md)
 - [Reasons for recommendations and limitations](docs/en/explanation.md)
+- [Supported transcription/transliteration systems](docs/en/systems.md)
 
 ## Installation
 
@@ -27,22 +28,41 @@ npm install kana-transcription
 ```javascript
 import { transcriptKana } from 'kana-transcription'
 
-const kanaText = 'わたし は うち へ いきます'
+const kanaText = 'わたし は じぶん に おちゃ を たてました'
 
-const transcriptedEN = transcriptKana(kanaText)
-const transcriptedRU = transcriptKana(kanaText, 'ru')
+//Understood in the Hepburn system - by default
+const hepburnText = transcriptKana(kanaText)
 
-//transcriptedEN = 'watashi wa uchi e ikimasu'  - according to the Hepburn system
-//transcriptedRU = 'ватаси ва ути э икимасу'    - according to the Polivanov system
+//Understood in Kunrei-shiki
+const kunreiShikiText = transcriptKana(kanaText, 'kunrei-shiki')
+
+//Understood in the Polivanov system; for Russian - by default
+const polivanovText = transcriptKana(kanaText, 'ru')
+
+//Understood in a nonstandard-ru system
+const nonstandardRuText = transcriptKana(kanaText, 'nonstandard-ru')
+
+//hepburnText =         'watashi wa jibun ni ocha o tatemashita'
+//kunreiShikiText =     'watasi wa zibun ni otya o tatemasita'
+
+//polivanovText =       'ватаси ва дзибун ни отя о татэмасита'
+//nonstandardRuText =   'ватащи ва джибун ни очя о татэмащита'
+
 
 
 import { transformToKana } from 'kana-transcription'
 
-const textEN = 'watashi wa kinoo haha ni daijina tegami o yonda'
-const textRU = 'ватащи ва киноо хаха ни даидзина тэгами о ёнда'
+//The text on the Hepburn system
+const hepburnText = 'watashi wa kinoo haha ni daijina tegami o yonda'
 
-const transformedFromEN = transformToKana(textEN)
-const transformedFromRU = transformToKana(textRU, 'ru')
+//The text on the Polivanov system
+const polivanovText = 'ватаси ва киноо хаха ни даидзина тэгами о ёнда'
+
+//Understood in the Hepburn system - by default
+const transformedFromEN = transformToKana(hepburnText)
+
+//Understood in the Polivanov system; for Russian - by default
+const transformedFromRU = transformToKana(polivanovText, 'ru')
 
 //transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
 //transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'
