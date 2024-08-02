@@ -39,7 +39,7 @@ transcriptKana(kanaText: string, options?: object)
 
 - kanaText - kana to transcribe
 - toLang - language to transcribe to
-  - en (default)
+  - en (by default)
   - ru
 - system - a system by which to transcribe
 
@@ -84,7 +84,7 @@ transformToKana(text: string, options?: object)
   
 - text - a string of syllables transforming to one of the Japanese alphabets
 - fromLang - language to transform from
-  - en (default)
+  - en (by default)
   - ru
 - system - a system by which to transform
 
@@ -101,7 +101,7 @@ transformToKana(text: string, options?: object)
   - static-ru
 
 - toKana - syllabary to transform to
-  - hiragana (default)
+  - hiragana (by default)
   - katakana
 - guess - enable the option to guess devoiced vowels
   - false (by default)
@@ -144,7 +144,7 @@ reverseKana(kanaText: string, toKana?: string)
 
 - text - kana to reverse
 - toKana - kana to reverse to
-  - hiragana (default)
+  - hiragana (by default)
   - katakana
 
 #### Limitations
