@@ -5,12 +5,10 @@
 	"description": "Transcribe japanese syllabaries to en/ru letters and vice versa; transform kana from one to the other syllabary",
 	"keywords": [
 		"transcription",
-		"transcribe",
+		"transliteration",
 		"hiragana",
 		"katakana",
-		"kana",
 		"romanji",
-		"japanese",
 		"hepburn-system",
 		"kunrei-shiki",
 		"nihon-shiki",
