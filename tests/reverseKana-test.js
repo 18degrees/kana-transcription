@@ -4,7 +4,7 @@ import { assert } from "chai"
 describe('ReverseKana function: transforms japanese letters from one to another syllabary',  () => {
     describe('Examples of work and disadvantages', () => {
         it('long vowel (to katakana)', () => {
-            // Подробнее: п.9 в /docs/explanation.md
+            // Подробнее: п.10 в /docs/explanation.md
             
             assert.equal(reverseKana('けえき', 'katakana'), 'ケエキ')
         })
