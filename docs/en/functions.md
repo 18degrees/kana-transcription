@@ -15,9 +15,9 @@ The limitations show what inaccuracies you should expect (even when following th
 
 _Fast navigation:_
 
-1. [transcriptKana()](#transcriptKanatext-toLang)
-2. [transformToKana()](#transformToKanatext-fromLang-toKana)
-3. [reverseKana()](#reverseKanatext-toKana)
+1. [transcriptKana()](#transcriptKana)
+2. [transformToKana()](#transformToKana)
+3. [reverseKana()](#reverseKana)
 
 > [!NOTE]
 > More details on the differences of the systems mentioned below are written in a [separate document](./systems.md)
