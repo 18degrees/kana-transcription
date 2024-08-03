@@ -13,7 +13,7 @@ Some peculiarities of Japanese pronunciation and writing are described here. The
 >3. [Separation of row _na_ and syllabic _n_](#separation-of-row-na-and-syllabic-n)
 >4. [Defenition of a devoiced vowel and a long consonant](#definition-of-a-devoiced-vowel-and-a-long-consonant)
 >5. [Devoiced vowel: _i_ or _u_?](#devoiced-vowel-i-or-u)
->6. [Extended kana. Two consonants](#еxtended-kana-two-consonants)
+>6. [Extended kana. Two consonants](#extended-kana-two-consonants)
 >
 >_transcriptKana()_
 >
