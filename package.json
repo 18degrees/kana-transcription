@@ -2,17 +2,20 @@
 	"name": "kana-transcription",
 	"version": "2.0.0",
 
-	"description": "Transcribe japanese syllabaries to en/ru letters and vice versa; transform kana from one to the other syllabary",
+	"description": "Transcribe japanese syllabaries to en/ru letters and vice versa; convert kana from one to the other syllabary",
 	"keywords": [
 		"transcription",
 		"transliteration",
 		"hiragana",
 		"katakana",
 		"romanji",
+		"romanization",
 		"hepburn-system",
 		"kunrei-shiki",
 		"nihon-shiki",
-		"polivanov-system"
+		"polivanov-system",
+		"english",
+		"russian"
 	],
 
 	"type": "module",
