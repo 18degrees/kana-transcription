@@ -25,6 +25,8 @@ npm install kana-transcription
 
 ## Примеры использования
 
+### Из каны
+
 ```javascript
 import { transcriptKana } from 'kana-transcription'
 
@@ -33,38 +35,43 @@ const kanaText = 'わたし は じぶん に おちゃ を たてました'
 //Понимать по системе Хепбёрна - по умолчанию
 const hepburnText = transcriptKana(kanaText)
 
+//hepburnText = 'watashi wa jibun ni ocha o tatemashita'
+
 //Понимать по Кунрэй-сики
 const kunreiShikiText = transcriptKana(kanaText, 'kunrei-shiki')
+
+//kunreiShikiText = 'watasi wa zibun ni otya o tatemasita'
+
 
 //Понимать по системе Поливанова; для русского - по умолчанию
 const polivanovText = transcriptKana(kanaText, 'ru')
 
+//polivanovText = 'ватаси ва дзибун ни отя о татэмасита'
+
 //Понимать по нестандартной системе
 const nonstandardRuText = transcriptKana(kanaText, 'nonstandard-ru')
 
-//hepburnText =         'watashi wa jibun ni ocha o tatemashita'
-//kunreiShikiText =     'watasi wa zibun ni otya o tatemasita'
+//nonstandardRuText = 'ватащи ва джибун ни очя о татэмащита'
+```
 
-//polivanovText =       'ватаси ва дзибун ни отя о татэмасита'
-//nonstandardRuText =   'ватащи ва джибун ни очя о татэмащита'
+### К кане
 
-
-
+```javascript
 import { transformToKana } from 'kana-transcription'
 
-//Текст по Хепбёрну
 const hepburnText = 'watashi wa kinoo haha ni daijina tegami o yonda'
-
-//Текст по Поливанову
-const polivanovText = 'ватаси ва киноо хаха ни даидзина тэгами о ёнда'
 
 //Понимать по системе Хепбёрна - по умолчанию
 const transformedFromEN = transformToKana(hepburnText)
 
+//transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
+
+
+const polivanovText = 'ватаси ва киноо хаха ни даидзина тэгами о ёнда'
+
 //Понимать по системе Поливанова; для русского - по умолчанию
 const transformedFromRU = transformToKana(polivanovText, 'ru')
 
-//transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
 //transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'
 ```
 

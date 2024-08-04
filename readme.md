@@ -25,6 +25,8 @@ npm install kana-transcription
 
 ## Usage examples
 
+### From kana
+
 ```javascript
 import { transcriptKana } from 'kana-transcription'
 
@@ -33,38 +35,43 @@ const kanaText = 'わたし は じぶん に おちゃ を たてました'
 //Understood in the Hepburn system - by default
 const hepburnText = transcriptKana(kanaText)
 
+//hepburnText = 'watashi wa jibun ni ocha o tatemashita'
+
 //Understood in Kunrei-shiki
 const kunreiShikiText = transcriptKana(kanaText, 'kunrei-shiki')
+
+//kunreiShikiText = 'watasi wa zibun ni otya o tatemasita'
+
 
 //Understood in the Polivanov system; for Russian - by default
 const polivanovText = transcriptKana(kanaText, 'ru')
 
+//polivanovText = 'ватаси ва дзибун ни отя о татэмасита'
+
 //Understood in a nonstandard-ru system
 const nonstandardRuText = transcriptKana(kanaText, 'nonstandard-ru')
 
-//hepburnText =         'watashi wa jibun ni ocha o tatemashita'
-//kunreiShikiText =     'watasi wa zibun ni otya o tatemasita'
+//nonstandardRuText = 'ватащи ва джибун ни очя о татэмащита'
+```
 
-//polivanovText =       'ватаси ва дзибун ни отя о татэмасита'
-//nonstandardRuText =   'ватащи ва джибун ни очя о татэмащита'
+### To kana
 
-
-
+```javascript
 import { transformToKana } from 'kana-transcription'
 
-//The text on the Hepburn system
 const hepburnText = 'watashi wa kinoo haha ni daijina tegami o yonda'
-
-//The text on the Polivanov system
-const polivanovText = 'ватаси ва киноо хаха ни даидзина тэгами о ёнда'
 
 //Understood in the Hepburn system - by default
 const transformedFromEN = transformToKana(hepburnText)
 
+//transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
+
+
+const polivanovText = 'ватаси ва киноо хаха ни даидзина тэгами о ёнда'
+
 //Understood in the Polivanov system; for Russian - by default
 const transformedFromRU = transformToKana(polivanovText, 'ru')
 
-//transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
 //transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'
 ```
 
