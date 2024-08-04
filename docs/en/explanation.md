@@ -13,7 +13,7 @@ Some peculiarities of Japanese pronunciation and writing are described here. The
 >3. [Separation of row _na_ and syllabic _n_](#separation-of-row-na-and-syllabic-n)
 >4. [Defenition of a devoiced vowel and a long consonant](#definition-of-a-devoiced-vowel-and-a-long-consonant)
 >5. [Devoiced vowel: _i_ or _u_?](#devoiced-vowel-i-or-u)
->6. [Extended kana. Two consonants](#еxtended-kana-two-consonants)
+>6. [Extended kana. Two consonants](#extended-kana-two-consonants)
 >
 >_transcriptKana()_
 >
@@ -165,11 +165,11 @@ To distinguish syllabic _n_, it is accepted to put a special sign after it:
 
 #### Definition of a devoiced vowel and a long consonant
 
-Since the vowel is inaudible, when two consonants are introduced in a word in a row (and the first consonant is not a syllabic _n_), they are interpreted as either an devoiced vowel or a long consonant. To form a double consonant, the letter must match the next letter, but this is an unreliable method of verification: a devoiced vowel may be followed by a syllable of the same row, causing the consonants to match.
+Since the vowel is inaudible, when two consonants are introduced in a word in a row (and the first consonant is not a syllabic _n_), they are interpreted as either a devoiced vowel or a long consonant. To form a double consonant, the letter must match the next letter, but this is an unreliable method of verification: a devoiced vowel may be followed by a syllable of the same row, causing the consonants to match.
 
 ##### Solution
 
-There is no answer per se; I chose the strategy that gives the correct spelling _more often_: if the consonant matches the next consonant, it is a long consonant, otherwise it is an devoiced vowel.
+There is no answer per se; I chose the strategy that gives the correct spelling _more often_: if the consonant matches the next consonant, it is a long consonant, otherwise it is a devoiced vowel.
 
 
 
@@ -190,7 +190,7 @@ For Russian, everything is simpler: since the _usually_ devoiced _i_ is used wit
 
 #### Extended kana. Two consonants
 
-In extended kana there are a number of symbols that are interpreted as syllables with two consonants in a row. Since the function implies the insertion of vowels between two consonants (understood as two different syllables, the first of which has an devoiced vowel), it is impossible to process such syllables correctly.
+In extended kana there are a number of symbols that are interpreted as syllables with two consonants in a row. Since the function implies the insertion of vowels between two consonants (understood as two different syllables, the first of which has a devoiced vowel), it is impossible to process such syllables correctly.
 
 ##### Solution
 

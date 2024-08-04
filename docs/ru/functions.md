@@ -15,9 +15,9 @@ _Переключить язык на: [английский](../en/functions.md
 
 _Быстрая навигация:_
 
-1. [transcriptKana()](#transcriptKanatext-toLang)
-2. [transformToKana()](#transformToKanatext-fromLang-toKana)
-3. [reverseKana()](#reverseKanatext-toKana)
+1. [transcriptKana()](#transcriptKana)
+2. [transformToKana()](#transformToKana)
+3. [reverseKana()](#reverseKana)
 
 > [!NOTE]
 > Подробнее о различиях упомянутых ниже систем написано в [отдельном документе](./systems.md)
