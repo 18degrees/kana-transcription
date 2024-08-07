@@ -12,6 +12,8 @@ import { transformToKanaRU } from "./ru/transformToKana.js"
 import type { lang, systems, kana, toKanaOptions, fromKanaOptions } from "./common/types.js"
 import { getLangFromSystem } from "./common/funcs.js"
 
+import {transcriptKanaErrorCheck, transformToKanaErrorCheck} from './error-check.js'
+
 export { reverseKana } from './reverseKana.js'
 
 export function transcriptKana(kanaText: string, toLang?: lang): string | null
@@ -19,6 +21,8 @@ export function transcriptKana(kanaText: string, system?: systems): string | nul
 export function transcriptKana(kanaText: string, options?: fromKanaOptions): string | null
 
 export function transcriptKana(kanaText: string, options?: fromKanaOptions | lang | systems): string | null {
+    transcriptKanaErrorCheck(kanaText, options)
+
     const optionsModified: fromKanaOptions = typeof options === 'object' ? options : {toLang: 'en'}
 
     if (typeof options === 'object' && !options.toLang) {
@@ -29,7 +33,7 @@ export function transcriptKana(kanaText: string, options?: fromKanaOptions | lan
     } else if (typeof options === 'string') {
         const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
 
-        if (lang) optionsModified.toLang = lang
+        optionsModified.toLang = lang
 
         if (
             options === 'hepbern' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
@@ -52,6 +56,8 @@ export function transformToKana(text: string, guess?: boolean): string | null
 export function transformToKana(text: string, options?: toKanaOptions): string | null
 
 export function transformToKana(text: string, options?: toKanaOptions | boolean | lang | systems | kana): string | null {
+    transformToKanaErrorCheck(text, options)
+
     const optionsModified: toKanaOptions = typeof options === 'object' ? options : {fromLang: 'en'}
 
     if (typeof options === 'object' && !options.fromLang) {
@@ -64,7 +70,7 @@ export function transformToKana(text: string, options?: toKanaOptions | boolean 
     } else if (typeof options === 'string') {
         const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
 
-        if (lang) optionsModified.fromLang = lang
+        optionsModified.fromLang = lang
 
         if (options === 'hiragana' || options === 'katakana') optionsModified.toKana = options
 

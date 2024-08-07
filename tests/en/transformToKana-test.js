@@ -42,6 +42,16 @@ describe('TransformToKana function: transforms english syllables to japanese syl
             assert.equal(transformToKana('watasi wa zibun ni otya o tatemasita', 'kunrei-shiki'), 'わたし は じぶん に おちゃ を たてました')
             assert.equal(transformToKana('watasi ha zibun ni otya wo tatemasita', 'nihon-shiki'), 'わたし は じぶん に おちゃ を たてました')
         })
+        it('custom errors', () => {
+            //the custom errors located in /src/errors.ts
+
+            assert.Throw(() => transformToKana('abc', 33), /Execute the/)
+            assert.Throw(() => transformToKana(), /There is a missing param/)
+            assert.Throw(() => transformToKana(123), /An invalid param was passed/)
+            assert.Throw(() => transformToKana('abc', {system: 'hebpern'}), /An invalid param was passed/)
+            assert.Throw(() => transformToKana('abc', {fromLang: 'en', system: 'polivanov'}), /The passed system param incompatible with the language/)
+
+        })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей

@@ -1,4 +1,4 @@
-import { transcriptKana } from '../../lib/esm/index.mjs'
+import { transcriptKana} from '../../lib/esm/index.mjs'
 import { assert } from "chai"
 
 describe('TranscriptKana function: makes kana transcription to russian syllables',  () => {
@@ -42,6 +42,16 @@ describe('TranscriptKana function: makes kana transcription to russian syllables
             assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'nonstandard-ru'), 'ватащи ва джибун ни очя о татэмащита')
             assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'polivanov'), 'ватаси ва дзибун ни отя о татэмасита')
             assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'static-ru'), 'ватаси ха дзибун ни отя во татэмасита')
+        })
+        it('custom errors', () => {
+            //the custom errors located in /src/errors.ts
+
+            assert.Throw(() => transcriptKana('あいう', 33), /Execute the/)
+            assert.Throw(() => transcriptKana(), /There is a missing param/)
+            assert.Throw(() => transcriptKana(123), /An invalid param was passed/)
+            assert.Throw(() => transcriptKana('あいう', {system: 'hebpern'}), /An invalid param was passed/)
+            assert.Throw(() => transcriptKana('あいう', {toLang: 'ru', system: 'hepbern'}), /The passed system param incompatible with the language/)
+
         })
     })
     

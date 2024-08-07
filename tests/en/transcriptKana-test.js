@@ -43,6 +43,16 @@ describe('TranscriptKana function: makes kana transcription to english syllables
             assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'kunrei-shiki'), 'watasi wa zibun ni otya o tatemasita')
             assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'nihon-shiki'), 'watasi ha zibun ni otya wo tatemasita')
         })
+        it('custom errors', () => {
+            //the custom errors located in /src/errors.ts
+
+            assert.Throw(() => transcriptKana('あいう', 33), /Execute the/)
+            assert.Throw(() => transcriptKana(), /There is a missing param/)
+            assert.Throw(() => transcriptKana(123), /An invalid param was passed/)
+            assert.Throw(() => transcriptKana('あいう', {system: 'hebpern'}), /An invalid param was passed/)
+            assert.Throw(() => transcriptKana('あいう', {toLang: 'en', system: 'polivanov'}), /The passed system param incompatible with the language/)
+
+        })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей

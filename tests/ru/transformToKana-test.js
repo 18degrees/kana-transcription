@@ -56,6 +56,16 @@ describe('TransformToKana function: transforms russian syllables to japanese syl
             assert.equal(transformToKana('ватаси ва дзибун ни отя о татэмасита', 'polivanov'), 'わたし は じぶん に おちゃ を たてました')
             assert.equal(transformToKana('ватаси ха дзибун ни отя во татэмасита', 'static-ru'), 'わたし は じぶん に おちゃ を たてました')
         })
+        it('custom errors', () => {
+            //the custom errors located in /src/errors.ts
+
+            assert.Throw(() => transformToKana('абв', 33), /Execute the/)
+            assert.Throw(() => transformToKana(), /There is a missing param/)
+            assert.Throw(() => transformToKana(123), /An invalid param was passed/)
+            assert.Throw(() => transformToKana('абв', {system: 'hebpern'}), /An invalid param was passed/)
+            assert.Throw(() => transformToKana('абв', {fromLang: 'ru', system: 'hepbern'}), /The passed system param incompatible with the language/)
+
+        })
         
     })
 

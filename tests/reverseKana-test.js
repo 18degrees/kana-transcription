@@ -8,6 +8,12 @@ describe('ReverseKana function: transforms japanese letters from one to another 
             
             assert.equal(reverseKana('けえき', 'katakana'), 'ケエキ')
         })
+        it('custom errors', () => {
+            //the custom errors located in /src/errors.ts
+
+            assert.Throw(() => reverseKana('abc', 33), /An invalid param was passed/)
+            assert.Throw(() => reverseKana(), /There is a missing param/)
+        })
     })
     describe('Test-core', () => {
         //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
