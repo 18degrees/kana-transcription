@@ -50,7 +50,7 @@ describe('TranscriptKana function: makes kana transcription to russian syllables
             assert.Throw(() => transcriptKana(), /There is a missing param/)
             assert.Throw(() => transcriptKana(123), /An invalid param was passed/)
             assert.Throw(() => transcriptKana('あいう', {system: 'hebpern'}), /An invalid param was passed/)
-            assert.Throw(() => transcriptKana('あいう', {toLang: 'ru', system: 'hepbern'}), /The passed system param incompatible with the language/)
+            assert.Throw(() => transcriptKana('あいう', {toLang: 'ru', system: 'hepburn'}), /The passed system param incompatible with the language/)
 
         })
     })

@@ -4,7 +4,7 @@ import { spacesRegExp } from '../common/consts.js'
 import { isItSmallKana, isThereKanaAround } from '../common/funcs.js'
 import { systemsEN } from '../common/types.js'
 
-export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'): string | null {
+export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepburn'): string | null {
     const splitedSentence = kanaText.toLowerCase().split(spacesRegExp)
 
     const isThereOnlyOneWord = splitedSentence.length === 1
@@ -126,7 +126,7 @@ export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'
                     break
                 case 'し':
                 case 'シ':
-                    transcriptedSyllable = system === 'hepbern' ? 'shi' : 'si'
+                    transcriptedSyllable = system === 'hepburn' ? 'shi' : 'si'
                     break
                 case 'す':
                 case 'ス':
@@ -146,7 +146,7 @@ export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'
                     break
                 case 'じ':
                 case 'ジ':
-                    transcriptedSyllable = system === 'hepbern' ? 'ji' : 'zi'
+                    transcriptedSyllable = system === 'hepburn' ? 'ji' : 'zi'
                     break
                 case 'ず':
                 case 'ズ':
@@ -166,11 +166,11 @@ export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'
                     break
                 case 'ち':
                 case 'チ':
-                    transcriptedSyllable = system === 'hepbern' ? 'chi' : 'ti'
+                    transcriptedSyllable = system === 'hepburn' ? 'chi' : 'ti'
                     break
                 case 'つ':
                 case 'ツ':
-                    transcriptedSyllable = system === 'hepbern' ? 'tsu' : 'tu'
+                    transcriptedSyllable = system === 'hepburn' ? 'tsu' : 'tu'
                     break
                 case 'て':
                 case 'テ':
@@ -195,7 +195,7 @@ export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'
                     break
                 case 'ぢ':
                 case 'ヂ':
-                    transcriptedSyllable = system === 'hepbern' ? 'ji' : 'zi'
+                    transcriptedSyllable = system === 'hepburn' ? 'ji' : 'zi'
                     break
                 case 'づ':
                 case 'ヅ':
@@ -479,7 +479,7 @@ export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'
                     transcriptedSyllable = (
                         (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
                         //учёт расширенной каны つゃ/ツャ - tsya
-                        (system === 'hepbern' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'ya' : 'a'
+                        (system === 'hepburn' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'ya' : 'a'
                     )
                     break
                 }
@@ -499,7 +499,7 @@ export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'
                     transcriptedSyllable = (
                         (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
                         //учёт расширенной каны つゅ/ツュ - tsya
-                        (system === 'hepbern' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yu' : 'u'
+                        (system === 'hepburn' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yu' : 'u'
                     )
                     break
                 }
@@ -519,7 +519,7 @@ export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepbern'
                     transcriptedSyllable = (
                         (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
                         //учёт расширенной каны つょ/ツョ - tsya
-                        (system === 'hepbern' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yo' : 'o'
+                        (system === 'hepburn' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yo' : 'o'
                     )
                     break
                 }

@@ -36,7 +36,7 @@ export function transcriptKana(kanaText: string, options?: fromKanaOptions | lan
         optionsModified.toLang = lang
 
         if (
-            options === 'hepbern' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
+            options === 'hepburn' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
             options === 'nonstandard-ru' || options === 'polivanov' || options === 'static-ru'
         ) {
             optionsModified.system = options
@@ -75,7 +75,7 @@ export function transformToKana(text: string, options?: toKanaOptions | boolean 
         if (options === 'hiragana' || options === 'katakana') optionsModified.toKana = options
 
         if (
-            options === 'hepbern' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
+            options === 'hepburn' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
             options === 'nonstandard-ru' || options === 'polivanov' || options === 'static-ru'
         ) {
             optionsModified.system = options

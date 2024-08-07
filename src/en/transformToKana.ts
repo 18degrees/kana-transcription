@@ -7,7 +7,7 @@ interface extraProps extends toKanaCommonOptions {
 }
 
 export function transformToKanaEN(text: string, options?: extraProps): string | null {
-    const {toKana = 'hiragana', system = 'hepbern', guess = false} = options ? options : {}
+    const {toKana = 'hiragana', system = 'hepburn', guess = false} = options ? options : {}
 
     const splitRegExp = (
         guess ? /[kszgtfdnhbpmrwjvl]?y?[aiueo]|ts?y?[aiueo]?|ch[aiueo]?|sh[aiueo]?|n'|./g :
@@ -86,7 +86,7 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     kana = 'さ'
                     break;
                 case 'shi':
-                    if (system === 'hepbern') kana = 'し'
+                    if (system === 'hepburn') kana = 'し'
                     break;
                 case 'su':
                     kana = 'す'
@@ -102,10 +102,10 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     kana = 'ざ'
                     break;
                 case 'ji':
-                    if (system === 'hepbern') kana = prevSyllable && prevSyllable === 'chi' ? 'ぢ' : 'じ'
+                    if (system === 'hepburn') kana = prevSyllable && prevSyllable === 'chi' ? 'ぢ' : 'じ'
                     break;
                 case 'zu':
-                    kana = prevSyllable && ( (system === 'hepbern' && prevSyllable ==='tsu') || (system !== 'hepbern' && prevSyllable === 'tu') ) ? 'づ' : 'ず'
+                    kana = prevSyllable && ( (system === 'hepburn' && prevSyllable ==='tsu') || (system !== 'hepburn' && prevSyllable === 'tu') ) ? 'づ' : 'ず'
                     break;
                 case 'ze':
                     kana = 'ぜ'
@@ -118,10 +118,10 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     kana = 'た'
                     break;
                 case 'chi':
-                    if (system === 'hepbern') kana = 'ち'
+                    if (system === 'hepburn') kana = 'ち'
                     break;
                 case 'tsu':
-                    if (system === 'hepbern') kana = 'つ'
+                    if (system === 'hepburn') kana = 'つ'
                     break;
                 case 'te':
                     kana = 'て'
@@ -163,7 +163,7 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     kana = 'ひ'
                     break;
                 case 'fu':
-                    if (system === 'hepbern') kana = 'ふ'
+                    if (system === 'hepburn') kana = 'ふ'
                     break;
                 case 'he':
                     kana = 'へ'
@@ -269,23 +269,23 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     break;
 
                 case 'sha':
-                    if (system === 'hepbern') kana = 'しゃ'
+                    if (system === 'hepburn') kana = 'しゃ'
                     break;
                 case 'shu':
-                    if (system === 'hepbern') kana = 'しゅ'
+                    if (system === 'hepburn') kana = 'しゅ'
                     break;
                 case 'sho':
-                    if (system === 'hepbern') kana = 'しょ'
+                    if (system === 'hepburn') kana = 'しょ'
                     break;
                 
                 case 'cha':
-                    if (system === 'hepbern') kana = 'ちゃ'
+                    if (system === 'hepburn') kana = 'ちゃ'
                     break;
                 case 'chu':
-                    if (system === 'hepbern') kana = 'ちゅ'
+                    if (system === 'hepburn') kana = 'ちゅ'
                     break;
                 case 'cho':
-                    if (system === 'hepbern') kana = 'ちょ'
+                    if (system === 'hepburn') kana = 'ちょ'
                     break;
         
                 case 'nya':
@@ -339,13 +339,13 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     break;
                 
                 case 'ja':
-                    if (system === 'hepbern') kana = 'じゃ'
+                    if (system === 'hepburn') kana = 'じゃ'
                     break;
                 case 'ju':
-                    if (system === 'hepbern') kana = 'じゅ'
+                    if (system === 'hepburn') kana = 'じゅ'
                     break;
                 case 'jo':
-                    if (system === 'hepbern') kana = 'じょ'
+                    if (system === 'hepburn') kana = 'じょ'
                     break;
         
                 case 'bya':
@@ -463,64 +463,64 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     break
 
                 case 'sya':
-                    if (system !== 'hepbern') kana = 'しゃ'
+                    if (system !== 'hepburn') kana = 'しゃ'
                     break
                 case 'syu':
-                    if (system !== 'hepbern') kana = 'しゅ'
+                    if (system !== 'hepburn') kana = 'しゅ'
                     break
                 case 'syo':
-                    if (system !== 'hepbern') kana = 'しょ'
+                    if (system !== 'hepburn') kana = 'しょ'
                     break
 
                 case 'she':
-                    if (system !== 'hepbern') kana = 'しぇ'
+                    if (system !== 'hepburn') kana = 'しぇ'
                     break
                 case 'je':
-                    if (system !== 'hepbern') kana = 'じぇ'
+                    if (system !== 'hepburn') kana = 'じぇ'
                     break
                     
                 case 'si':
-                    kana = system === 'hepbern' ? 'すぃ' : 'し'
+                    kana = system === 'hepburn' ? 'すぃ' : 'し'
                     break
 
                 case 'tya':
-                    if (system !== 'hepbern') kana = 'ちゃ'
+                    if (system !== 'hepburn') kana = 'ちゃ'
                     break
                 case 'tyu':
-                    if (system !== 'hepbern') kana = 'ちゅ'
+                    if (system !== 'hepburn') kana = 'ちゅ'
                     break
                 case 'tyo':
-                    if (system !== 'hepbern') kana = 'ちょ'
+                    if (system !== 'hepburn') kana = 'ちょ'
                     break
 
                 case 'tsa':
-                    if (system === 'hepbern') kana = 'つぁ'
+                    if (system === 'hepburn') kana = 'つぁ'
                     break
                 case 'tsi':
-                    if (system === 'hepbern') kana = 'つぃ'
+                    if (system === 'hepburn') kana = 'つぃ'
                     break
                 case 'tse':
-                    if (system === 'hepbern') kana = 'つぇ'
+                    if (system === 'hepburn') kana = 'つぇ'
                     break
                 case 'tso':
-                    if (system === 'hepbern') kana = 'つぉ'
+                    if (system === 'hepburn') kana = 'つぉ'
                     break
 
                 case 'tsya':
-                    if (system === 'hepbern') kana = 'つゃ'
+                    if (system === 'hepburn') kana = 'つゃ'
                     break
                 case 'tsyu':
-                    if (system === 'hepbern') kana = 'つゅ'
+                    if (system === 'hepburn') kana = 'つゅ'
                     break
                 case 'tsye':
-                    if (system === 'hepbern') kana = 'つぃぇ'
+                    if (system === 'hepburn') kana = 'つぃぇ'
                     break
                 case 'tsyo':
-                    if (system === 'hepbern') kana = 'つョ'
+                    if (system === 'hepburn') kana = 'つョ'
                     break
 
                 case 'zi':
-                    if (system === 'hepbern') {
+                    if (system === 'hepburn') {
                         kana = 'づぃ'
                     } else {
                         kana = prevSyllable && prevSyllable === 'ti' ? 'ぢ' : 'じ'
@@ -528,29 +528,29 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     break;
 
                 case 'zya':
-                    kana = system === 'hepbern' ? 'づゃ' : 'じゃ'
+                    kana = system === 'hepburn' ? 'づゃ' : 'じゃ'
                     break
                 case 'zyu':
-                    kana = system === 'hepbern' ? 'づゅ' : 'じゅ'
+                    kana = system === 'hepburn' ? 'づゅ' : 'じゅ'
                     break
                 case 'zye':
                     kana = 'づぃぇ'
                     break
                 case 'zyo':
-                    kana = system === 'hepbern' ? 'づョ' : 'じョ'
+                    kana = system === 'hepburn' ? 'づョ' : 'じョ'
                     break
 
                 case 'ti':
-                    kana = system === 'hepbern' ? 'てぃ' : 'ち'
+                    kana = system === 'hepburn' ? 'てぃ' : 'ち'
                     break
                 case 'tu':
-                    kana = system === 'hepbern' ? 'とぅ' : 'つ'
+                    kana = system === 'hepburn' ? 'とぅ' : 'つ'
                     break;
                 case 'twi':
                     kana = 'とぃ'
                     break
                 case 'tyu':
-                    kana = system === 'hepbern' ? kana = 'てゅ' : 'ちゅ'
+                    kana = system === 'hepburn' ? kana = 'てゅ' : 'ちゅ'
                     break
 
                 case 'di':
@@ -593,33 +593,33 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
                     break
 
                 case 'fa':
-                    if (system === 'hepbern') kana = 'ふぁ'
+                    if (system === 'hepburn') kana = 'ふぁ'
                     break
                 case 'fi':
-                    if (system === 'hepbern') kana = 'ふぃ'
+                    if (system === 'hepburn') kana = 'ふぃ'
                     break
                 case 'fe':
-                    if (system === 'hepbern') kana = 'ふぇ'
+                    if (system === 'hepburn') kana = 'ふぇ'
                     break
                 case 'fo':
-                    if (system === 'hepbern') kana = 'ふぉ'
+                    if (system === 'hepburn') kana = 'ふぉ'
                     break
 
                 case 'fya':
-                    if (system === 'hepbern') kana = 'ふゃ'
+                    if (system === 'hepburn') kana = 'ふゃ'
                     break
                 case 'fyu':
-                    if (system === 'hepbern') kana = 'ふゅ'
+                    if (system === 'hepburn') kana = 'ふゅ'
                     break
                 case 'fye':
-                    if (system === 'hepbern') kana = 'ふぃぇ'
+                    if (system === 'hepburn') kana = 'ふぃぇ'
                     break
                 case 'fyo':
-                    if (system === 'hepbern') kana = 'ふょ'
+                    if (system === 'hepburn') kana = 'ふょ'
                     break
 
                 case 'hu':
-                    kana = system === 'hepbern' ? 'ほぅ' : 'ふ'
+                    kana = system === 'hepburn' ? 'ほぅ' : 'ふ'
                     break
 
                 case 'mwi':

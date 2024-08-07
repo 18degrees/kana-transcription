@@ -2,7 +2,7 @@ export type kana = 'hiragana' | 'katakana'
 
 export type lang = 'ru' | 'en'
 
-export type systemsEN = 'hepbern' | 'kunrei-shiki' | 'nihon-shiki' 
+export type systemsEN = 'hepburn' | 'kunrei-shiki' | 'nihon-shiki' 
 
 export type systemsRU = 'nonstandard-ru' | 'polivanov' | 'static-ru'
 
