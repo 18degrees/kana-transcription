@@ -13,6 +13,16 @@ export function transcriptKanaErrorCheck(kanaText: any, options: any) {
         throw new WrongParamTypeError({func: 'transcriptKana'})
     }
 
+    if (typeof options === 'string') {
+        if (
+            options !== 'en' && options !== 'ru' &&
+            options !== 'hepbern' && options !== 'kunrei-shiki' && options !== 'nihon-shiki' && 
+            options !== 'nonstandard-ru' && options !== 'polivanov' && options !== 'static-ru'
+        ) {
+            throw new WrongParamValueError({func: 'transcriptKana'})
+        }
+    }
+
     if (typeof options === 'object') {
         if (options.system && typeof options.system !== 'string') {
             throw new WrongParamTypeError({func: 'transcriptKana', param: 'system'})
@@ -51,9 +61,22 @@ export function transformToKanaErrorCheck(text: any, options: any) {
     if (typeof text !== 'string') {
         throw new WrongParamTypeError({func: 'transformToKana', param: 'text'})
     }
+
     if (typeof options !== 'undefined' && typeof options !== 'string' && typeof options !== 'object' && typeof options !== 'boolean') {
         throw new WrongParamTypeError({func: 'transformToKana'})
     }
+
+    if (typeof options === 'string') {
+        if (
+            options !== 'en' && options !== 'ru' &&
+            options !== 'hiragana' && options !== 'katakana' &&
+            options !== 'hepbern' && options !== 'kunrei-shiki' && options !== 'nihon-shiki' && 
+            options !== 'nonstandard-ru' && options !== 'polivanov' && options !== 'static-ru'
+        ) {
+            throw new WrongParamValueError({func: 'transformToKana'})
+        }
+    }
+
     if (typeof options === 'object') {
         if (options.system && typeof options.system !== 'string') {
             throw new WrongParamTypeError({func: 'transformToKana', param: 'system'})
