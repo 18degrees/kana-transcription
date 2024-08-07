@@ -1,5 +1,13 @@
 import {IncompatibleParamsError, MissingParamError, WrongParamTypeError, WrongParamValueError} from './errors.js'
 
+const systemsEN = new Set(['hepburn', 'kunrei-shiki', 'nihon-shiki'])
+const systemsRU = new Set(['nonstandard-ru', 'polivanov', 'static-ru'])
+
+const systems = new Set([...systemsEN, ...systemsRU])
+const langs = new Set(['en', 'ru'])
+
+const kana = new Set(['hiragana', 'katakana'])
+
 export function transcriptKanaErrorCheck(kanaText: any, options: any) {
     if (!kanaText) {
         throw new MissingParamError()
@@ -14,11 +22,7 @@ export function transcriptKanaErrorCheck(kanaText: any, options: any) {
     }
 
     if (typeof options === 'string') {
-        if (
-            options !== 'en' && options !== 'ru' &&
-            options !== 'hepburn' && options !== 'kunrei-shiki' && options !== 'nihon-shiki' && 
-            options !== 'nonstandard-ru' && options !== 'polivanov' && options !== 'static-ru'
-        ) {
+        if (!langs.has(options) && !systems.has(options)) {
             throw new WrongParamValueError({func: 'transcriptKana'})
         }
     }
@@ -32,21 +36,17 @@ export function transcriptKanaErrorCheck(kanaText: any, options: any) {
             throw new WrongParamTypeError({func: 'transcriptKana', param: 'toLang'})
         }
 
-        if (options.toLang && options.toLang !== 'en' && options.toLang !== 'ru') {
+        if (options.toLang && !langs.has(options.toLang)) {
             throw new WrongParamValueError({func: 'transcriptKana', param: 'toLang'})
         }
 
-        if (
-                options.system && 
-                options.system !== 'hepburn' && options.system !== 'kunrei-shiki' && options.system !== 'nihon-shiki' && 
-                options.system !== 'nonstandard-ru' && options.system !== 'polivanov' && options.system !== 'static-ru'
-        ) {
+        if (options.system && !systems.has(options.system)) {
             throw new WrongParamValueError({func: 'transcriptKana', param: 'system'})
         }
 
         if (
-            (options.toLang === 'en' && options.system && options.system !== 'hepburn' && options.system !== 'kunrei-shiki' && options.system !== 'nihon-shiki') ||
-            (options.toLang === 'ru' && options.system && options.system !== 'nonstandard-ru' && options.system !== 'polivanov' && options.system !== 'static-ru')
+            (options.toLang === 'en' && options.system && !systemsEN.has(options.system)) ||
+            (options.toLang === 'ru' && options.system && !systemsRU.has(options.system))
         ) {
             throw new IncompatibleParamsError({lang: options.toLang, system: options.system})
         }
@@ -67,12 +67,7 @@ export function transformToKanaErrorCheck(text: any, options: any) {
     }
 
     if (typeof options === 'string') {
-        if (
-            options !== 'en' && options !== 'ru' &&
-            options !== 'hiragana' && options !== 'katakana' &&
-            options !== 'hepburn' && options !== 'kunrei-shiki' && options !== 'nihon-shiki' && 
-            options !== 'nonstandard-ru' && options !== 'polivanov' && options !== 'static-ru'
-        ) {
+        if (!langs.has(options) && !systems.has(options) && !kana.has(options)) {
             throw new WrongParamValueError({func: 'transformToKana'})
         }
     }
@@ -94,23 +89,19 @@ export function transformToKanaErrorCheck(text: any, options: any) {
             throw new WrongParamTypeError({func: 'transformToKana', param: 'guess'})
         }
 
-        if (options.fromLang && options.fromLang !== 'en' && options.fromLang !== 'ru') {
+        if (options.fromLang && !langs.has(options.fromLang)) {
             throw new WrongParamValueError({func: 'transformToKana', param: 'fromLang'})
         }
 
-        if (options.toKana && options.toKana !== 'hiragana' && options.toKana !== 'katakana') {
+        if (options.toKana && !kana.has(options.toKana)) {
             throw new WrongParamValueError({func: 'transformToKana', param: 'toKana'})
         }
-        if (
-            options.system && 
-            options.system !== 'hepburn' && options.system !== 'kunrei-shiki' && options.system !== 'nihon-shiki' && 
-            options.system !== 'nonstandard-ru' && options.system !== 'polivanov' && options.system !== 'static-ru'
-        ) {
+        if (options.system && !systems.has(options.system)) {
             throw new WrongParamValueError({func: 'transformToKana', param: 'system'})
         }
         if (
-            (options.fromLang === 'en' && options.system && options.system !== 'hepburn' && options.system !== 'kunrei-shiki' && options.system !== 'nihon-shiki') ||
-            (options.fromLang === 'ru' && options.system && options.system !== 'nonstandard-ru' && options.system !== 'polivanov' && options.system !== 'static-ru')
+            (options.fromLang === 'en' && options.system && !systemsEN.has(options.system)) ||
+            (options.fromLang === 'ru' && options.system && !systemsRU.has(options.system))
         ) {
             throw new IncompatibleParamsError({lang: options.fromLang, system: options.system})
         }
@@ -130,7 +121,7 @@ export function reverseKanaErrorCheck(kanaText: any, toKana: any) {
             throw new WrongParamTypeError({func: 'reverseKana', param: 'toKana'})
         }
     
-        if (toKana !== 'hiragana' && toKana !== 'katakana') {
+        if (!kana.has(toKana)) {
             throw new WrongParamValueError({func: 'reverseKana', param: 'toKana'})
         }
     }
