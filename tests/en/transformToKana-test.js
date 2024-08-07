@@ -48,6 +48,7 @@ describe('TransformToKana function: transforms english syllables to japanese syl
             assert.Throw(() => transformToKana('abc', 33), /Execute the/)
             assert.Throw(() => transformToKana(), /There is a missing param/)
             assert.Throw(() => transformToKana(123), /An invalid param was passed/)
+            assert.Throw(() => transformToKana('some text', 'abc'), /An invalid param was passed/)
             assert.Throw(() => transformToKana('abc', {system: 'hebpern'}), /An invalid param was passed/)
             assert.Throw(() => transformToKana('abc', {fromLang: 'en', system: 'polivanov'}), /The passed system param incompatible with the language/)
 
