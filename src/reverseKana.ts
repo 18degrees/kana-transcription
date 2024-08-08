@@ -5,8 +5,6 @@ import { reverseKanaErrorCheck } from "./error-check.js"
 export function reverseKana(text: string, toKana: kana = 'hiragana'): string | null {
     reverseKanaErrorCheck(text, toKana)
     
-    const allKanaRegExp = /\p{Script=Kana}{1}|\p{Script=Hira}{1}|ー/ug
-
     const syllabaryToChangeRegExp = toKana === 'hiragana' ? /\p{Script=Kana}{1}|ー/ug : /\p{Script=Hira}{1}/ug
 
     const splitedWords = text.toLowerCase().split(' ')
@@ -14,9 +12,7 @@ export function reverseKana(text: string, toKana: kana = 'hiragana'): string | n
     let kanaTransformed: string = ''
 
     for (const word of splitedWords) {
-        const textSplited = word.match(allKanaRegExp)
-
-        if (!textSplited) return null
+        const textSplited = word.split('')
 
         const transformedkanaSplited = textSplited.map((kana, index) => {
             const isTransformNeeded = kana.match(syllabaryToChangeRegExp)
