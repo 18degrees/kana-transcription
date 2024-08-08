@@ -9,7 +9,7 @@ const langs = new Set(['en', 'ru'])
 const kana = new Set(['hiragana', 'katakana'])
 
 export function transcriptKanaErrorCheck(kanaText: any, options: any) {
-    if (!kanaText) {
+    if (typeof kanaText === 'undefined') {
         throw new MissingParamError()
     }
 
@@ -54,7 +54,7 @@ export function transcriptKanaErrorCheck(kanaText: any, options: any) {
 }
 
 export function transformToKanaErrorCheck(text: any, options: any) {
-    if (!text) {
+    if (typeof text === 'undefined') {
         throw new MissingParamError()
     }
 
@@ -108,7 +108,7 @@ export function transformToKanaErrorCheck(text: any, options: any) {
     }
 }
 export function reverseKanaErrorCheck(kanaText: any, toKana: any) {
-    if (!kanaText) {
+    if (typeof kanaText === 'undefined') {
         throw new MissingParamError()
     }
     
