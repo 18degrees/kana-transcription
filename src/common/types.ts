@@ -15,7 +15,7 @@ export interface toKanaCommonOptions {
     guess?: boolean
 }
 
-interface toKanaOptionsEN extends toKanaCommonOptions {
+export interface toKanaOptionsEN extends toKanaCommonOptions {
     fromLang?: 'en'
     system?: systemsEN
 }
@@ -30,13 +30,13 @@ interface toKanaOptionsByLangRU extends toKanaCommonOptions {
 }
 //на выбор можно ввести либо систему, либо язык (или и то и другое)
 
-type toKanaOptionsRU = toKanaOptionsByLangRU | toKanaOptionsBySystemRU
+export type toKanaOptionsRU = toKanaOptionsByLangRU | toKanaOptionsBySystemRU
 
 export type toKanaOptions = toKanaOptionsEN | toKanaOptionsRU
 
 // transcriptKana()
 
-interface fromKanaOptionsEN {
+export interface fromKanaOptionsEN {
     toLang?: 'en'
     system?: systemsEN
 }
@@ -51,6 +51,6 @@ interface fromKanaOptionsByLangRU {
 }
 //на выбор можно ввести либо систему, либо язык (или и то и другое)
 
-type fromKanaOptionsRU = fromKanaOptionsByLangRU | fromKanaOptionsBySystemRU
+export type fromKanaOptionsRU = fromKanaOptionsByLangRU | fromKanaOptionsBySystemRU
 
 export type fromKanaOptions = fromKanaOptionsEN | fromKanaOptionsRU

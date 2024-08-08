@@ -6,7 +6,7 @@ interface extraProps extends toKanaCommonOptions {
     system?: systemsRU
 }
 
-export function transformToKanaRU(text: string, options?: extraProps): string | null {
+export function transformToKanaRU(text: string, options?: extraProps): string {
     const {toKana = 'hiragana', system = 'polivanov', guess = false} = options ? options : {}
 
     const splitRegExp = (
@@ -713,7 +713,7 @@ export function transformToKanaRU(text: string, options?: extraProps): string | 
 
     const kanaText = toKana === 'hiragana' ? hiraganaText : reverseKana(hiraganaText, "katakana")
 
-    return kanaText ? kanaText : null
+    return kanaText
 }
 
 function isItAlwaysSoftConsonant(letter: string) {

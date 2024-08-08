@@ -4,7 +4,7 @@ import { spacesRegExp } from '../common/consts.js'
 import { isItSmallKana, isThereKanaAround } from '../common/funcs.js'
 import { systemsEN } from '../common/types.js'
 
-export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepburn'): string | null {
+export function transcriptKanaEN(kanaText: string, system: systemsEN = 'hepburn'): string {
     const splitedSentence = kanaText.toLowerCase().split(spacesRegExp)
 
     const isThereOnlyOneWord = splitedSentence.length === 1

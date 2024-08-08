@@ -9,32 +9,31 @@ import { transcriptKanaRU } from "./ru/transcriptKana.js"
 import { transformToKanaEN } from "./en/transformToKana.js"
 import { transformToKanaRU } from "./ru/transformToKana.js"
 
-import type { lang, systems, kana, toKanaOptions, fromKanaOptions } from "./common/types.js"
+import type { lang, systems, kana, toKanaOptions, fromKanaOptions, toKanaOptionsEN, toKanaOptionsRU, fromKanaOptionsEN, fromKanaOptionsRU } from "./common/types.js"
 import { getLangFromSystem } from "./common/funcs.js"
 
 import {transcriptKanaErrorCheck, transformToKanaErrorCheck} from './error-check.js'
 
 export { reverseKana } from './reverseKana.js'
 
-export function transcriptKana(kanaText: string, toLang?: lang): string | null
-export function transcriptKana(kanaText: string, system?: systems): string | null
-export function transcriptKana(kanaText: string, options?: fromKanaOptions): string | null
+type fromKanaOptionsModified = (fromKanaOptionsEN & {toLang: 'en'}) | (fromKanaOptionsRU & {toLang: 'ru'})
 
-export function transcriptKana(kanaText: string, options?: fromKanaOptions | lang | systems): string | null {
+export function transcriptKana(kanaText: string, toLang?: lang): string
+export function transcriptKana(kanaText: string, system?: systems): string
+export function transcriptKana(kanaText: string, options?: fromKanaOptions): string
+
+export function transcriptKana(kanaText: string, options?: fromKanaOptions | lang | systems): string {
     transcriptKanaErrorCheck(kanaText, options)
 
-    const optionsModified: fromKanaOptions = typeof options === 'object' ? options : {toLang: 'en'}
+    //На этом этапе конфликт между выставленным языком и системой исключён
 
-    if (typeof options === 'object' && !options.toLang) {
-        const langFromSystem = options.system ? getLangFromSystem(options.system) : 'en'
+    const optionsModified = (
+        typeof options === 'object' ? 
+            {...options, fromLang: getLang(options.toLang ? options.toLang : options.system)} :
+            {toLang: getLang(options)}
+    ) as fromKanaOptionsModified
 
-        if (langFromSystem) optionsModified.toLang = langFromSystem
-
-    } else if (typeof options === 'string') {
-        const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
-
-        optionsModified.toLang = lang
-
+    if (typeof options === 'string') {
         if (
             options === 'hepburn' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
             options === 'nonstandard-ru' || options === 'polivanov' || options === 'static-ru'
@@ -43,47 +42,66 @@ export function transcriptKana(kanaText: string, options?: fromKanaOptions | lan
         }
     }
 
-    return (
-        optionsModified.toLang === 'en' ? transcriptKanaEN(kanaText, optionsModified.system) : 
-        optionsModified.toLang === 'ru' ? transcriptKanaRU(kanaText, optionsModified.system) : null
-    )
+    if (optionsModified.toLang === 'ru') return transcriptKanaRU(kanaText, optionsModified.system)
+
+    return transcriptKanaEN(kanaText, optionsModified.system) 
 }
 
-export function transformToKana(text: string, fromLang?: lang): string | null
-export function transformToKana(text: string, system?: systems): string | null
-export function transformToKana(text: string, toKana?: kana): string | null
-export function transformToKana(text: string, guess?: boolean): string | null
-export function transformToKana(text: string, options?: toKanaOptions): string | null
+type toKanaOptionsModified = (toKanaOptionsEN & {fromLang: 'en'}) | (toKanaOptionsRU & {fromLang: 'ru'})
 
-export function transformToKana(text: string, options?: toKanaOptions | boolean | lang | systems | kana): string | null {
+export function transformToKana(text: string, fromLang?: lang): string
+export function transformToKana(text: string, system?: systems): string 
+export function transformToKana(text: string, toKana?: kana): string
+export function transformToKana(text: string, guess?: boolean): string
+export function transformToKana(text: string, options?: toKanaOptions): string
+
+export function transformToKana(text: string, options?: toKanaOptions | boolean | lang | systems | kana): string {
     transformToKanaErrorCheck(text, options)
 
-    const optionsModified: toKanaOptions = typeof options === 'object' ? options : {fromLang: 'en'}
+    //На этом этапе конфликт между выставленным языком и системой исключён
 
-    if (typeof options === 'object' && !options.fromLang) {
-        const langFromSystem = options.system ? getLangFromSystem(options.system) : 'en'
+    const optionsModified = (
+        typeof options === 'object' ? 
+            {...options, fromLang: getLang(options.fromLang ? options.fromLang : options.system)} :
+            {fromLang: getLang(options)}
+    ) as toKanaOptionsModified
 
-        if (langFromSystem) optionsModified.fromLang = langFromSystem
-
-    } else if (typeof options === 'boolean') {
+    if (typeof options === 'boolean') {
         optionsModified.guess = options
+
     } else if (typeof options === 'string') {
-        const lang = options === 'en' || options === 'ru' ? options : getLangFromSystem(options)
-
-        optionsModified.fromLang = lang
-
-        if (options === 'hiragana' || options === 'katakana') optionsModified.toKana = options
-
-        if (
-            options === 'hepburn' || options === 'kunrei-shiki' || options === 'nihon-shiki' || 
-            options === 'nonstandard-ru' || options === 'polivanov' || options === 'static-ru'
-        ) {
-            optionsModified.system = options
+        switch (options) {
+            case 'hiragana':
+            case 'katakana':
+                optionsModified.toKana = options
+                break
+            case 'hepburn':
+            case 'kunrei-shiki':
+            case 'nihon-shiki':
+            case 'polivanov':
+            case 'nonstandard-ru':
+            case 'static-ru':
+                optionsModified.system = options
+                break
+            default:
+                break
         }
     }
 
-    return (
-        optionsModified.fromLang === 'en' ? transformToKanaEN(text, optionsModified) : 
-        optionsModified.fromLang === 'ru' ? transformToKanaRU(text, optionsModified) : null
-    ) 
+    if (optionsModified.fromLang === 'ru') return transformToKanaRU(text, optionsModified)
+
+    return transformToKanaEN(text, optionsModified)
+}
+
+function getLang(option?: lang | systems | kana | boolean): lang {
+    if (option === 'en' || option === 'ru') return option
+
+    if (
+        option === 'hepburn' || option === 'kunrei-shiki' || option === 'nihon-shiki' || 
+        option === 'nonstandard-ru' || option === 'polivanov' || option === 'static-ru'
+    ) {
+        return getLangFromSystem(option)
+    }
+
+    return 'en'
 }

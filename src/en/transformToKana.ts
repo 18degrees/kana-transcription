@@ -6,7 +6,7 @@ interface extraProps extends toKanaCommonOptions {
     system?: systemsEN
 }
 
-export function transformToKanaEN(text: string, options?: extraProps): string | null {
+export function transformToKanaEN(text: string, options?: extraProps): string {
     const {toKana = 'hiragana', system = 'hepburn', guess = false} = options ? options : {}
 
     const splitRegExp = (
@@ -745,7 +745,7 @@ export function transformToKanaEN(text: string, options?: extraProps): string | 
 
     const kanaText = toKana === 'hiragana' ? hiraganaText : reverseKana(hiraganaText, "katakana")
 
-    return kanaText ? kanaText : null
+    return kanaText
 }
 
 
