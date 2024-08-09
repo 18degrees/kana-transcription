@@ -1,4 +1,4 @@
-# Functions
+# Functions overview
 
 _Switch the language to: [Russian](../ru/functions.md)_
 
@@ -20,14 +20,12 @@ _Fast navigation:_
 3. [reverseKana()](#reverseKana)
 
 > [!NOTE]
-> More details on the differences of the systems mentioned below are written in a [separate document](./systems.md)
+> More details on the differences of the systems mentioned below are written in the [separate document](./systems.md)
 
 ## transcriptKana()
 
 #### What it does
-Transcribes kana to Russian (using Polivanov's system) or English (using Hepburn's revised system) syllables.
-
-_Note that the above systems are not fully utilized. For example, long vowels are marked only by their repetition._
+Transcribes kana to Russian or English syllables.
 
 #### Parameters
 
@@ -37,8 +35,8 @@ transcriptKana(kanaText: string, system?: string)
 transcriptKana(kanaText: string, options?: object)
 ```
 
-- kanaText - kana to transcribe
-- toLang - language to transcribe to
+- kanaText - a text where the kana is used
+- toLang - a language to transcribe to
   - en (by default)
   - ru
 - system - a system by which to transcribe
@@ -70,7 +68,7 @@ transcriptKana(kanaText: string, options?: object)
 
 #### What it does
   
-Transforms text written in Russian or English syllables to one of the Japanese syllabaries.
+Transforms a text written in Russian or English syllables to one of the Japanese syllabary.
   
 #### Parameters
 
@@ -82,8 +80,8 @@ transformToKana(text: string, guess?: boolean)
 transformToKana(text: string, options?: object)
 ```
   
-- text - a string of syllables transforming to one of the Japanese alphabets
-- fromLang - language to transform from
+- text - a text with Russian or English syllables
+- fromLang - a language to transform from
   - en (by default)
   - ru
 - system - a system by which to transform
@@ -100,7 +98,7 @@ transformToKana(text: string, options?: object)
   - nonstandard-ru
   - static-ru
 
-- toKana - syllabary to transform to
+- toKana - a kana to transform to
   - hiragana (by default)
   - katakana
 - guess - enable the option to guess devoiced vowels
@@ -134,7 +132,7 @@ transformToKana(text: string, options?: object)
 
 #### What it does
 
-Reverse one kana into the other.
+Converts one kana into the other.
 
 #### Parameters
 
@@ -142,8 +140,8 @@ Reverse one kana into the other.
 reverseKana(kanaText: string, toKana?: string)
 ```
 
-- text - kana to reverse
-- toKana - kana to reverse to
+- text - A text where the kana is used
+- toKana - a kana to convert to
   - hiragana (by default)
   - katakana
 
