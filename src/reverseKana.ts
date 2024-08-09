@@ -2,6 +2,16 @@ import { transcriptKanaEN } from "./en/transcriptKana.js"
 import type { kana } from './common/types.js'
 import { reverseKanaErrorCheck } from "./error-check.js"
 
+/**
+ * Converts the kana given in a text to one of the Japanese alphabet
+ * 
+ * @param text A text where the kana is used
+ * @param toKana A kana to convert to
+ * 
+ * @returns The converted text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#reverseKana|Functions overview}
+ */
 export function reverseKana(text: string, toKana: kana = 'hiragana'): string {
     reverseKanaErrorCheck(text, toKana)
     

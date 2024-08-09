@@ -18,8 +18,40 @@ export { reverseKana } from './reverseKana.js'
 
 type fromKanaOptionsModified = (fromKanaOptionsEN & {toLang: 'en'}) | (fromKanaOptionsRU & {toLang: 'ru'})
 
+/**
+ * Transcribes the kana in a given text
+ * 
+ * @param kanaText A text where the kana is used
+ * @param toLang A language to transcribe to
+ * 
+ * @returns The transcribed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transcriptKana|Functions overview}
+ */
 export function transcriptKana(kanaText: string, toLang?: lang): string
+
+/**
+ * Transcribes the kana in a given text
+ * 
+ * @param kanaText A text where the kana is used
+ * @param system A system by which to transcribe
+ * 
+ * @returns The transcribed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transcriptKana|Functions overview}
+ */
 export function transcriptKana(kanaText: string, system?: systems): string
+
+/**
+ * Transcribes the kana in a given text
+ * 
+ * @param kanaText A text where the kana is used
+ * @param options An object, which include the toLang and system props
+ * 
+ * @returns The transcribed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transcriptKana|Functions overview}
+ */
 export function transcriptKana(kanaText: string, options?: fromKanaOptions): string
 
 export function transcriptKana(kanaText: string, options?: fromKanaOptions | lang | systems): string {
@@ -49,10 +81,64 @@ export function transcriptKana(kanaText: string, options?: fromKanaOptions | lan
 
 type toKanaOptionsModified = (toKanaOptionsEN & {fromLang: 'en'}) | (toKanaOptionsRU & {fromLang: 'ru'})
 
+/**
+ * Transforms a text to one of the Japanese alphabet
+ * 
+ * @param text A text to transform
+ * @param fromLang A language to transform from
+ * 
+ * @returns The transformed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ */
 export function transformToKana(text: string, fromLang?: lang): string
-export function transformToKana(text: string, system?: systems): string 
+
+/**
+ * Transforms a text to one of the Japanese alphabet
+ * 
+ * @param text A text to transform
+ * @param system A system by which to transform
+ * 
+ * @returns The transformed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ */
+export function transformToKana(text: string, system?: systems): string
+
+/**
+ * Transforms a text to one of the Japanese alphabet
+ * 
+ * @param text A text to transform
+ * @param toKana A kana to transform to
+ * 
+ * @returns The transformed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ */
 export function transformToKana(text: string, toKana?: kana): string
+
+/**
+ * Transforms a text to one of the Japanese alphabet
+ * 
+ * @param text A text to transform
+ * @param guess The switch, controlling whether to enable devoiced vowel guessing
+ * 
+ * @returns The transformed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ */
 export function transformToKana(text: string, guess?: boolean): string
+
+/**
+ * Transforms a text to one of the Japanese alphabet
+ * 
+ * @param text A text to transform
+ * @param options An object, which include the fromLang, system, toKana, and guess props
+ * 
+ * @returns The transformed text
+ * 
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ */
 export function transformToKana(text: string, options?: toKanaOptions): string
 
 export function transformToKana(text: string, options?: toKanaOptions | boolean | lang | systems | kana): string {
