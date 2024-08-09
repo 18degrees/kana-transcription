@@ -34,23 +34,19 @@ const kanaText = 'わたし は じぶん に おちゃ を たてました'
 
 //Understood in the Hepburn system - by default
 const hepburnText = transcriptKana(kanaText)
-
 //hepburnText = 'watashi wa jibun ni ocha o tatemashita'
 
 //Understood in Kunrei-shiki
 const kunreiShikiText = transcriptKana(kanaText, 'kunrei-shiki')
-
 //kunreiShikiText = 'watasi wa zibun ni otya o tatemasita'
 
 
 //Understood in the Polivanov system; for Russian - by default
 const polivanovText = transcriptKana(kanaText, 'ru')
-
 //polivanovText = 'ватаси ва дзибун ни отя о татэмасита'
 
 //Understood in a nonstandard-ru system
 const nonstandardRuText = transcriptKana(kanaText, 'nonstandard-ru')
-
 //nonstandardRuText = 'ватащи ва джибун ни очя о татэмащита'
 ```
 
@@ -63,7 +59,6 @@ const hepburnText = 'watashi wa kinoo haha ni daijina tegami o yonda'
 
 //Understood in the Hepburn system - by default
 const transformedFromEN = transformToKana(hepburnText)
-
 //transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
 
 
@@ -71,7 +66,6 @@ const polivanovText = 'ватаси ва киноо хаха ни даидзин
 
 //Understood in the Polivanov system; for Russian - by default
 const transformedFromRU = transformToKana(polivanovText, 'ru')
-
 //transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'
 ```
 
