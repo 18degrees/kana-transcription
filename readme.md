@@ -4,6 +4,8 @@
 
 _Switch the language to: [Russian](readme-ru.md)_
 
+_Find out if the library is right for you by trying it out on the [website](https://18degrees.github.io/kana-transcription-web/)_
+
 A mini-library that you can use to:
 - Translate hiragana/katakana to the Russian or English alphabet
 - Transform syllables of Russian or English alphabet to hiragana/katakana
