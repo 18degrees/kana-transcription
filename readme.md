@@ -9,11 +9,11 @@ A mini-library that you can use to:
 - Transform syllables of Russian or English alphabet to hiragana/katakana
 - Convert one kana to the other
 
-There is a function to perform each item. Before using them, see [function overview](docs/en/functions.md) for limitations and recommendations. Keeping the recommendations in mind will improve accuracy, and keeping the limitations in mind will prepare you for the shortcomings of the algorithm.
+There is a function to perform each item. Before using them, see the [functions overview](docs/en/functions.md) for limitations and recommendations. Keeping the recommendations in mind will improve accuracy, and keeping the limitations in mind will prepare you for the shortcomings of the algorithm.
 
 ## Documentation
 
-- [Function overview](docs/en/functions.md)
+- [Functions overview](docs/en/functions.md)
 - [Reasons for recommendations and limitations](docs/en/explanation.md)
 - [Supported transcription/transliteration systems](docs/en/systems.md)
 
