@@ -46,7 +46,7 @@
 	},
 
 	"author": "Mikhail Izotov <mikhaili.dev@gmail.com>",
-	"repository": "github:18degrees/kana-transcription",
+	"repository": "github:18degrees/kana-transformer",
 	"license": "Apache-2.0",
 
 	"devDependencies": {
