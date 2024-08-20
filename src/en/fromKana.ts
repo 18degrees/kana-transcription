@@ -765,12 +765,12 @@ function hasOnlyVowel(str: string) {
     return !str.match(vowelRegExp)
 }
 function hasOnlyConsonants(str: string) {
-    const consonantRegExp = /[^kszgtcfdnhbpmrwj]/
+    const consonantRegExp = /[^kszgtcfdnhbpmrwjv]/
 
     return !str.match(consonantRegExp)
 }
 function getConsonants(str: string) {
-    const consonantRegExp = /[kszgtcfdnhbpmrwj]/g
+    const consonantRegExp = /[kszgtcfdnhbpmrwjv]/g
 
     const consonants = str.match(consonantRegExp)?.join('')
 
