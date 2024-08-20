@@ -1,6 +1,6 @@
 import type { lang } from './common/types'
 
-type func = 'transcriptKana' | 'transformToKana' | 'reverseKana'
+type func = 'fromKana' | 'toKana' | 'convertKana'
 type param = 'toKana' | 'fromLang' | 'toLang' | 'system' | 'guess' | 'text'
 
 
@@ -24,18 +24,18 @@ export class WrongParamValueError extends Error {
                     param === 'fromLang' || param === 'toLang' ? "equal to either 'en' or 'ru'" :
                     param === 'guess' ? "the 'Boolean' type" : 
                     param === 'system' ? "equal to either 'hepburn', 'kunrei-shiki', 'nihon-shiki', 'nonstandard-ru', 'polivanov', or 'static-ru'" : null
-                }.` : `Execute the '${func}' function using one of the following scenarios: ${func === 'transformToKana' ? `
-                    transformToKana(text: string, fromLang?: 'en' | 'ru')
-                    transformToKana(text: string, system?: 'hepburn' | 'kunrei-shiki' | 'nihon-shiki' | 'nonstandard-ru' | 'polivanov' | 'static-ru')
-                    transformToKana(text: string, toKana?: 'hiragana' | 'katakana')
-                    transformToKana(text: string, guess?: boolean)
-                    transformToKana(text: string, options?: object with the given above second params)` : 
-                    func === 'transcriptKana' ? `
-                    transcriptKana(kanaText: string, toLang?: 'en' | 'ru')
-                    transcriptKana(kanaText: string, system?: 'hepburn' | 'kunrei-shiki' | 'nihon-shiki' | 'nonstandard-ru' | 'polivanov' | 'static-ru')
-                    transcriptKana(kanaText: string, options?: object with the given above second params)` : 
-                    func === 'reverseKana' ? `
-                    reverseKana(text: string, toKana?: 'hiragana' | 'katakana')` : null
+                }.` : `Execute the '${func}' function using one of the following scenarios: ${func === 'toKana' ? `
+                    toKana(text: string, fromLang?: 'en' | 'ru')
+                    toKana(text: string, system?: 'hepburn' | 'kunrei-shiki' | 'nihon-shiki' | 'nonstandard-ru' | 'polivanov' | 'static-ru')
+                    toKana(text: string, toKana?: 'hiragana' | 'katakana')
+                    toKana(text: string, guess?: boolean)
+                    toKana(text: string, options?: object with the given above second params)` : 
+                    func === 'fromKana' ? `
+                    fromKana(kanaText: string, toLang?: 'en' | 'ru')
+                    fromKana(kanaText: string, system?: 'hepburn' | 'kunrei-shiki' | 'nihon-shiki' | 'nonstandard-ru' | 'polivanov' | 'static-ru')
+                    fromKana(kanaText: string, options?: object with the given above second params)` : 
+                    func === 'convertKana' ? `
+                    convertKana(text: string, toKana?: 'hiragana' | 'katakana')` : null
                 }.`
             }
         `)

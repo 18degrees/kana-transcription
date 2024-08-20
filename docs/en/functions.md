@@ -15,14 +15,14 @@ The limitations show what inaccuracies you should expect (even when following th
 
 _Fast navigation:_
 
-1. [transcriptKana()](#transcriptKana)
-2. [transformToKana()](#transformToKana)
-3. [reverseKana()](#reverseKana)
+1. [fromKana()](#fromKana)
+2. [toKana()](#toKana)
+3. [convertKana()](#convertKana)
 
 > [!NOTE]
 > More details on the differences of the systems mentioned below are written in the [separate document](./systems.md)
 
-## transcriptKana()
+## fromKana()
 
 #### What it does
 Transcribes kana to Russian or English syllables.
@@ -30,9 +30,9 @@ Transcribes kana to Russian or English syllables.
 #### Parameters
 
 ```ts
-transcriptKana(kanaText: string, toLang?: string)
-transcriptKana(kanaText: string, system?: string)
-transcriptKana(kanaText: string, options?: object)
+fromKana(kanaText: string, toLang?: string)
+fromKana(kanaText: string, system?: string)
+fromKana(kanaText: string, options?: object)
 ```
 
 - kanaText - a text where the kana is used
@@ -64,7 +64,7 @@ transcriptKana(kanaText: string, options?: object)
 - The vowel pairs えい, おう are translated letter-by-letter. The resulting output is [ei] and [ou], respectively.
 
 
-## transformToKana()
+## toKana()
 
 #### What it does
   
@@ -73,11 +73,11 @@ Transforms a text written in Russian or English syllables to one of the Japanese
 #### Parameters
 
 ```ts
-transformToKana(text: string, fromLang?: string)
-transformToKana(text: string, system?: string)
-transformToKana(text: string, toKana?: string)
-transformToKana(text: string, guess?: boolean)
-transformToKana(text: string, options?: object)
+toKana(text: string, fromLang?: string)
+toKana(text: string, system?: string)
+toKana(text: string, toKana?: string)
+toKana(text: string, guess?: boolean)
+toKana(text: string, options?: object)
 ```
   
 - text - a text with Russian or English syllables
@@ -128,7 +128,7 @@ transformToKana(text: string, options?: object)
 - ***The sign ー is not used***
 
 
-## reverseKana()
+## convertKana()
 
 #### What it does
 
@@ -137,7 +137,7 @@ Converts one kana into the other.
 #### Parameters
 
 ```ts
-reverseKana(kanaText: string, toKana?: string)
+convertKana(kanaText: string, toKana?: string)
 ```
 
 - text - A text where the kana is used

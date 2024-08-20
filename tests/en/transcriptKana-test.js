@@ -1,74 +1,74 @@
-import { transcriptKana } from '../../lib/esm/index.mjs'
+import { fromKana } from '../../lib/esm/index.mjs'
 import { assert } from "chai"
 
-describe('TranscriptKana function: makes kana transcription to english syllables',  () => {
+describe('fromKana function: makes kana transcription to english syllables',  () => {
     describe('Examples of work and disadvantages', () => {
         it('long vowel', () => {
             //Подробнее: п.9 в /docs/explanation.md
 
-            assert.equal(transcriptKana('こうこう'), 'koukou')
+            assert.equal(fromKana('こうこう'), 'koukou')
         })
         it('sentense (particle)', () => {
             //Подробнее: п.7 в /docs/explanation.md
 
-            assert.equal(transcriptKana('わたし は うち へ いきます'), 'watashi wa uchi e ikimasu');
+            assert.equal(fromKana('わたし は うち へ いきます'), 'watashi wa uchi e ikimasu');
         })
         it('syllabic n', () => {
             //Подробнее: п.8 в /docs/explanation.md
 
-            assert.equal(transcriptKana('おんよみ'), "on'yomi")
+            assert.equal(fromKana('おんよみ'), "on'yomi")
             
-            assert.equal(transcriptKana('はつおん'), 'hatsuon')
+            assert.equal(fromKana('はつおん'), 'hatsuon')
         })
         it('punctuation marks', () => {
             //все знаки препинания, кроме пробела, не изменяются
 
-            assert.equal(transcriptKana(
+            assert.equal(fromKana(
                 '「わかい　ひとたち　は　マナー　が　わるい」と　にじゅういっさい の おんなのがくせい が かんがえています。'),
                 '「wakai hitotachi wa manaa ga warui」to nijyuuissai no onnanogakusei ga kangaeteimasu。'
             )
         })
         it('extended katakana', () => {
-            assert.equal(transcriptKana('ウゥルカーヌス'), 'wurukaanusu')
-            assert.equal(transcriptKana('ミネルウァ'), 'mineruwa')
-            assert.equal(transcriptKana('イェビス'), 'yebisu')
-            assert.equal(transcriptKana('フィクション'), 'fikushon')
-            assert.equal(transcriptKana('ジェスチャー'), 'jesuchaa')
-            assert.equal(transcriptKana('エスクァイア'), 'esukwaia')
-            assert.equal(transcriptKana('インテルメッツォ'), 'interumettso')
-            assert.equal(transcriptKana('ハロウィーン'), 'harowiin')
+            assert.equal(fromKana('ウゥルカーヌス'), 'wurukaanusu')
+            assert.equal(fromKana('ミネルウァ'), 'mineruwa')
+            assert.equal(fromKana('イェビス'), 'yebisu')
+            assert.equal(fromKana('フィクション'), 'fikushon')
+            assert.equal(fromKana('ジェスチャー'), 'jesuchaa')
+            assert.equal(fromKana('エスクァイア'), 'esukwaia')
+            assert.equal(fromKana('インテルメッツォ'), 'interumettso')
+            assert.equal(fromKana('ハロウィーン'), 'harowiin')
         })
         it("systems' difference", () => {
-            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'hepburn'), 'watashi wa jibun ni ocha o tatemashita')
-            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'kunrei-shiki'), 'watasi wa zibun ni otya o tatemasita')
-            assert.equal(transcriptKana('わたし は じぶん に おちゃ を たてました', 'nihon-shiki'), 'watasi ha zibun ni otya wo tatemasita')
+            assert.equal(fromKana('わたし は じぶん に おちゃ を たてました', 'hepburn'), 'watashi wa jibun ni ocha o tatemashita')
+            assert.equal(fromKana('わたし は じぶん に おちゃ を たてました', 'kunrei-shiki'), 'watasi wa zibun ni otya o tatemasita')
+            assert.equal(fromKana('わたし は じぶん に おちゃ を たてました', 'nihon-shiki'), 'watasi ha zibun ni otya wo tatemasita')
         })
         it('custom errors', () => {
             //the custom errors located in /src/errors.ts
 
-            assert.Throw(() => transcriptKana('あいう', 33), /Execute the/)
-            assert.Throw(() => transcriptKana(), /There is a missing param/)
-            assert.Throw(() => transcriptKana(123), /An invalid param was passed/)
-            assert.Throw(() => transcriptKana('あいう', 'abc'), /An invalid param was passed/)
-            assert.Throw(() => transcriptKana('あいう', {system: 'hebpern'}), /An invalid param was passed/)
-            assert.Throw(() => transcriptKana('あいう', {toLang: 'en', system: 'polivanov'}), /The passed system param incompatible with the language/)
+            assert.Throw(() => fromKana('あいう', 33), /Execute the/)
+            assert.Throw(() => fromKana(), /There is a missing param/)
+            assert.Throw(() => fromKana(123), /An invalid param was passed/)
+            assert.Throw(() => fromKana('あいう', 'abc'), /An invalid param was passed/)
+            assert.Throw(() => fromKana('あいう', {system: 'hebpern'}), /An invalid param was passed/)
+            assert.Throw(() => fromKana('あいう', {toLang: 'en', system: 'polivanov'}), /The passed system param incompatible with the language/)
 
         })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
     it('other cases', () => {
-        assert.equal(transcriptKana('わたし　は　きのう　はは　に　だいじな　てがみ　を　よんだ'), 'watashi wa kinou haha ni daijina tegami o yonda')
+        assert.equal(fromKana('わたし　は　きのう　はは　に　だいじな　てがみ　を　よんだ'), 'watashi wa kinou haha ni daijina tegami o yonda')
 
-        assert.equal(transcriptKana(
+        assert.equal(fromKana(
             'しごと　の　すききらい　が　はっきり　していない　わかもの　でも、じぶん　に　いちばん　あう　もの　が　みつかったら、かんがえかた　も　いきかた　も　かわる　はずです'), 
             'shigoto no sukikirai ga hakkiri shiteinai wakamono demo、jibun ni ichiban au mono ga mitsukattara、kangaekata mo ikikata mo kawaru hazudesu'
         )
-        assert.equal(transcriptKana(
+        assert.equal(fromKana(
             'あつかう、つうしん、おもいつく、にゅうがく、すいどう、びょういん'),
             'atsukau、tsuushin、omoitsuku、nyuugaku、suidou、byouin'
         )
-        assert.equal(transcriptKana(
+        assert.equal(fromKana(
             'さいきん　は　ちいさいい　とき　から ファミコン　ばかりしている　から　にちがいありません。'),
             'saikin wa chiisaii toki kara famikon bakarishiteiru kara nichigaiarimasen。'
         )

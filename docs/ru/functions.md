@@ -15,14 +15,14 @@ _Переключить язык на: [английский](../en/functions.md
 
 _Быстрая навигация:_
 
-1. [transcriptKana()](#transcriptKana)
-2. [transformToKana()](#transformToKana)
-3. [reverseKana()](#reverseKana)
+1. [fromKana()](#fromKana)
+2. [toKana()](#toKana)
+3. [convertKana()](#convertKana)
 
 > [!NOTE]
 > Подробнее о различиях упомянутых ниже систем написано в [отдельном документе](./systems.md)
 
-## transcriptKana()
+## fromKana()
 
 #### Что делает
 
@@ -31,9 +31,9 @@ _Быстрая навигация:_
 #### Параметры
 
 ```ts
-transcriptKana(kanaText: string, toLang?: string)
-transcriptKana(kanaText: string, system?: string)
-transcriptKana(kanaText: string, options?: object)
+fromKana(kanaText: string, toLang?: string)
+fromKana(kanaText: string, system?: string)
+fromKana(kanaText: string, options?: object)
 ```
 
 - kanaText - кана к преобразованию
@@ -65,7 +65,7 @@ transcriptKana(kanaText: string, options?: object)
 - Пары гласных えい, おう переводятся побуквенно. Выходит [эи] и [оу] соответственно
 
 
-## transformToKana()
+## toKana()
 
 #### Что делает
   
@@ -74,11 +74,11 @@ transcriptKana(kanaText: string, options?: object)
 #### Параметры
   
 ```ts
-transformToKana(text: string, fromLang?: string)
-transformToKana(text: string, system?: string)
-transformToKana(text: string, toKana?: string)
-transformToKana(text: string, guess?: boolean)
-transformToKana(text: string, options?: object)
+toKana(text: string, fromLang?: string)
+toKana(text: string, system?: string)
+toKana(text: string, toKana?: string)
+toKana(text: string, guess?: boolean)
+toKana(text: string, options?: object)
 ```
 
 - text - строка слогов, приводимая к одной из японских азбук
@@ -129,7 +129,7 @@ transformToKana(text: string, options?: object)
 - ***Не используется знак ー***
 
 
-## reverseKana()
+## convertKana()
 
 #### Что делает
 
@@ -138,7 +138,7 @@ transformToKana(text: string, options?: object)
 #### Параметры
 
 ```ts
-reverseKana(kanaText: string, toKana?: string)
+convertKana(kanaText: string, toKana?: string)
 ```
 
 - text - кана для оборота

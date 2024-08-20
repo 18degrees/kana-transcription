@@ -1,6 +1,6 @@
-import { transcriptKanaEN } from "./en/transcriptKana.js"
+import { fromKanaEN } from "./en/fromKana.js"
 import type { kana } from './common/types.js'
-import { reverseKanaErrorCheck } from "./error-check.js"
+import { convertKanaErrorCheck } from "./error-check.js"
 
 /**
  * Converts the kana given in a text to one of the Japanese alphabet
@@ -10,10 +10,10 @@ import { reverseKanaErrorCheck } from "./error-check.js"
  * 
  * @returns The converted text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#reverseKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#convertKana|Functions overview}
  */
-export function reverseKana(text: string, toKana: kana = 'hiragana'): string {
-    reverseKanaErrorCheck(text, toKana)
+export function convertKana(text: string, toKana: kana = 'hiragana'): string {
+    convertKanaErrorCheck(text, toKana)
     
     const syllabaryToChangeRegExp = toKana === 'hiragana' ? /\p{Script=Kana}{1}|ー/ug : /\p{Script=Hira}{1}/ug
 
@@ -339,7 +339,7 @@ export function reverseKana(text: string, toKana: kana = 'hiragana'): string {
 
                     const prevKana = textSplited[index - 1]
 
-                    const prevSyllableTranscription = transcriptKanaEN(prevKana)
+                    const prevSyllableTranscription = fromKanaEN(prevKana)
 
                     if (!prevSyllableTranscription) return ''
 

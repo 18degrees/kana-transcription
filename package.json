@@ -1,5 +1,5 @@
 {
-	"name": "kana-transcription",
+	"name": "kana-transformer",
 	"version": "2.2.1",
 
 	"description": "Transcribe japanese syllabaries to en/ru letters and vice versa; convert kana from one to the other syllabary",

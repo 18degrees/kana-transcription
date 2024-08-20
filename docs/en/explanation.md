@@ -4,9 +4,9 @@ _Switch the language to: [Russian](../ru/explanation.md)_
 
 _I am not an expert in this subject, and my only connection with the Japanese language is my desire to learn it._
 
-Some peculiarities of Japanese pronunciation and writing are described here. These peculiarities are the reasons for the difficulties I encountered in writing the kana-transcription mini-library.
+Some peculiarities of Japanese pronunciation and writing are described here. These peculiarities are the reasons for the difficulties I encountered in writing the kana-transformer mini-library.
 
->_transformToKana()_
+>_toKana()_
 >
 >1. [Dependence of syllable reading on position](#dependence-of-syllable-reading-on-position)
 >2. [Different notation of vowel longness](#different-notation-of-vowel-longness)
@@ -15,13 +15,13 @@ Some peculiarities of Japanese pronunciation and writing are described here. The
 >5. [Devoiced vowel: _i_ or _u_?](#devoiced-vowel-i-or-u)
 >6. [Extended kana. Two consonants](#extended-kana-two-consonants)
 >
->_transcriptKana()_
+>_fromKana()_
 >
 >7. [Particle recognition](#particle-recognition)
 >8. [Understanding the syllable _n_](#understanding-the-syllable-n)
 >9. [Recognizing long vowels](#recognizing-long-vowels)
 >
->_reverseKana()_
+>_convertKana()_
 >
 >10. [Recognizing long vowels in hiragana](#recognizing-long-vowels-in-hiragana)
 
@@ -116,7 +116,7 @@ _By solution is more often meant not a way out of the situation, but some compro
 
 ### Transform to kana
 
-The motivation for creating the library was to allow people to search for characters using not only kana, but also their own alphabets (now available for Russian and English). Say, if the Japanese alphabet is not installed. This is the responsibility of `transformToKana()`. So ideally the function should pass the exact spelling from the user given transcription.
+The motivation for creating the library was to allow people to search for characters using not only kana, but also their own alphabets (now available for Russian and English). Say, if the Japanese alphabet is not installed. This is the responsibility of `toKana()`. So ideally the function should pass the exact spelling from the user given transcription.
 
 
 
@@ -197,9 +197,9 @@ In extended kana there are a number of symbols that are interpreted as syllables
 Starting from version 2.0.0 with extended kana support, the function does not work by default in the mode of recognizing devoiced vowels. To activate it, you need to set the `guess: true` option. The choice is either to guess devoiced vowels or to support more extended kana.
 
 
-### Transcription of kana
+### Transcribe kana
 
-There are fewer problems here, and they are essentially described earlier. The function is `transcriptKana()`.
+There are fewer problems here, and they are essentially described earlier. The function is `fromKana()`.
 
 
 
@@ -252,7 +252,7 @@ To give a person who knows the problems of the algorithm _at least a chance_ to 
 
 ### Converting one kana to the other
 
-This function - `reverseKana()` - has only one problem, but it's a serious one.
+This function - `convertKana()` - has only one problem, but it's a serious one.
 
 
 

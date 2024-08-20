@@ -3,18 +3,18 @@
     Нежелательные результаты работы функций отражены в ./tests
 */
 
-import { transcriptKanaEN } from "./en/transcriptKana.js"
-import { transcriptKanaRU } from "./ru/transcriptKana.js"
+import { fromKanaEN } from "./en/fromKana.js"
+import { fromKanaRU } from "./ru/fromKana.js"
 
-import { transformToKanaEN } from "./en/transformToKana.js"
-import { transformToKanaRU } from "./ru/transformToKana.js"
+import { toKanaEN } from "./en/toKana.js"
+import { toKanaRU } from "./ru/toKana.js"
 
 import type { lang, systems, kana, toKanaOptions, fromKanaOptions, toKanaOptionsEN, toKanaOptionsRU, fromKanaOptionsEN, fromKanaOptionsRU } from "./common/types.js"
 import { getLangFromSystem } from "./common/funcs.js"
 
-import {transcriptKanaErrorCheck, transformToKanaErrorCheck} from './error-check.js'
+import { fromKanaErrorCheck, toKanaErrorCheck} from './error-check.js'
 
-export { reverseKana } from './reverseKana.js'
+export { convertKana } from './convertKana.js'
 
 type fromKanaOptionsModified = (fromKanaOptionsEN & {toLang: 'en'}) | (fromKanaOptionsRU & {toLang: 'ru'})
 
@@ -26,9 +26,9 @@ type fromKanaOptionsModified = (fromKanaOptionsEN & {toLang: 'en'}) | (fromKanaO
  * 
  * @returns The transcribed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transcriptKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#fromKana|Functions overview}
  */
-export function transcriptKana(kanaText: string, toLang?: lang): string
+export function fromKana(kanaText: string, toLang?: lang): string
 
 /**
  * Transcribes the kana in a given text
@@ -38,9 +38,9 @@ export function transcriptKana(kanaText: string, toLang?: lang): string
  * 
  * @returns The transcribed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transcriptKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#fromKana|Functions overview}
  */
-export function transcriptKana(kanaText: string, system?: systems): string
+export function fromKana(kanaText: string, system?: systems): string
 
 /**
  * Transcribes the kana in a given text
@@ -50,12 +50,12 @@ export function transcriptKana(kanaText: string, system?: systems): string
  * 
  * @returns The transcribed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transcriptKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#fromKana|Functions overview}
  */
-export function transcriptKana(kanaText: string, options?: fromKanaOptions): string
+export function fromKana(kanaText: string, options?: fromKanaOptions): string
 
-export function transcriptKana(kanaText: string, options?: fromKanaOptions | lang | systems): string {
-    transcriptKanaErrorCheck(kanaText, options)
+export function fromKana(kanaText: string, options?: fromKanaOptions | lang | systems): string {
+    fromKanaErrorCheck(kanaText, options)
 
     //На этом этапе конфликт между выставленным языком и системой исключён
 
@@ -74,9 +74,9 @@ export function transcriptKana(kanaText: string, options?: fromKanaOptions | lan
         }
     }
 
-    if (optionsModified.toLang === 'ru') return transcriptKanaRU(kanaText, optionsModified.system)
+    if (optionsModified.toLang === 'ru') return fromKanaRU(kanaText, optionsModified.system)
 
-    return transcriptKanaEN(kanaText, optionsModified.system) 
+    return fromKanaEN(kanaText, optionsModified.system) 
 }
 
 type toKanaOptionsModified = (toKanaOptionsEN & {fromLang: 'en'}) | (toKanaOptionsRU & {fromLang: 'ru'})
@@ -89,9 +89,9 @@ type toKanaOptionsModified = (toKanaOptionsEN & {fromLang: 'en'}) | (toKanaOptio
  * 
  * @returns The transformed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#toKana|Functions overview}
  */
-export function transformToKana(text: string, fromLang?: lang): string
+export function toKana(text: string, fromLang?: lang): string
 
 /**
  * Transforms a text to one of the Japanese alphabet
@@ -101,9 +101,9 @@ export function transformToKana(text: string, fromLang?: lang): string
  * 
  * @returns The transformed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#toKana|Functions overview}
  */
-export function transformToKana(text: string, system?: systems): string
+export function toKana(text: string, system?: systems): string
 
 /**
  * Transforms a text to one of the Japanese alphabet
@@ -113,9 +113,9 @@ export function transformToKana(text: string, system?: systems): string
  * 
  * @returns The transformed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#toKana|Functions overview}
  */
-export function transformToKana(text: string, toKana?: kana): string
+export function toKana(text: string, toKana?: kana): string
 
 /**
  * Transforms a text to one of the Japanese alphabet
@@ -125,9 +125,9 @@ export function transformToKana(text: string, toKana?: kana): string
  * 
  * @returns The transformed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#toKana|Functions overview}
  */
-export function transformToKana(text: string, guess?: boolean): string
+export function toKana(text: string, guess?: boolean): string
 
 /**
  * Transforms a text to one of the Japanese alphabet
@@ -137,12 +137,12 @@ export function transformToKana(text: string, guess?: boolean): string
  * 
  * @returns The transformed text
  * 
- * @see {@link https://github.com/18degrees/kana-transcription/blob/main/docs/en/functions.md#transformToKana|Functions overview}
+ * @see {@link https://github.com/18degrees/kana-transformer/blob/main/docs/en/functions.md#toKana|Functions overview}
  */
-export function transformToKana(text: string, options?: toKanaOptions): string
+export function toKana(text: string, options?: toKanaOptions): string
 
-export function transformToKana(text: string, options?: toKanaOptions | boolean | lang | systems | kana): string {
-    transformToKanaErrorCheck(text, options)
+export function toKana(text: string, options?: toKanaOptions | boolean | lang | systems | kana): string {
+    toKanaErrorCheck(text, options)
 
     //На этом этапе конфликт между выставленным языком и системой исключён
 
@@ -174,9 +174,9 @@ export function transformToKana(text: string, options?: toKanaOptions | boolean 
         }
     }
 
-    if (optionsModified.fromLang === 'ru') return transformToKanaRU(text, optionsModified)
+    if (optionsModified.fromLang === 'ru') return toKanaRU(text, optionsModified)
 
-    return transformToKanaEN(text, optionsModified)
+    return toKanaEN(text, optionsModified)
 }
 
 function getLang(option?: lang | systems | kana | boolean): lang {

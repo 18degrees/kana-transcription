@@ -1,10 +1,10 @@
-# kana-transcription
+# kana-transformer
 
-![NPM Version](https://img.shields.io/npm/v/kana-transcription) [![test](https://github.com/18degrees/kana-transcription/actions/workflows/tests.yml/badge.svg?event=push)](https://github.com/18degrees/kana-transcription/actions/workflows/tests.yml) ![NPM License](https://img.shields.io/npm/l/kana-transcription)
+![NPM Version](https://img.shields.io/npm/v/kana-transformer) [![test](https://github.com/18degrees/kana-transformer/actions/workflows/tests.yml/badge.svg?event=push)](https://github.com/18degrees/kana-transformer/actions/workflows/tests.yml) ![NPM License](https://img.shields.io/npm/l/kana-transformer)
 
 _Switch the language to: [Russian](readme-ru.md)_
 
-_Find out if the library is right for you by trying it out on the [website](https://18degrees.github.io/kana-transcription-web/)_
+_Find out if the library is right for you by trying it out on the [website](https://18degrees.github.io/kana-transformer-web/)_
 
 A mini-library that you can use to:
 - Translate hiragana/katakana to the Russian or English alphabet
@@ -22,7 +22,7 @@ There is a function to perform each item. Before using them, see the [functions 
 ## Installation
 
 ```bash
-npm install kana-transcription
+npm install kana-transformer
 ```
 
 ## Usage examples
@@ -30,50 +30,50 @@ npm install kana-transcription
 ### From kana
 
 ```javascript
-import { transcriptKana } from 'kana-transcription'
+import { fromKana } from 'kana-transformer'
 
 const kanaText = 'わたし は じぶん に おちゃ を たてました'
 
 //Understood in the Hepburn system - by default
-const hepburnText = transcriptKana(kanaText)
+const hepburnText = fromKana(kanaText)
 //hepburnText = 'watashi wa jibun ni ocha o tatemashita'
 
 //Understood in Kunrei-shiki
-const kunreiShikiText = transcriptKana(kanaText, 'kunrei-shiki')
+const kunreiShikiText = fromKana(kanaText, 'kunrei-shiki')
 //kunreiShikiText = 'watasi wa zibun ni otya o tatemasita'
 
 
 //Understood in the Polivanov system; for Russian - by default
-const polivanovText = transcriptKana(kanaText, 'ru')
+const polivanovText = fromKana(kanaText, 'ru')
 //polivanovText = 'ватаси ва дзибун ни отя о татэмасита'
 
 //Understood in a nonstandard-ru system
-const nonstandardRuText = transcriptKana(kanaText, 'nonstandard-ru')
+const nonstandardRuText = fromKana(kanaText, 'nonstandard-ru')
 //nonstandardRuText = 'ватащи ва джибун ни очя о татэмащита'
 ```
 
 ### To kana
 
 ```javascript
-import { transformToKana } from 'kana-transcription'
+import { toKana } from 'kana-transformer'
 
 const hepburnText = 'watashi wa kinoo haha ni daijina tegami o yonda'
 
 //Understood in the Hepburn system - by default
-const transformedFromEN = transformToKana(hepburnText)
+const transformedFromEN = toKana(hepburnText)
 //transformedFromEN = 'わたし は きのお はは に だいじな てがみ を よんだ'
 
 
 const polivanovText = 'ватаси ва киноо хаха ни даидзина тэгами о ёнда'
 
 //Understood in the Polivanov system; for Russian - by default
-const transformedFromRU = transformToKana(polivanovText, 'ru')
+const transformedFromRU = toKana(polivanovText, 'ru')
 //transformedFromRU = 'わたし は きのお はは に だいじな てがみ を よんだ'
 ```
 
 ## Contributing
 
-If you want to participate in the work on the project, feel free to use [issues](https://github.com/18degrees/kana-transcription/issues) and [pull requests](https://github.com/18degrees/kana-transcription/pulls).
+If you want to participate in the work on the project, feel free to use [issues](https://github.com/18degrees/kana-transformer/issues) and [pull requests](https://github.com/18degrees/kana-transformer/pulls).
 
 ## License
 

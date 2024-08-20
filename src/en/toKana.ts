@@ -1,12 +1,12 @@
 import { spacesRegExp } from '../common/consts.js'
-import { reverseKana } from "../reverseKana.js"
+import { convertKana } from "../convertKana.js"
 import type { systemsEN, toKanaCommonOptions } from "../common/types.js"
 
 interface extraProps extends toKanaCommonOptions {
     system?: systemsEN
 }
 
-export function transformToKanaEN(text: string, options?: extraProps): string {
+export function toKanaEN(text: string, options?: extraProps): string {
     const {toKana = 'hiragana', system = 'hepburn', guess = false} = options ? options : {}
 
     const splitRegExp = (
@@ -685,7 +685,7 @@ export function transformToKanaEN(text: string, options?: extraProps): string {
                     correctedSyllable += 'u'                    //так как в английском нет мягкого знака, отличить неслышную "u" от "i" не получается
                 }
 
-                const correctedKana = transformToKanaEN(correctedSyllable, options)
+                const correctedKana = toKanaEN(correctedSyllable, options)
                 
                 kana = correctedKana ? correctedKana : ''
             }
@@ -743,7 +743,7 @@ export function transformToKanaEN(text: string, options?: extraProps): string {
     }
     const hiraganaText = hiraganaWords.join(' ')
 
-    const kanaText = toKana === 'hiragana' ? hiraganaText : reverseKana(hiraganaText, "katakana")
+    const kanaText = toKana === 'hiragana' ? hiraganaText : convertKana(hiraganaText, "katakana")
 
     return kanaText
 }

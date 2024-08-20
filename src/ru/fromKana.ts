@@ -4,7 +4,7 @@ import { spacesRegExp } from '../common/consts.js'
 import { isItSmallKana, isThereKanaAround } from '../common/funcs.js'
 import { systemsRU } from '../common/types.js'
 
-export function transcriptKanaRU(kanaText: string, system: systemsRU = 'polivanov'): string {
+export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): string {
     const splitedSentence = kanaText.toLowerCase().split(spacesRegExp)
 
     const isThereOnlyOneWord = splitedSentence.length === 1
@@ -445,7 +445,7 @@ export function transcriptKanaRU(kanaText: string, system: systemsRU = 'polivano
                 case 'ん': 
                 case 'ン': {
                     const nextKana: string | undefined = splitedWord[index + 1]
-                    const nextSyllableTranscription: string | null | undefined = nextKana ? transcriptKanaRU(nextKana): undefined
+                    const nextSyllableTranscription: string | null | undefined = nextKana ? fromKanaRU(nextKana): undefined
 
                     const nextLetter = nextSyllableTranscription ? nextSyllableTranscription[0] : undefined
 
@@ -513,7 +513,7 @@ export function transcriptKanaRU(kanaText: string, system: systemsRU = 'polivano
                 case 'っ':
                 case 'ッ': {
                     const nextKana: string | undefined = splitedWord[index + 1]
-                    const nextSyllableTranscription: string | null = transcriptKanaRU(nextKana)
+                    const nextSyllableTranscription: string | null = fromKanaRU(nextKana)
 
                     if (!nextKana || !nextSyllableTranscription) break
 
