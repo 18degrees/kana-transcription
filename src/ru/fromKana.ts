@@ -739,45 +739,45 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                 //iteration marks
 
                 case 'ゝ':
-                    case 'ヽ': {
-                        const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
-    
-                        if (!prevSyllableTranscription) break
-    
-                        if (isVoicedSyllable(prevSyllableTranscription)) {
-                            const unvoicedSyllable = getUnvoicedSyllable(prevSyllableTranscription)
-    
-                            transcriptedSyllable = unvoicedSyllable
-                        } else {
-                            transcriptedSyllable = prevSyllableTranscription
-                        }
-                        break
+                case 'ヽ': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isVoicedSyllable(prevSyllableTranscription)) {
+                        const unvoicedSyllable = getUnvoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSyllable = unvoicedSyllable
+                    } else {
+                        transcriptedSyllable = prevSyllableTranscription
                     }
-                    case 'ゞ':
-                    case 'ヾ': {
-                        const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
-    
-                        if (!prevSyllableTranscription) break
-    
-                        if (isUnvoicedSyllable(prevSyllableTranscription)) {
-                            const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
-    
-                            transcriptedSyllable = voicedSyllable
-                        } else {
-                            transcriptedSyllable = prevSyllableTranscription
-                        }
-                        break
+                    break
+                }
+                case 'ゞ':
+                case 'ヾ': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isUnvoicedSyllable(prevSyllableTranscription)) {
+                        const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSyllable = voicedSyllable
+                    } else {
+                        transcriptedSyllable = prevSyllableTranscription
                     }
-                    
-                    //digraph marks
-    
-                    case 'ゟ':
-                        transcriptedSyllable = 'yori'
-                        break
-    
-                    case 'ヿ':
-                        transcriptedSyllable = 'koto'
-                        break
+                    break
+                }
+                
+                //digraph marks
+
+                case 'ゟ':
+                    transcriptedSyllable = 'yori'
+                    break
+
+                case 'ヿ':
+                    transcriptedSyllable = 'koto'
+                    break
                 default:
                     break
             }
