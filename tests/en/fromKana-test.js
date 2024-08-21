@@ -54,6 +54,11 @@ describe('fromKana function: makes kana transcription to english syllables',  ()
             assert.Throw(() => fromKana('あいう', {toLang: 'en', system: 'polivanov'}), /The passed system param incompatible with the language/)
 
         })
+        it('iteration marks', () => {
+            assert.equal(fromKana('さゝき'), 'sasaki')
+            assert.equal(fromKana('みすゞ'), 'misuzu')
+            assert.equal(fromKana('じゝ'), 'jishi')
+        })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей

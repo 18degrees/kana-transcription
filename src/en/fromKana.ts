@@ -744,7 +744,49 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'ヺ':
                     transcriptedSyllable = 'vo'
                     break
+
+                //iteration marks
+
+                case 'ゝ':
+                case 'ヽ': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isVoicedSyllable(prevSyllableTranscription)) {
+                        const unvoicedSyllable = getUnvoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSyllable = unvoicedSyllable
+                    } else {
+                        transcriptedSyllable = prevSyllableTranscription
+                    }
+                    break
+                }
+                case 'ゞ':
+                case 'ヾ': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isUnvoicedSyllable(prevSyllableTranscription)) {
+                        const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSyllable = voicedSyllable
+                    } else {
+                        transcriptedSyllable = prevSyllableTranscription
+                    }
+                    break
+                }
                 
+                //digraph marks
+
+                case 'ゟ':
+                    transcriptedSyllable = 'yori'
+                    break
+
+                case 'ヿ':
+                    transcriptedSyllable = 'koto'
+                    break
                 default:
                     break
             }
@@ -764,6 +806,14 @@ function hasOnlyVowel(str: string) {
 
     return !str.match(vowelRegExp)
 }
+function getVowels(str: string) {
+    const vowelRegExp = /[aiueoy]/g
+
+    const vowels = str.match(vowelRegExp)?.join('')
+
+    return vowels
+}
+
 function hasOnlyConsonants(str: string) {
     const consonantRegExp = /[^kszgtcfdnhbpmrwjvl]/
 
@@ -776,3 +826,82 @@ function getConsonants(str: string) {
 
     return consonants
 }
+
+function isUnvoicedSyllable(syllable: string): boolean {
+    return /[kstcfhp]/.test(syllable[0])
+}
+function isVoicedSyllable(syllable: string): boolean {
+    return /[zgdnbmrwjvl]/.test(syllable[0])
+}
+
+function getUnvoicedSyllable(syllable: string): string {
+    const consonants = getConsonants(syllable)
+
+    if (!consonants) return syllable
+
+    let unvoicedConsonants = '' 
+
+    switch (consonants) {
+        case 'g':
+            unvoicedConsonants = 'k'
+            break
+
+        case 'z':
+            unvoicedConsonants = 's'
+            break
+
+        case 'd':
+            unvoicedConsonants = 't'
+            break
+
+        case 'b':
+            unvoicedConsonants = 'h'
+            break
+
+        case 'j':
+            unvoicedConsonants = 'sh'
+            break
+        default:
+            unvoicedConsonants = consonants
+    }
+    const vowels = getVowels(syllable)
+
+    return vowels ? unvoicedConsonants + vowels : unvoicedConsonants
+}
+
+function getVoicedSyllable(syllable: string): string {
+    const consonants = getConsonants(syllable)
+
+    if (!consonants) return syllable
+
+    let voicedConsonants = '' 
+
+    switch (consonants) {
+        case 'k':
+            voicedConsonants = 'g'
+            break
+
+        case 'sh':
+        case 'ch':
+            voicedConsonants = 'j'
+            break
+
+        case 's':
+        case 'ts':
+            voicedConsonants = 'z'
+            break
+        case 't':
+            voicedConsonants = 'd'
+            break
+
+        case 'h':
+        case 'p':
+            voicedConsonants = 'b'
+            break
+        default:
+            voicedConsonants = consonants
+    }
+    const vowels = getVowels(syllable)
+
+    return vowels ? voicedConsonants + vowels : voicedConsonants
+} 

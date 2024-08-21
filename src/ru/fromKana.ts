@@ -735,6 +735,49 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                 case 'を゙':
                     transcriptedSyllable = 'во'
                     break
+                    
+                //iteration marks
+
+                case 'ゝ':
+                    case 'ヽ': {
+                        const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+    
+                        if (!prevSyllableTranscription) break
+    
+                        if (isVoicedSyllable(prevSyllableTranscription)) {
+                            const unvoicedSyllable = getUnvoicedSyllable(prevSyllableTranscription)
+    
+                            transcriptedSyllable = unvoicedSyllable
+                        } else {
+                            transcriptedSyllable = prevSyllableTranscription
+                        }
+                        break
+                    }
+                    case 'ゞ':
+                    case 'ヾ': {
+                        const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+    
+                        if (!prevSyllableTranscription) break
+    
+                        if (isUnvoicedSyllable(prevSyllableTranscription)) {
+                            const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
+    
+                            transcriptedSyllable = voicedSyllable
+                        } else {
+                            transcriptedSyllable = prevSyllableTranscription
+                        }
+                        break
+                    }
+                    
+                    //digraph marks
+    
+                    case 'ゟ':
+                        transcriptedSyllable = 'yori'
+                        break
+    
+                    case 'ヿ':
+                        transcriptedSyllable = 'koto'
+                        break
                 default:
                     break
             }
@@ -754,6 +797,14 @@ function hasOnlyVowel(str: string) {
 
     return !str.match(vowelRegExp)
 }
+function getVowels(str: string) {
+    const vowelRegExp = /[аеёийоуэюя]/g
+
+    const vowels = str.match(vowelRegExp)?.join('')
+
+    return vowels
+}
+
 function hasOnlyConsonants(str: string) {
     const consonantRegExp = /[^цкнгшщзхфвпрлджчсмтб]/
 
@@ -766,3 +817,80 @@ function getConsonants(str: string) {
 
     return consonants
 }
+
+function isUnvoicedSyllable(syllable: string): boolean {
+    return /[цкшщхфпчст]/.test(syllable[0])
+}
+function isVoicedSyllable(syllable: string): boolean {
+    return /[нгзврлджмб]/.test(syllable[0])
+}
+
+function getUnvoicedSyllable(syllable: string): string {
+    const consonants = getConsonants(syllable)
+
+    if (!consonants) return syllable
+
+    let unvoicedConsonants = '' 
+
+    switch (consonants) {
+        case 'г':
+            unvoicedConsonants = 'к'
+            break
+
+        case 'дз':
+        case 'дж':
+        case 'щ':
+            unvoicedConsonants = 'с'
+            break
+
+        case 'д':
+            unvoicedConsonants = 'т'
+            break
+
+        case 'б':
+            unvoicedConsonants = 'х'
+            break
+        default:
+            unvoicedConsonants = consonants
+    }
+    const vowels = getVowels(syllable)
+
+    return vowels ? unvoicedConsonants + vowels : unvoicedConsonants
+}
+
+function getVoicedSyllable(syllable: string): string {
+    const consonants = getConsonants(syllable)
+
+    if (!consonants) return syllable
+
+    let voicedConsonants = '' 
+
+    switch (consonants) {
+        case 'к':
+            voicedConsonants = 'г'
+            break
+
+        case 'с':
+        case 'ц':
+            voicedConsonants = 'дз'
+            break
+        case 'щ':
+        case 'ч':
+            voicedConsonants = 'дж'
+            break
+
+        case 'т':
+            voicedConsonants = 'д'
+            break
+
+        case 'х':
+        case 'п':
+            voicedConsonants = 'б'
+            break
+        default:
+            voicedConsonants = consonants
+    }
+    const vowels = getVowels(syllable)
+
+    return vowels ? voicedConsonants + vowels : voicedConsonants
+} 
