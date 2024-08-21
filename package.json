@@ -35,12 +35,12 @@
 		"build:type": "tsc",
 		"build": "npm run build:rollup && npm run build:type",
 
-		"test:reverse": "mocha --recursive ./tests/reverseKana-test.js",
-		"test:ru:tokana": "mocha --recursive ./tests/ru/transformToKana-test.js",
-		"test:ru:fromkana": "mocha --recursive ./tests/ru/transcriptKana-test.js",
+		"test:convert": "mocha --recursive ./tests/convertKana-test.js",
+		"test:ru:tokana": "mocha --recursive ./tests/ru/toKana-test.js",
+		"test:ru:fromkana": "mocha --recursive ./tests/ru/fromKana-test.js",
 		"test:ru": "npm run test:ru:tokana & npm run test:ru:fromkana",
-		"test:en:tokana": "mocha --recursive ./tests/en/transformToKana-test.js",
-		"test:en:fromkana": "mocha --recursive ./tests/en/transcriptKana-test.js",
+		"test:en:tokana": "mocha --recursive ./tests/en/toKana-test.js",
+		"test:en:fromkana": "mocha --recursive ./tests/en/fromKana-test.js",
 		"test:en": "npm run test:en:tokana & npm run test:en:fromkana",
 		"test": "npm run test:reverse & npm run test:ru & npm run test:en"
 	},
