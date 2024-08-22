@@ -2,18 +2,18 @@
 	"name": "kana-transformer",
 	"version": "2.2.2",
 
-	"description": "Transcribe japanese syllabaries to en/ru letters and vice versa; convert kana from one to the other syllabary",
+	"description": "Transform kana to en|ru language or vice versa, using specific transliteration system; convert kana to the other alphabet",
 	"keywords": [
 		"transcription",
-		"transliteration",
 		"hiragana",
 		"katakana",
-		"romanji",
+		"romaji",
 		"romanization",
 		"hepburn-system",
 		"kunrei-shiki",
 		"nihon-shiki",
 		"polivanov-system",
+		"japanese",
 		"english",
 		"russian"
 	],
