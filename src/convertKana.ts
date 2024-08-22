@@ -1,6 +1,7 @@
 import { fromKanaEN } from "./en/fromKana.js"
 import type { kana } from './common/types.js'
 import { convertKanaErrorCheck } from "./error-check.js"
+import { spacesRegExp } from "./common/consts.js"
 
 /**
  * Converts the kana given in a text to one of the Japanese alphabet
@@ -17,7 +18,7 @@ export function convertKana(text: string, toKana: kana = 'hiragana'): string {
     
     const syllabaryToChangeRegExp = toKana === 'hiragana' ? /\p{Script=Kana}{1}|ー/ug : /\p{Script=Hira}{1}/ug
 
-    const splitedWords = text.toLowerCase().split(' ')
+    const splitedWords = text.toLowerCase().split(spacesRegExp)
 
     let kanaTransformedArr: string[] = []
 
