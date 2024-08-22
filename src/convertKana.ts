@@ -19,7 +19,7 @@ export function convertKana(text: string, toKana: kana = 'hiragana'): string {
 
     const splitedWords = text.toLowerCase().split(' ')
 
-    let kanaTransformed: string = ''
+    let kanaTransformedArr: string[] = []
 
     for (const word of splitedWords) {
         const textSplited = word.split('')
@@ -441,10 +441,13 @@ export function convertKana(text: string, toKana: kana = 'hiragana'): string {
                     return kana
             }
         })
+        const transformedKanaWord = transformedkanaSplited.join('')
 
-        kanaTransformed += transformedkanaSplited.join('')
+        kanaTransformedArr.push(transformedKanaWord)
     }
-    return kanaTransformed
+    const kanaTransformedString = kanaTransformedArr.join(' ')
+
+    return kanaTransformedString
 }
 
 function getKanaVowel(syllable: string) {
