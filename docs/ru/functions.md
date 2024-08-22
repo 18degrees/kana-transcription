@@ -1,4 +1,4 @@
-# Функции
+# Обзор функций
 
 _Переключить язык на: [английский](../en/functions.md)_
 
@@ -6,21 +6,24 @@ _Переключить язык на: [английский](../en/functions.md
 
 - Что она делает
 - Её параметры
-- Рекомендации при использовании
+- Рекомендации 
 - Ограничения
+- Примеры использования
 
 Функции могут работать с разной точностью. Чтобы получить лучший результат, следуйте рекомендациям.
 
 Ограничения показывают, каких неточностей стоит ожидать (даже при выполнении рекомендаций).
+
+_Связанные документы:_
+
+- [Причины появления рекомендаций и ограничений](docs/ru/explanation.md)
+- [Поддерживаемые системы транскрипции/транслитерации](docs/ru/systems.md)
 
 _Быстрая навигация:_
 
 1. [fromKana()](#fromKana)
 2. [toKana()](#toKana)
 3. [convertKana()](#convertKana)
-
-> [!NOTE]
-> Подробнее о различиях упомянутых ниже систем написано в [отдельном документе](./systems.md)
 
 ## fromKana()
 
@@ -31,12 +34,12 @@ _Быстрая навигация:_
 #### Параметры
 
 ```ts
-fromKana(kanaText: string, toLang?: string)
-fromKana(kanaText: string, system?: string)
-fromKana(kanaText: string, options?: object)
+fromKana(text: string, toLang?: string)
+fromKana(text: string, system?: string)
+fromKana(text: string, options?: object)
 ```
 
-- kanaText - кана к преобразованию
+- text - текст, где использована кана
 - toLang - язык, к которому привести
   - en (по умолчанию)
   - ru
@@ -64,6 +67,30 @@ fromKana(kanaText: string, options?: object)
 
 - Пары гласных えい, おう переводятся побуквенно. Выходит [эи] и [оу] соответственно
 
+#### Примеры использования
+
+```javascript
+const kanaText = 'わたし は じぶん に おちゃ を たてました'
+// Здесь пробел позволяет отличить, находятся ли 'は' и 'を' в положении частиц
+
+// На русский язык; система по умолчанию - 'polivanov'
+// То же, что fromKana(kanaText, 'polivanov')
+fromKana(kanaText, 'ru')
+// => 'ватаси ва дзибун ни отя о татэмасита'
+
+// По nonstandard-ru
+fromKana(kanaText, 'nonstandard-ru')
+// => 'ватащи ва джибун ни очя о татэмащита'
+
+// Без доп. настроек - по системе Хепбёрна
+// То же, что fromKana(kanaText, 'hepburn') или fromKana(kanaText, 'en')
+fromKana(kanaText)
+// => 'watashi wa jibun ni ocha o tatemashita'
+
+// По kunrei-shiki
+fromKana(kanaText, 'kunrei-shiki')
+// => 'watasi wa zibun ni otya o tatemasita'
+```
 
 ## toKana()
 
@@ -108,7 +135,7 @@ toKana(text: string, options?: object)
 - options - объект, позволяющий настроить все вышеприведённые дополнительные свойства
  
 > [!IMPORTANT]
-> guess позволяет обрабатывать текст с неслышными гласными, но этим режимом вызваны некоторые из описанных ниже рекомендаций и ограничений
+> guess позволяет обрабатывать текст с пропущенными неслышными гласными, но этим режимом вызваны некоторые из описанных ниже рекомендаций и ограничений
 
 #### Рекомендации
   
@@ -128,20 +155,73 @@ toKana(text: string, options?: object)
 - Если `guess: true`, не считываются слоги расширенной каны, которые содержат два согласных подряд, как "тви", "квэ" и т. п
 - ***Не используется знак ー***
 
+#### Примеры использования
+
+##### Параметры _fromLang_ и _system_
+
+```javascript
+// С русского языка; система Поливанова по умолчанию
+// То же, что toKana([text], 'polivanov')
+toKana('ватаси ва дзибун ни отя о татэмасита', 'ru')
+// => 'わたし は じぶん に おちゃ を たてました'
+
+// По nonstandard-ru
+toKana('ватащи ва джибун ни очя о татэмащита', 'nonstandard-ru')
+// => 'わたし は じぶん に おちゃ を たてました'
+
+// Без доп. настроек; текст понимается по системе Хепбёрна
+// То же, что toKana([text], 'hepburn') или toKana([text], 'en')
+toKana('watashi wa jibun ni ocha o tatemashita')
+// => 'わたし は じぶん に おちゃ を たてました'
+
+// По kunrei-shiki
+toKana('watasi wa zibun ni otya o tatemasita', 'kunrei-shiki')
+// => 'わたし は じぶん に おちゃ を たてました'
+```
+
+##### Параметр _toKana_
+```javascript
+//Поскольку система не указана, предполагается, что текст по Хепбёрну
+toKana('watashi wa jibun ni ocha o tatemashita', 'katakana')
+// => 'ワタシ ハ ジブン ニ オチャ ヲ タテマシタ'
+```
+
+##### Параметр _guess_
+
+```javascript
+//Поскольку система не указана, предполагается, что текст по Хепбёрну
+toKana('des, mashta', true)
+// => 'です, ました'
+```
+
+##### Параметр _options_
+
+Предположим, в моём тексте, написанном по kunrei-shiki, есть пропущенная неслышная гласная, а привести этот текст нужно к катакане.
+
+```javascript
+const text = 'hisasi buri des ne'
+const options = {
+	system: 'kunrei-shiki',
+    toKana: 'katakana',
+    guess: true
+}
+toKana(text, options)
+// => 'ヒサシ ブリ デス ネ'
+```
 
 ## convertKana()
 
 #### Что делает
 
-Оборачивает одну кану в другую
+Оборачивает одну кану в другую.
 
 #### Параметры
 
 ```ts
-convertKana(kanaText: string, toKana?: string)
+convertKana(text: string, toKana?: string)
 ```
 
-- text - кана для оборота
+- text - текст, где использована кана
 - toKana - кана, к которой привести
   - hiragana (по умолчанию)
   - katakana
@@ -149,3 +229,14 @@ convertKana(kanaText: string, toKana?: string)
 #### Ограничения
 
 - ***Не используется знак ー***
+
+#### Примеры использования
+
+```javascript
+convertkana('タクシー')
+// => 'たくしい'
+
+//НО
+convertkana('たくしい', 'katakana')
+// => 'タクシイ'
+```

@@ -8,10 +8,16 @@ In the document the following is written about each function:
 - Its parameters
 - Recommendations
 - Limitations
+- Usage examples
 
 Functions can operate with varying accuracy. To get the best results, follow the recommendations.
 
 The limitations show what inaccuracies you should expect (even when following the recommendations).
+
+_Related documents:_
+
+- [Reasons for recommendations and limitations](docs/en/explanation.md)
+- [Supported transcription/transliteration systems](docs/en/systems.md)
 
 _Fast navigation:_
 
@@ -19,23 +25,21 @@ _Fast navigation:_
 2. [toKana()](#toKana)
 3. [convertKana()](#convertKana)
 
-> [!NOTE]
-> More details on the differences of the systems mentioned below are written in the [separate document](./systems.md)
-
 ## fromKana()
 
 #### What it does
+
 Transcribes kana to Russian or English syllables.
 
 #### Parameters
 
 ```ts
-fromKana(kanaText: string, toLang?: string)
-fromKana(kanaText: string, system?: string)
-fromKana(kanaText: string, options?: object)
+fromKana(text: string, toLang?: string)
+fromKana(text: string, system?: string)
+fromKana(text: string, options?: object)
 ```
 
-- kanaText - a text where the kana is used
+- text - a text where a kana is used
 - toLang - a language to transcribe to
   - en (by default)
   - ru
@@ -63,6 +67,30 @@ fromKana(kanaText: string, options?: object)
 
 - The vowel pairs えい, おう are translated letter-by-letter. The resulting output is [ei] and [ou], respectively.
 
+#### Usage examples
+
+```javascript
+const kanaText = 'わたし は じぶん に おちゃ を たてました'
+// Here the space allows to distinguish whether 'は' and 'を' are in particle position
+
+// Without additional settings - by the Hepburn system
+// Same as fromKana(kanaText, 'hepburn') or fromKana(kanaText, 'en')
+fromKana(kanaText)
+// => 'watashi wa jibun ni ocha o tatemashita'
+
+// By kunrei-shiki
+fromKana(kanaText, 'kunrei-shiki')
+// => 'watasi wa zibun ni otya o tatemasita'
+
+// Into Russian; the default system is 'polivanov'
+// Same as fromKana(kanaText, 'polivanov')
+fromKana(kanaText, 'ru')
+// => 'ватаси ва дзибун ни отя о татэмасита'
+
+// By nonstandard-ru
+fromKana(kanaText, 'nonstandard-ru')
+// => 'ватащи ва джибун ни очя о татэмащита'
+```
 
 ## toKana()
 
@@ -127,6 +155,60 @@ toKana(text: string, options?: object)
 - If `guess: true`, extended kana syllables that contain two consonants in a row like "twi", "kwe", etc. are not recognized
 - ***The sign ー is not used***
 
+#### Usage examples
+
+##### Parameters _fromLang_ and _system_
+
+```javascript
+// No additional settings; text is understood by the Hepburn system
+// Same as toKana([text], 'hepburn') or toKana([text], 'en')
+toKana('watashi wa jibun ni ocha o tatemashita')
+// => 'わたし は じぶん に おちゃ を たてました'
+
+// By kunrei-shiki
+toKana('watasi wa zibun ni otya o tatemasita', 'kunrei-shiki')
+// => 'わたし は じぶん に おちゃ を たてました'
+
+// From Russian; by the Polivanov system by default 
+// Same as toKana([text], 'polivanov')
+toKana('ватаси ва дзибун ни отя о татэмасита', 'ru')
+// => 'わたし は じぶん に おちゃ を たてました'
+
+// By nonstandard-ru
+toKana('ватащи ва джибун ни очя о татэмащита', 'nonstandard-ru')
+// => 'わたし は じぶん に おちゃ を たてました'
+```
+
+##### Parameter _toKana_
+
+```javascript
+//Since no system is specified, it is assumed that the text is by Hepburn
+toKana('watashi wa jibun ni ocha o tatemashita', 'katakana')
+// => 'ワタシ ハ ジブン ニ オチャ ヲ タテマシタ'
+```
+
+##### Parameter guess
+
+```javascript
+//Since no system is specified, it is assumed that the text is by Hepburn
+toKana('des, mashta', true)
+// => `です, ました'
+```
+
+##### Parameter _options_
+
+Suppose my kunrei-shiki text has a missing devoiced vowel, and I need to convert this text to katakana.
+
+```javascript
+const text = 'hisasi buri des ne'
+const options = {
+	system: 'kunrei-shiki',
+    toKana: 'katakana',
+    guess: true
+}
+toKana(text, options)
+// => 'ヒサシ ブリ デス ネ'
+```
 
 ## convertKana()
 
@@ -137,10 +219,10 @@ Converts one kana into the other.
 #### Parameters
 
 ```ts
-convertKana(kanaText: string, toKana?: string)
+convertKana(text: string, toKana?: string)
 ```
 
-- text - A text where the kana is used
+- text - a text where a kana is used
 - toKana - a kana to convert to
   - hiragana (by default)
   - katakana
@@ -148,3 +230,14 @@ convertKana(kanaText: string, toKana?: string)
 #### Limitations
 
 - ***The sign ー is not used***
+
+#### Usage examples
+
+```javascript
+convertkana('タクシー')
+// => 'たくしい'
+
+//BUT
+convertkana('たくしい', 'katakana')
+// => 'タクシイ'
+```
