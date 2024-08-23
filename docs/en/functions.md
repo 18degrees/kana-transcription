@@ -16,8 +16,8 @@ The limitations show what inaccuracies you should expect (even when following th
 
 _Related documents:_
 
-- [Reasons for recommendations and limitations](docs/en/explanation.md)
-- [Supported transcription/transliteration systems](docs/en/systems.md)
+- [Reasons for recommendations and limitations](explanation.md)
+- [Supported transcription/transliteration systems](systems.md)
 
 _Fast navigation:_
 
