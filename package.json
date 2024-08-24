@@ -1,6 +1,6 @@
 {
 	"name": "kana-transformer",
-	"version": "3.1.0",
+	"version": "3.1.1",
 
 	"description": "Transform kana to en|ru language or vice versa, using specific transliteration system; convert kana to the other alphabet",
 	"keywords": [
@@ -42,7 +42,7 @@
 		"test:en:tokana": "mocha --recursive ./tests/en/toKana-test.js",
 		"test:en:fromkana": "mocha --recursive ./tests/en/fromKana-test.js",
 		"test:en": "npm run test:en:tokana & npm run test:en:fromkana",
-		"test": "npm run test:reverse & npm run test:ru & npm run test:en"
+		"test": "npm run test:convert & npm run test:ru & npm run test:en"
 	},
 
 	"author": "Mikhail Izotov <mikhaili.dev@gmail.com>",
