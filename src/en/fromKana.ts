@@ -25,11 +25,13 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
 
             switch (kana) {
                 case 'あ':
-                case 'ア': 
+                case 'ア':
+                case '㋐':
                     transcriptedSyllable = 'a'
                     break
                 case 'い':
-                case 'イ': {
+                case 'イ': 
+                case '㋑': {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
@@ -41,7 +43,8 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     break
                 }
                 case 'う':
-                case 'ウ': {
+                case 'ウ': 
+                case '㋒': {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
@@ -54,22 +57,28 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'え':
                 case 'エ':
+                case '㋓':
                     transcriptedSyllable = 'e'
                     break
                 case 'お':
                 case 'オ':
+                case '㋔':
                     transcriptedSyllable = 'o'
                     break
+
                 case 'か':
                 case 'カ':
+                case '㋕':
                     transcriptedSyllable = 'ka'
                     break
                 case 'き':
                 case 'キ':
+                case '㋖':
                     transcriptedSyllable = 'ki'
                     break
                 case 'く':
-                case 'ク': {
+                case 'ク':
+                case '㋗': {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
@@ -84,12 +93,15 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'け':
                 case 'ケ':
+                case '㋘':
                     transcriptedSyllable = 'ke'
                     break
                 case 'こ':
                 case 'コ':
+                case '㋙':
                     transcriptedSyllable = 'ko'
                     break
+
                 case 'が':
                 case 'ガ':
                     transcriptedSyllable = 'ga'
@@ -120,26 +132,33 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'ゴ':
                     transcriptedSyllable = 'go'
                     break
+
                 case 'さ':
                 case 'サ':
+                case '㋚':
                     transcriptedSyllable = 'sa'
                     break
                 case 'し':
                 case 'シ':
+                case '㋛':
                     transcriptedSyllable = system === 'hepburn' ? 'shi' : 'si'
                     break
                 case 'す':
                 case 'ス':
+                case '㋜':
                     transcriptedSyllable = 'su'
                     break
                 case 'せ':
                 case 'セ':
+                case '㋝':
                     transcriptedSyllable = 'se'
                     break
                 case 'そ':
                 case 'ソ':
+                case '㋞':
                     transcriptedSyllable = 'so'
                     break
+
                 case 'ざ':
                 case 'ザ':
                     transcriptedSyllable = 'za'
@@ -160,24 +179,30 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'ゾ':
                     transcriptedSyllable = 'zo'
                     break
+
                 case 'た':
                 case 'タ':
+                case '㋟':
                     transcriptedSyllable = 'ta'
                     break
                 case 'ち':
                 case 'チ':
+                case '㋠':
                     transcriptedSyllable = system === 'hepburn' ? 'chi' : 'ti'
                     break
                 case 'つ':
                 case 'ツ':
+                case '㋡':
                     transcriptedSyllable = system === 'hepburn' ? 'tsu' : 'tu'
                     break
                 case 'て':
                 case 'テ':
+                case '㋢':
                     transcriptedSyllable = 'te'
                     break
                 case 'と':
-                case 'ト': {
+                case 'ト':
+                case '㋣': {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
@@ -220,14 +245,17 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
 
                 case 'な':
                 case 'ナ':
+                case '㋤':
                     transcriptedSyllable = 'na'
                     break
                 case 'に':
                 case 'ニ':
+                case '㋥':
                     transcriptedSyllable = 'ni'
                     break
                 case 'ぬ':
-                case 'ヌ': {
+                case 'ヌ': 
+                case '㋦': {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
@@ -240,14 +268,17 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'ね':
                 case 'ネ':
+                case '㋧':
                     transcriptedSyllable = 'ne'
                     break
                 case 'の':
                 case 'ノ':
+                case '㋨':
                     transcriptedSyllable = 'no'
                     break
                 case 'は': 
-                case 'ハ':{
+                case 'ハ':
+                case '㋩': {
                     if (!isThereOnlyOneWord && system !== 'nihon-shiki') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'wa'
@@ -267,14 +298,17 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'ひ':
                 case 'ヒ':
+                case '㋪':
                     transcriptedSyllable = 'hi'
                     break
                 case 'ふ':
                 case 'フ':
+                case '㋫':
                     transcriptedSyllable = 'fu'
                     break
                 case 'へ': 
-                case 'ヘ':{
+                case 'ヘ':
+                case '㋬': {
                     if (!isThereOnlyOneWord && system !== 'nihon-shiki') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'e'
@@ -294,8 +328,10 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'ほ':
                 case 'ホ':
+                case '㋭':
                     transcriptedSyllable = 'ho'
                     break
+
                 case 'ば':
                 case 'バ':
                     transcriptedSyllable = 'ba'
@@ -324,6 +360,7 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'ボ':
                     transcriptedSyllable = 'bo'
                     break
+                    
                 case 'ぱ':
                 case 'パ':
                     transcriptedSyllable = 'pa'
@@ -344,7 +381,6 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     }
                     break
                 }
-
                 case 'ぺ':
                 case 'ペ':
                     transcriptedSyllable = 'pe'
@@ -355,14 +391,17 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     break
                 case 'ま':
                 case 'マ':
+                case '㋮':
                     transcriptedSyllable = 'ma'
                     break
                 case 'み':
                 case 'ミ':
+                case '㋯':
                     transcriptedSyllable = 'mi'
                     break
                 case 'む':
-                case 'ム': {
+                case 'ム':
+                case '㋰': {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
@@ -375,18 +414,23 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'め':
                 case 'メ':
+                case '㋱':
                     transcriptedSyllable = 'me'
                     break
                 case 'も':
                 case 'モ':
+                case '㋲':
                     transcriptedSyllable = 'mo'
                     break
+
                 case 'や':
                 case 'ヤ':
+                case '㋳':
                     transcriptedSyllable = 'ya'
                     break
                 case 'ゆ':
                 case 'ユ':
+                case '㋴':
                     transcriptedSyllable = 'yu'
                     break
                 case '𛀁':
@@ -395,18 +439,23 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     break
                 case 'よ':
                 case 'ヨ':
+                case '㋵':
                     transcriptedSyllable = 'yo'
                     break
+
                 case 'ら':
                 case 'ラ':
+                case '㋶':
                     transcriptedSyllable = 'ra'
                     break
                 case 'り':
                 case 'リ':
+                case '㋷':
                     transcriptedSyllable = 'ri'
                     break
                 case 'る':
-                case 'ル': {
+                case 'ル':
+                case '㋸': {
                     //для учёта расширенной каны
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
@@ -420,18 +469,22 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
 
                 case 'れ':
                 case 'レ':
+                case '㋹':
                     transcriptedSyllable = 're'
                     break
                 case 'ろ':
                 case 'ロ':
+                case '㋺':
                     transcriptedSyllable = 'ro'
                     break
                 case 'わ':
                 case 'ワ':
+                case '㋻':
                     transcriptedSyllable = 'wa'
                     break
                 case 'を': 
-                case 'ヲ':{
+                case 'ヲ':
+                case '㋾': {
                     if (!isThereOnlyOneWord && system !== 'nihon-shiki') {
                         if (isItTheOnlySyllable) {
                             transcriptedSyllable = 'o'
@@ -721,10 +774,12 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
 
                 case 'ゐ':
                 case 'ヰ':
+                case '㋼':
                     transcriptedSyllable = 'wi'
                     break
                 case 'ゑ':
                 case 'ヱ':
+                case '㋽':
                     transcriptedSyllable = 'we'
                     break
 
