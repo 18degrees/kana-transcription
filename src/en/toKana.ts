@@ -484,7 +484,7 @@ export function toKanaEN(text: string, options?: extraProps): string {
                     break
 
                 case 'che':
-                    if (system === 'hepburn') kana = 'チェ'
+                    if (system === 'hepburn') kana = 'ちぇ'
                     break
 
                 case 'tya':
