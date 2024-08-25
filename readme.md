@@ -1,6 +1,6 @@
 <h1 align='center'>Kana transformer</h1>
 
-<p align='center'><img src="https://raw.githubusercontent.com/18degrees/kana-transformer/main/assets/logo.png" alt='logo' style='max-width: 313px; min-width: 280px; width: 40%'/></p>
+<p align='center'><img src="https://raw.githubusercontent.com/18degrees/kana-transformer/main/assets/logo.png" alt='logo'/></p>
 
 <div align='center'>
 
