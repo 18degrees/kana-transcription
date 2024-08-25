@@ -484,16 +484,15 @@ export function toKanaRU(text: string, options?: extraProps): string {
                     break
 
                 case 'щэ':
-                    if (system !== 'nonstandard-ru') kana = 'しぇ'
+                    if (system === 'nonstandard-ru') kana = 'しぇ'
                     break
                 case 'джэ':
-                    if (system !== 'nonstandard-ru') kana = 'じぇ'
+                    if (system === 'nonstandard-ru') kana = 'じぇ'
                     break
 
                 case 'чэ':
-                    if (system !== 'nonstandard-ru') kana = 'ちぇ'
+                    if (system === 'nonstandard-ru') kana = 'ちぇ'
                     break
-
 
                 case 'ца':
                     if (system === 'nonstandard-ru') kana = 'つぁ'
