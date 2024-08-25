@@ -473,14 +473,18 @@ export function toKanaEN(text: string, options?: extraProps): string {
                     break
 
                 case 'she':
-                    if (system !== 'hepburn') kana = 'しぇ'
+                    if (system === 'hepburn') kana = 'しぇ'
                     break
                 case 'je':
-                    if (system !== 'hepburn') kana = 'じぇ'
+                    if (system === 'hepburn') kana = 'じぇ'
                     break
                     
                 case 'si':
                     kana = system === 'hepburn' ? 'すぃ' : 'し'
+                    break
+
+                case 'che':
+                    if (system === 'hepburn') kana = 'チェ'
                     break
 
                 case 'tya':
