@@ -736,6 +736,14 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                         prevKana === 'り' || prevKana === 'リ' ||
                         prevKana === 'り゚' || prevKana === 'リ゚'
                     ) transcriptedSyllable = 'ye'
+
+                    if (
+                        system !== 'hepburn' && 
+                        prevKana === 'し' || prevKana === 'シ' ||
+                        prevKana === 'ち' || prevKana === 'チ' ||
+                        prevKana === 'じ' || prevKana === 'ジ' ||
+                        prevKana === 'ぢ' || prevKana === 'ヂ'
+                    ) transcriptedSyllable = 'ye'
                     break
                 }
                 case 'ぉ':
