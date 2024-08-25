@@ -519,6 +519,8 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
 
                 case 'ゃ':
                 case 'ャ': {
+                    transcriptedSyllable = 'я'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -530,11 +532,12 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
                     
-                    transcriptedSyllable = 'я'
                     break
                 }
                 case 'ゅ':
                 case 'ュ': {
+                    transcriptedSyllable = 'ю'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -546,11 +549,12 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
                     
-                    transcriptedSyllable = 'ю'
                     break
                 }
                 case 'ょ':
                 case 'ョ': {
+                    transcriptedSyllable = 'ё'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -562,11 +566,12 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
                     
-                    transcriptedSyllable = 'ё'
                     break
                 }
                 case 'っ':
                 case 'ッ': {
+                    transcriptedSyllable = 'цу'
+
                     const nextKana: string | undefined = splitedWord[index + 1]
                     const nextSyllableTranscription: string | null = fromKanaRU(nextKana)
 
@@ -645,6 +650,8 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
 
                 case 'ぁ':
                 case 'ァ': {
+                    transcriptedSyllable = 'а'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -655,12 +662,12 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = 'а'
                     break
                 }
                 case 'ぃ':
                 case 'ィ': {
+                    transcriptedSyllable = 'и'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -676,13 +683,13 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
                         transcriptedSyllable = 'й'
-                    } else {
-                        transcriptedSyllable = 'и'
                     }
                     break
                 }
                 case 'ぅ':
                 case 'ゥ': {
+                    transcriptedSyllable = 'у'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -693,12 +700,12 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = 'у'
                     break
                 }
                 case 'ぇ':
                 case 'ェ': {
+                    transcriptedSyllable = 'э'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -709,22 +716,22 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = (
-                        (
-                            prevKana === 'に' || prevKana === 'ニ' || 
-                            prevKana === 'ひ' || prevKana === 'ヒ' || 
-                            prevKana === 'び' || prevKana === 'ビ' || 
-                            prevKana === 'ぴ' || prevKana === 'ピ' || 
-                            prevKana === 'み' || prevKana === 'ミ' || 
-                            prevKana === 'り' || prevKana === 'リ' || 
-                            prevKana === 'り゚' || prevKana === 'リ゚'
-                        ) ? 'йэ' : 'э'
-                    )
+
+                    if (
+                        prevKana === 'に' || prevKana === 'ニ' || 
+                        prevKana === 'ひ' || prevKana === 'ヒ' ||
+                        prevKana === 'び' || prevKana === 'ビ' ||
+                        prevKana === 'ぴ' || prevKana === 'ピ' ||
+                        prevKana === 'み' || prevKana === 'ミ' ||
+                        prevKana === 'り' || prevKana === 'リ' ||
+                        prevKana === 'り゚' || prevKana === 'リ゚'
+                    ) transcriptedSyllable = 'йэ'
                     break
                 }
                 case 'ぉ':
                 case 'ォ': {
+                    transcriptedSyllable = 'о'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -736,11 +743,12 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
                     
-                    transcriptedSyllable = 'о'
                     break
                 }
                 case 'ゎ':
                 case 'ヮ': {
+                    transcriptedSyllable = 'ва'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -752,7 +760,6 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
 
                     transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     
-                    transcriptedSyllable = 'ва'
                     break
                 }
 

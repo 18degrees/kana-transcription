@@ -518,6 +518,8 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'ゃ':
                 case 'ャ': {
+                    transcriptedSyllable = 'ya'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -538,6 +540,8 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'ゅ':
                 case 'ュ': {
+                    transcriptedSyllable = 'yu'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -558,6 +562,8 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'ょ':
                 case 'ョ': {
+                    transcriptedSyllable = 'yo'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -578,6 +584,8 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 }
                 case 'っ':
                 case 'ッ': {
+                    transcriptedSyllable = system === 'hepburn' ? 'tsu' : 'tu'
+
                     const nextKana: string | undefined = splitedWord[index + 1]
                     const nextSyllableTranscription: string | null = fromKanaEN(nextKana)
 
@@ -652,6 +660,8 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
 
                 case 'ぁ':
                 case 'ァ': {
+                    transcriptedSyllable = 'a'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -662,12 +672,12 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = 'a'
                     break
                 }
                 case 'ぃ':
                 case 'ィ': {
+                    transcriptedSyllable = 'i'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -683,13 +693,13 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
                         transcriptedSyllable = 'y'
-                    } else {
-                        transcriptedSyllable = 'i'
                     }
                     break
                 }
                 case 'ぅ':
                 case 'ゥ': {
+                    transcriptedSyllable = 'u'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -700,12 +710,12 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = 'u'
                     break
                 }
                 case 'ぇ':
                 case 'ェ': {
+                    transcriptedSyllable = 'e'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -716,22 +726,22 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = (
-                        (
-                            prevKana === 'に' || prevKana === 'ニ' || 
-                            prevKana === 'ひ' || prevKana === 'ヒ' || 
-                            prevKana === 'び' || prevKana === 'ビ' || 
-                            prevKana === 'ぴ' || prevKana === 'ピ' || 
-                            prevKana === 'み' || prevKana === 'ミ' || 
-                            prevKana === 'り' || prevKana === 'リ' || 
-                            prevKana === 'り゚' || prevKana === 'リ゚'
-                        ) ? 'ye' : 'e'
-                    )
+
+                    if (
+                        prevKana === 'に' || prevKana === 'ニ' ||
+                        prevKana === 'ひ' || prevKana === 'ヒ' ||
+                        prevKana === 'び' || prevKana === 'ビ' ||
+                        prevKana === 'ぴ' || prevKana === 'ピ' ||
+                        prevKana === 'み' || prevKana === 'ミ' ||
+                        prevKana === 'り' || prevKana === 'リ' ||
+                        prevKana === 'り゚' || prevKana === 'リ゚'
+                    ) transcriptedSyllable = 'ye'
                     break
                 }
                 case 'ぉ':
                 case 'ォ': {
+                    transcriptedSyllable = 'o'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -742,12 +752,12 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = 'o'
                     break
                 }
                 case 'ゎ':
                 case 'ヮ': {
+                    transcriptedSyllable = 'wa'
+
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
@@ -759,7 +769,6 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
 
                     transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     
-                    transcriptedSyllable = 'wa'
                     break
                 }
 
