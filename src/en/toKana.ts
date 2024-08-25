@@ -696,7 +696,7 @@ export function toKanaEN(text: string, options?: extraProps): string {
             hiraganaWord += kana
 
             function isItLongConsonant(): boolean {
-                if (!prevSyllable || !nextSyllable || !followingLetter) return false
+                if (!nextSyllable || !followingLetter) return false
                 
                 if (currentSyllableLettersAmount !== 1) return false
                 
