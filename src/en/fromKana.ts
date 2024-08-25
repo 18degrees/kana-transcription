@@ -738,11 +738,12 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     ) transcriptedSyllable = 'ye'
 
                     if (
-                        system !== 'hepburn' && 
-                        prevKana === 'し' || prevKana === 'シ' ||
-                        prevKana === 'ち' || prevKana === 'チ' ||
-                        prevKana === 'じ' || prevKana === 'ジ' ||
-                        prevKana === 'ぢ' || prevKana === 'ヂ'
+                        system !== 'hepburn' && (
+                            prevKana === 'し' || prevKana === 'シ' ||
+                            prevKana === 'ち' || prevKana === 'チ' ||
+                            prevKana === 'じ' || prevKana === 'ジ' ||
+                            prevKana === 'ぢ' || prevKana === 'ヂ' 
+                        )
                     ) transcriptedSyllable = 'ye'
                     break
                 }

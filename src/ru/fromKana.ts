@@ -728,11 +728,12 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     ) transcriptedSyllable = 'йэ'
 
                     if (
-                        system !== 'nonstandard-ru' && 
-                        prevKana === 'し' || prevKana === 'シ' ||
-                        prevKana === 'ち' || prevKana === 'チ' ||
-                        prevKana === 'じ' || prevKana === 'ジ' ||
-                        prevKana === 'ぢ' || prevKana === 'ヂ'
+                        system !== 'nonstandard-ru' && (
+                            prevKana === 'し' || prevKana === 'シ' ||
+                            prevKana === 'ち' || prevKana === 'チ' ||
+                            prevKana === 'じ' || prevKana === 'ジ' ||
+                            prevKana === 'ぢ' || prevKana === 'ヂ' 
+                        )
                     ) transcriptedSyllable = 'йэ'
                     break
                 }
