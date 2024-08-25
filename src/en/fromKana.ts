@@ -859,6 +859,274 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'ヿ':
                     transcriptedSyllable = 'koto'
                     break
+
+                //squared kana
+
+                case '㌀':
+                    transcriptedSyllable = 'apaato'
+                    break
+                case '㌁':
+                    transcriptedSyllable = system === 'hepburn' ? 'arufa' : 'aruha'
+                    break
+                case '㌂':
+                    transcriptedSyllable = 'anpea'
+                    break
+                case '㌃':
+                    transcriptedSyllable = 'aaru'
+                    break
+                case '㌄':
+                    transcriptedSyllable = 'iningu'
+                    break
+                case '㌅':
+                    transcriptedSyllable = system === 'hepburn' ? 'inchi' : 'inti'
+                    break
+                case '㌆':
+                    transcriptedSyllable = 'uon'
+                    break
+                case '㌇':
+                    transcriptedSyllable = 'esukuudo'
+                    break
+                case '㌈':
+                    transcriptedSyllable = 'eekaa'
+                    break
+                case '㌉':
+                    transcriptedSyllable = 'onsu'
+                    break
+                case '㌊':
+                    transcriptedSyllable = 'oomu'
+                    break
+                case '㌋':
+                    transcriptedSyllable = 'kairi'
+                    break
+                case '㌌':
+                    transcriptedSyllable = 'karatto'
+                    break
+                case '㌍':
+                    transcriptedSyllable = 'karorii'
+                    break
+                case '㌎':
+                    transcriptedSyllable = 'garon'
+                    break
+                case '㌏':
+                    transcriptedSyllable = 'ganma'
+                    break
+                case '㌐':
+                    transcriptedSyllable = 'giga'
+                    break
+                case '㌑':
+                    transcriptedSyllable = 'ginii'
+                    break
+                case '㌒':
+                    transcriptedSyllable = 'kyurii'
+                    break
+                case '㌓':
+                    transcriptedSyllable = 'girudaa'
+                    break
+                case '㌔':
+                    transcriptedSyllable = 'kiro'
+                    break
+                case '㌕':
+                    transcriptedSyllable = 'kiroguramu'
+                    break
+                case '㌖':
+                    transcriptedSyllable = 'kiromeetoru'
+                    break
+                case '㌗':
+                    transcriptedSyllable = 'kirowatto'
+                    break
+                case '㌘':
+                    transcriptedSyllable = 'guramu'
+                    break
+                case '㌙':
+                    transcriptedSyllable = 'guramuton'
+                    break
+                case '㌚':
+                    transcriptedSyllable = 'kuruzeiro'
+                    break
+                case '㌛':
+                    transcriptedSyllable = 'kuroone'
+                    break
+                case '㌜':
+                    transcriptedSyllable = 'keesu'
+                    break
+                case '㌝':
+                    transcriptedSyllable = 'koruna'
+                    break
+                case '㌞':
+                    transcriptedSyllable = 'koopu'
+                    break
+                case '㌟':
+                    transcriptedSyllable = 'saikuru'
+                    break
+                case '㌠':
+                    transcriptedSyllable = system === 'hepburn' ? 'sanchiimu' : 'santiimu'
+                    break
+                case '㌡':
+                    transcriptedSyllable = 'siringu'
+                    break
+                case '㌢':
+                    transcriptedSyllable = system === 'hepburn' ? 'senchi' : 'senti'
+                    break
+                case '㌣':
+                    transcriptedSyllable = 'sento'
+                    break
+                case '㌤':
+                    transcriptedSyllable = 'daasu'
+                    break
+                case '㌥':
+                    transcriptedSyllable = system === 'hepburn' ? 'deshi' : 'desi'
+                    break
+                case '㌦':
+                    transcriptedSyllable = 'doru'
+                    break
+                case '㌧':
+                    transcriptedSyllable = 'ton'
+                    break
+                case '㌨':
+                    transcriptedSyllable = 'nano'
+                    break
+                case '㌩':
+                    transcriptedSyllable = 'notto'
+                    break
+                case '㌪':
+                    transcriptedSyllable = system === 'hepburn' ? 'haitsu' : 'haitu'
+                    break
+                case '㌫':
+                    transcriptedSyllable = 'paasento'
+                    break
+                case '㌬':
+                    transcriptedSyllable = system === 'hepburn' ? 'paatsu' : 'paatu'
+                    break
+                case '㌭':
+                    transcriptedSyllable = 'baareru'
+                    break
+                case '㌮':
+                    transcriptedSyllable = 'piasutoru'
+                    break
+                case '㌯':
+                    transcriptedSyllable = 'pikuru'
+                    break
+                case '㌰':
+                    transcriptedSyllable = 'piko'
+                    break
+                case '㌱':
+                    transcriptedSyllable = 'biru'
+                    break
+                case '㌲':
+                    transcriptedSyllable = system === 'hepburn' ? 'faraddo' : 'haraddo'
+                    break
+                case '㌳':
+                    transcriptedSyllable = system === 'hepburn' ? 'fiito' : 'hiito'
+                    break
+                case '㌴':
+                    transcriptedSyllable = system === 'hepburn' ? 'bussheru' : 'bussyeru'
+                    break
+                case '㌵':
+                    transcriptedSyllable = system === 'hepburn' ? 'furan' : 'huran'
+                    break
+                case '㌶':
+                    transcriptedSyllable = 'hekutaaru'
+                    break
+                case '㌷':
+                    transcriptedSyllable = 'peso'
+                    break
+                case '㌸':
+                    transcriptedSyllable = 'penihi'
+                    break
+                case '㌹':
+                    transcriptedSyllable = system === 'hepburn' ? 'herutsu' : 'herutu'
+                    break
+                case '㌺':
+                    transcriptedSyllable = 'pensu'
+                    break
+                case '㌻':
+                    transcriptedSyllable = system === 'hepburn' ? 'peeji' : 'peezi'
+                    break
+                case '㌼':
+                    transcriptedSyllable = 'beeta'
+                    break
+                case '㌽':
+                    transcriptedSyllable = 'pointo'
+                    break
+                case '㌾':
+                    transcriptedSyllable = 'boruto'
+                    break
+                case '㌿':
+                    transcriptedSyllable = 'hon'
+                    break
+                case '㍀':
+                    transcriptedSyllable = 'pondo'
+                    break
+                case '㍁':
+                    transcriptedSyllable = 'hooru'
+                    break
+                case '㍂':
+                    transcriptedSyllable = 'hoon'
+                    break
+                case '㍃':
+                    transcriptedSyllable = 'maikuro'
+                    break
+                case '㍄':
+                    transcriptedSyllable = 'mairu'
+                    break
+                case '㍅':
+                    transcriptedSyllable = 'mahha'
+                    break
+                case '㍆':
+                    transcriptedSyllable = 'maruku'
+                    break
+                case '㍇':
+                    transcriptedSyllable = system === 'hepburn' ? 'menshon' : 'mensyon'
+                    break
+                case '㍈':
+                    transcriptedSyllable = 'mikuron'
+                    break
+                case '㍉':
+                    transcriptedSyllable = 'miri'
+                    break
+                case '㍊':
+                    transcriptedSyllable = 'miribaaru'
+                    break
+                case '㍋':
+                    transcriptedSyllable = 'mega'
+                    break
+                case '㍌':
+                    transcriptedSyllable = 'megaton'
+                    break
+                case '㍍':
+                    transcriptedSyllable = 'meetoru'
+                    break
+                case '㍎':
+                    transcriptedSyllable = 'yaado'
+                    break
+                case '㍏':
+                    transcriptedSyllable = 'yaaru'
+                    break
+                case '㍐':
+                    transcriptedSyllable = 'yuan'
+                    break
+                case '㍑':
+                    transcriptedSyllable = 'rittoru'
+                    break
+                case '㍒':
+                    transcriptedSyllable = 'rira'
+                    break
+                case '㍓':
+                    transcriptedSyllable = 'rupii'
+                    break
+                case '㍔':
+                    transcriptedSyllable = 'ruuburu'
+                    break
+                case '㍕':
+                    transcriptedSyllable = 'remu'
+                    break
+                case '㍖':
+                    transcriptedSyllable = 'rentogen'
+                    break
+                case '㍗':
+                    transcriptedSyllable = 'watto'
+                    break
+
                 default:
                     break
             }

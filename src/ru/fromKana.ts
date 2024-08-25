@@ -852,6 +852,274 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     break
                 default:
                     break
+
+                //squared kana
+
+                case '㌀':
+                    transcriptedSyllable = 'апаато'
+                    break
+                case '㌁':
+                    transcriptedSyllable = 'аруфа'
+                    break
+                case '㌂':
+                    transcriptedSyllable = 'анпэа'
+                    break
+                case '㌃':
+                    transcriptedSyllable = 'аару'
+                    break
+                case '㌄':
+                    transcriptedSyllable = 'инингу'
+                    break
+                case '㌅':
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'инчи' : 'инти'
+                    break
+                case '㌆':
+                    transcriptedSyllable = 'уон'
+                    break
+                case '㌇':
+                    transcriptedSyllable = 'эсукуудо'
+                    break
+                case '㌈':
+                    transcriptedSyllable = 'ээкаа'
+                    break
+                case '㌉':
+                    transcriptedSyllable = 'онсу'
+                    break
+                case '㌊':
+                    transcriptedSyllable = 'оому'
+                    break
+                case '㌋':
+                    transcriptedSyllable = 'каири'
+                    break
+                case '㌌':
+                    transcriptedSyllable = 'каратто'
+                    break
+                case '㌍':
+                    transcriptedSyllable = 'карории'
+                    break
+                case '㌎':
+                    transcriptedSyllable = 'гарон'
+                    break
+                case '㌏':
+                    transcriptedSyllable = 'ганма'
+                    break
+                case '㌐':
+                    transcriptedSyllable = 'гига'
+                    break
+                case '㌑':
+                    transcriptedSyllable = 'гинии'
+                    break
+                case '㌒':
+                    transcriptedSyllable = 'кюрии'
+                    break
+                case '㌓':
+                    transcriptedSyllable = 'гирудаа'
+                    break
+                case '㌔':
+                    transcriptedSyllable = 'киро'
+                    break
+                case '㌕':
+                    transcriptedSyllable = 'кирогураму'
+                    break
+                case '㌖':
+                    transcriptedSyllable = 'киромээтору'
+                    break
+                case '㌗':
+                    transcriptedSyllable = 'кироватто'
+                    break
+                case '㌘':
+                    transcriptedSyllable = 'гураму'
+                    break
+                case '㌙':
+                    transcriptedSyllable = 'гурамутон'
+                    break
+                case '㌚':
+                    transcriptedSyllable = 'курудзэиро'
+                    break
+                case '㌛':
+                    transcriptedSyllable = 'куроонэ'
+                    break
+                case '㌜':
+                    transcriptedSyllable = 'кээсу'
+                    break
+                case '㌝':
+                    transcriptedSyllable = 'коруна'
+                    break
+                case '㌞':
+                    transcriptedSyllable = 'коопу'
+                    break
+                case '㌟':
+                    transcriptedSyllable = 'саикуру'
+                    break
+                case '㌠':
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'санчииму' : 'сантииму'
+                    break
+                case '㌡':
+                    transcriptedSyllable = 'сирингу'
+                    break
+                case '㌢':
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'сэнчи' : 'сэнти'
+                    break
+                case '㌣':
+                    transcriptedSyllable = 'сэнто'
+                    break
+                case '㌤':
+                    transcriptedSyllable = 'даасу'
+                    break
+                case '㌥':
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'дэщи' : 'дэси'
+                    break
+                case '㌦':
+                    transcriptedSyllable = 'дору'
+                    break
+                case '㌧':
+                    transcriptedSyllable = 'тон'
+                    break
+                case '㌨':
+                    transcriptedSyllable = 'нано'
+                    break
+                case '㌩':
+                    transcriptedSyllable = 'нотто'
+                    break
+                case '㌪':
+                    transcriptedSyllable = 'хаицу'
+                    break
+                case '㌫':
+                    transcriptedSyllable = 'паасэнто'
+                    break
+                case '㌬':
+                    transcriptedSyllable = 'паацу'
+                    break
+                case '㌭':
+                    transcriptedSyllable = 'баарэру'
+                    break
+                case '㌮':
+                    transcriptedSyllable = 'пиасутору'
+                    break
+                case '㌯':
+                    transcriptedSyllable = 'пикуру'
+                    break
+                case '㌰':
+                    transcriptedSyllable = 'пико'
+                    break
+                case '㌱':
+                    transcriptedSyllable = 'биру'
+                    break
+                case '㌲':
+                    transcriptedSyllable = 'фараддо'
+                    break
+                case '㌳':
+                    transcriptedSyllable = 'фиито'
+                    break
+                case '㌴':
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'бущщэру' : 'буссйэру'
+                    break
+                case '㌵':
+                    transcriptedSyllable = 'фуран'
+                    break
+                case '㌶':
+                    transcriptedSyllable = 'хэкутаару'
+                    break
+                case '㌷':
+                    transcriptedSyllable = 'пэсо'
+                    break
+                case '㌸':
+                    transcriptedSyllable = 'пэнихи'
+                    break
+                case '㌹':
+                    transcriptedSyllable = 'хэруцу'
+                    break
+                case '㌺':
+                    transcriptedSyllable = 'пэнсу'
+                    break
+                case '㌻':
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'пээджи' : 'пээдзи'
+                    break
+                case '㌼':
+                    transcriptedSyllable = 'бээта'
+                    break
+                case '㌽':
+                    transcriptedSyllable = 'поинто'
+                    break
+                case '㌾':
+                    transcriptedSyllable = 'боруто'
+                    break
+                case '㌿':
+                    transcriptedSyllable = 'хон'
+                    break
+                case '㍀':
+                    transcriptedSyllable = 'пондо'
+                    break
+                case '㍁':
+                    transcriptedSyllable = 'хоору'
+                    break
+                case '㍂':
+                    transcriptedSyllable = 'хоон'
+                    break
+                case '㍃':
+                    transcriptedSyllable = 'маикуро'
+                    break
+                case '㍄':
+                    transcriptedSyllable = 'маиру'
+                    break
+                case '㍅':
+                    transcriptedSyllable = 'махха'
+                    break
+                case '㍆':
+                    transcriptedSyllable = 'маруку'
+                    break
+                case '㍇':
+                    transcriptedSyllable = system === 'nonstandard-ru' ? 'мэнщён' : 'мэнсён'
+                    break
+                case '㍈':
+                    transcriptedSyllable = 'микурон'
+                    break
+                case '㍉':
+                    transcriptedSyllable = 'мири'
+                    break
+                case '㍊':
+                    transcriptedSyllable = 'мирибаару'
+                    break
+                case '㍋':
+                    transcriptedSyllable = 'мэга'
+                    break
+                case '㍌':
+                    transcriptedSyllable = 'мэгатон'
+                    break
+                case '㍍':
+                    transcriptedSyllable = 'мээтору'
+                    break
+                case '㍎':
+                    transcriptedSyllable = 'яадо'
+                    break
+                case '㍏':
+                    transcriptedSyllable = 'яару'
+                    break
+                case '㍐':
+                    transcriptedSyllable = 'юан'
+                    break
+                case '㍑':
+                    transcriptedSyllable = 'риттору'
+                    break
+                case '㍒':
+                    transcriptedSyllable = 'рира'
+                    break
+                case '㍓':
+                    transcriptedSyllable = 'рупии'
+                    break
+                case '㍔':
+                    transcriptedSyllable = 'руубуру'
+                    break
+                case '㍕':
+                    transcriptedSyllable = 'рэму'
+                    break
+                case '㍖':
+                    transcriptedSyllable = 'рэнтогэн'
+                    break
+                case '㍗':
+                    transcriptedSyllable = 'ватто'
+                    break
+
             }
             transcriptedSplitedWord.push(transcriptedSyllable)
         })
