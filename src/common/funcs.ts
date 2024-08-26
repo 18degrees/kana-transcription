@@ -12,7 +12,7 @@ function isKana(string: string) {
 }
 
 export function isItSmallKana(string: string) {
-    return !!string.match(/[ぁァぃィぅゥぇェぉォゎヮゕヵゖヶゃャゅュょョ]/)
+    return !!string.match(/[ぁァｧぃィｨぅゥｩぇェｪぉォｫゎヮゕヵゖヶゃャゅュょョ]/)
 }
 
 export function getLangFromSystem(system: string) {
