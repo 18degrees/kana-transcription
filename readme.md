@@ -34,7 +34,7 @@ Before using them, see the [functions overview](docs/en/functions.md) for limita
 npm install kana-transformer
 ```
 
-## Working by default
+## Default behaviour
 
 - `toKana()` understands English, by Hepburn system; returns hiragana
 - `fromKana()` returns English, by Hepburn system
