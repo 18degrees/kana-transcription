@@ -60,7 +60,7 @@ describe('fromKana function: makes kana transcription to russian syllables',  ()
             assert.equal(fromKana('じゝ', 'ru'), 'дзиси')
         })
         it('surrogate pair', () => {
-            assert.equal(fromKana('𛀁'), 'ye')
+            assert.equal(fromKana('𛀁', 'ru'), 'йэ')
         })
     })
     
