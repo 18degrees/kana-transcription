@@ -1,6 +1,6 @@
 {
 	"name": "kana-transformer",
-	"version": "3.3.0",
+	"version": "3.3.1",
 
 	"description": "Transform kana to en|ru language or vice versa, using specific transliteration system; convert kana to the other alphabet",
 	"keywords": [
