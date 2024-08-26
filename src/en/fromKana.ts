@@ -578,12 +578,13 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     if (prevSyllableConsonants) {
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
-                    
-                    transcriptedSyllable = (
-                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
+                
+                    if (system === 'hepburn' && prevSyllableConsonants) {
                         //учёт расширенной каны つゃ/ツャ - tsya
-                        (system === 'hepburn' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'ya' : 'a'
-                    )
+                        if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') transcriptedSyllable = 'a'
+
+                        if (prevSyllableConsonants === 'j') transcriptedSyllable = 'a'
+                    }
                     break
                 }
                 case 'ゅ':
@@ -602,11 +603,12 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
                     
-                    transcriptedSyllable = (
-                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
-                        //учёт расширенной каны つゅ/ツュ - tsya
-                        (system === 'hepburn' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yu' : 'u'
-                    )
+                    if (system === 'hepburn' && prevSyllableConsonants) {
+                        //учёт расширенной каны つゅ/ツュ - tsyu
+                        if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') transcriptedSyllable = 'u'
+
+                        if (prevSyllableConsonants === 'j') transcriptedSyllable = 'u'
+                    }
                     break
                 }
                 case 'ょ':
@@ -625,11 +627,12 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                         transcriptedSplitedWord[index - 1] = prevSyllableConsonants
                     }
                     
-                    transcriptedSyllable = (
-                        (prevSyllableConsonants && prevSyllableConsonants.length !== 2) || 
-                        //учёт расширенной каны つょ/ツョ - tsya
-                        (system === 'hepburn' && (prevKana === 'つ' || prevKana === 'ツ')) ? 'yo' : 'o'
-                    )
+                    if (system === 'hepburn' && prevSyllableConsonants) {
+                        //учёт расширенной каны つょ/ツョ - tsyo
+                        if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') transcriptedSyllable = 'o'
+
+                        if (prevSyllableConsonants === 'j') transcriptedSyllable = 'o'
+                    }
                     break
                 }
                 case 'っ':
