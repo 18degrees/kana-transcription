@@ -60,7 +60,7 @@ convertKana('ワタシハジブンニオチャヲタテマシタ')
 
 ## Contributing
 
-If you want to participate in the work on the project, feel free to use [issues](https://github.com/18degrees/kana-transformer/issues) and [pull requests](https://github.com/18degrees/kana-transformer/pulls).
+If you have a suggestion for improving the library, feel free to use [issues](https://github.com/18degrees/kana-transformer/issues) and [pull requests](https://github.com/18degrees/kana-transformer/pulls).
 
 ## License
 
