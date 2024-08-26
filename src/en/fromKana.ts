@@ -472,7 +472,6 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     transcriptedSyllable = 'yu'
                     break
                 case '𛀁':
-                case 'エ':
                     transcriptedSyllable = 'ye'
                     break
                 case 'よ':

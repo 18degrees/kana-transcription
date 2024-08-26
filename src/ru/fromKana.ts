@@ -599,7 +599,6 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     break
                 }
                 case '𛀁':
-                case 'エ':
                     transcriptedSyllable = 'йэ'
                     break
                 case 'ょ':
