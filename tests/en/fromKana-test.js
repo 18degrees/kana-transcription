@@ -25,7 +25,7 @@ describe('fromKana function: makes kana transcription to english syllables',  ()
 
             assert.equal(fromKana(
                 '「わかい　ひとたち　は　マナー　が　わるい」と　にじゅういっさい の おんなのがくせい が かんがえています。'),
-                '「wakai hitotachi wa manaa ga warui」to nijyuuissai no onnanogakusei ga kangaeteimasu。'
+                '「wakai hitotachi wa manaa ga warui」to nijuuissai no onnanogakusei ga kangaeteimasu。'
             )
         })
         it('extended katakana', () => {
