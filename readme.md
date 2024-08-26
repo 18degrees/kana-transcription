@@ -16,7 +16,7 @@ With the library, you will be able to:
 
 - Transform Russian or English syllables into kana
 - Turn kana to the Russian or English alphabet
-- Convert one kana to another
+- Convert one kana to the other
 
 There is a function to perform each item. 
 
@@ -40,7 +40,7 @@ npm install kana-transformer
 - `fromKana()` returns English, by Hepburn system
 - `convertKana()` converts to hiragana
 
-More details about the customization options are written in [function overview](docs/en/functions.md).
+More details about the customization options are written in [functions overview](docs/en/functions.md).
 
 ## Usage examples
 
