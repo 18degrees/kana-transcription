@@ -12,7 +12,7 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
     const transcriptedWords: string[] = []
 
     for (const word of splitedSentence) {
-        const splitedWord = word.split('')
+        const splitedWord = Array.from(word)
 
         if (!splitedWord) continue
         

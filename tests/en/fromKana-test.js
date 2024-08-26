@@ -59,6 +59,9 @@ describe('fromKana function: makes kana transcription to english syllables',  ()
             assert.equal(fromKana('みすゞ'), 'misuzu')
             assert.equal(fromKana('じゝ'), 'jishi')
         })
+        it('surrogate pair', () => {
+            assert.equal(fromKana('𛀁'), 'ye')
+        })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей
