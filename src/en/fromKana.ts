@@ -332,7 +332,7 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'フ':
                 case '㋫':
                 case 'ﾌ':
-                    transcriptedSyllable = 'fu'
+                    transcriptedSyllable = system === 'hepburn' ? 'fu' : 'hu'
                     break
                 case 'へ': 
                 case 'ヘ':
