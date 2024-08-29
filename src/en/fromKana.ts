@@ -921,6 +921,39 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     transcriptedSyllable = 'koto'
                     break
 
+                //voicing marks
+
+                case '゛':
+                case '\u3099': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isUnvoicedSyllable(prevSyllableTranscription)) {
+                        const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSplitedWord[index - 1] = voicedSyllable
+
+                        transcriptedSyllable = ''
+                    }
+                    break
+                }
+                case '゜':
+                case '\u309A': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isSemivoicePissible(prevSyllableTranscription)) {
+                        const semivoicedSyllable = getSemivoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSplitedWord[index - 1] = semivoicedSyllable
+
+                        transcriptedSyllable = ''
+                    }
+                    break
+                }
+
                 //squared kana
 
                 case '㌀':
@@ -1305,4 +1338,37 @@ function getVoicedSyllable(syllable: string): string {
     const vowels = getVowels(syllable)
 
     return vowels ? voicedConsonants + vowels : voicedConsonants
-} 
+}
+
+function isSemivoicePissible(syllable: string) {
+    return /[hbrk]/.test(syllable[0])
+
+}
+function getSemivoicedSyllable(syllable: string): string {
+    const consonants = getConsonants(syllable)
+
+    if (!consonants) return syllable
+
+    let semivoicedConsonants = ''
+    
+    switch (consonants) {
+        case 'h':
+        case 'b':
+            semivoicedConsonants = 'p'
+            break
+        case 'r':
+            semivoicedConsonants = 'l'
+            break
+        case 'k':
+            semivoicedConsonants = 'ng'
+            break
+    
+        default:
+            semivoicedConsonants = semivoicedConsonants
+            break
+    }
+    const vowels = getVowels(syllable)
+
+    return vowels ? semivoicedConsonants + vowels : semivoicedConsonants
+
+}

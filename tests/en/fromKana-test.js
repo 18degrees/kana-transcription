@@ -62,6 +62,13 @@ describe('fromKana function: makes kana transcription to english syllables',  ()
         it('surrogate pair', () => {
             assert.equal(fromKana('𛀁'), 'ye')
         })
+        it('separated voicing marks', () => {
+            assert.equal(fromKana('ば'), 'ba')
+            assert.equal(fromKana('は゛'), 'ba')
+
+            assert.equal(fromKana('か゚'), 'nga')
+            assert.equal(fromKana('か゜'), 'nga')
+        })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей

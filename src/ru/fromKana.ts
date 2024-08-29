@@ -912,6 +912,39 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                 default:
                     break
 
+                //voicing marks
+
+                case '゛':
+                case '\u3099': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isUnvoicedSyllable(prevSyllableTranscription)) {
+                        const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSplitedWord[index - 1] = voicedSyllable
+
+                        transcriptedSyllable = ''
+                    }
+                    break
+                }
+                case '゜':
+                case '\u309A': {
+                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+
+                    if (!prevSyllableTranscription) break
+
+                    if (isSemivoicePissible(prevSyllableTranscription)) {
+                        const semivoicedSyllable = getSemivoicedSyllable(prevSyllableTranscription)
+
+                        transcriptedSplitedWord[index - 1] = semivoicedSyllable
+
+                        transcriptedSyllable = ''
+                    }
+                    break
+                }
+
                 //squared kana
 
                 case '㌀':
@@ -1292,4 +1325,37 @@ function getVoicedSyllable(syllable: string): string {
     const vowels = getVowels(syllable)
 
     return vowels ? voicedConsonants + vowels : voicedConsonants
-} 
+}
+
+function isSemivoicePissible(syllable: string) {
+    return /[хбрк]/.test(syllable[0])
+
+}
+function getSemivoicedSyllable(syllable: string): string {
+    const consonants = getConsonants(syllable)
+
+    if (!consonants) return syllable
+
+    let semivoicedConsonants = ''
+    
+    switch (consonants) {
+        case 'х':
+        case 'б':
+            semivoicedConsonants = 'п'
+            break
+        case 'р':
+            semivoicedConsonants = 'л'
+            break
+        case 'к':
+            semivoicedConsonants = 'нг'
+            break
+    
+        default:
+            semivoicedConsonants = semivoicedConsonants
+            break
+    }
+    const vowels = getVowels(syllable)
+
+    return vowels ? semivoicedConsonants + vowels : semivoicedConsonants
+
+}
