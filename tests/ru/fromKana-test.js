@@ -38,6 +38,12 @@ describe('fromKana function: makes kana transcription to russian syllables',  ()
             assert.equal(fromKana('インテルメッツォ', 'ru'), 'интэрумэтцо')
             assert.equal(fromKana('ハロウィーン', 'ru'), 'харовиин')
         })
+        it('small extended kana', () => {
+            assert.equal(fromKana('ふぁ', 'ru'), 'фа')
+            assert.equal(fromKana('グィ', 'ru'), 'гви')
+            assert.equal(fromKana('じぇ', 'nonstandard-ru'), 'джэ')
+            assert.equal(fromKana('クヮ', 'ru'), 'ква')
+        })
         it("systems' difference", () => {
             assert.equal(fromKana('わたし は じぶん に おちゃ を たてました', 'nonstandard-ru'), 'ватащи ва джибун ни очя о татэмащита')
             assert.equal(fromKana('わたし は じぶん に おちゃ を たてました', 'polivanov'), 'ватаси ва дзибун ни отя о татэмасита')

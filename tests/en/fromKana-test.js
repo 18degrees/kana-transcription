@@ -38,6 +38,12 @@ describe('fromKana function: makes kana transcription to english syllables',  ()
             assert.equal(fromKana('インテルメッツォ'), 'interumettso')
             assert.equal(fromKana('ハロウィーン'), 'harowiin')
         })
+        it('small extended kana', () => {
+            assert.equal(fromKana('ふぁ'), 'fa')
+            assert.equal(fromKana('グィ'), 'gwi')
+            assert.equal(fromKana('じぇ'), 'je')
+            assert.equal(fromKana('クヮ'), 'kwa')
+        })
         it("systems' difference", () => {
             assert.equal(fromKana('わたし は じぶん に おちゃ を たてました', 'hepburn'), 'watashi wa jibun ni ocha o tatemashita')
             assert.equal(fromKana('わたし は じぶん に おちゃ を たてました', 'kunrei-shiki'), 'watasi wa zibun ni otya o tatemasita')
