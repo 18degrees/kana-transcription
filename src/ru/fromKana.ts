@@ -565,37 +565,45 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                 case 'ゃ':
                 case 'ャ':
                 case 'ｬ': {
-                    transcriptedSyllable = 'я'
+                    let resultVowel = 'я'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
-                    
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ゅ':
                 case 'ュ':
                 case 'ｭ': {
-                    transcriptedSyllable = 'ю'
+                    let resultVowel = 'ю'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
-                    
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case '𛀁':
@@ -604,19 +612,23 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                 case 'ょ':
                 case 'ョ':
                 case 'ｮ': {
-                    transcriptedSyllable = 'ё'
+                    let resultVowel = 'ё'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
-                    
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'っ':
@@ -704,85 +716,104 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                 case 'ぁ':
                 case 'ァ':
                 case 'ｧ': {
-                    transcriptedSyllable = 'а'
+                    let resultVowel = 'а'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぃ':
                 case 'ィ':
                 case 'ｨ': {
-                    transcriptedSyllable = 'и'
+                    let resultVowel = 'и'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
-                    
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
-                        transcriptedSyllable = 'й'
+                        resultVowel = 'й'
                     }
+
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぅ':
                 case 'ゥ':
                 case 'ｩ': {
-                    transcriptedSyllable = 'у'
+                    let resultVowel = 'у'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぇ':
                 case 'ェ':
                 case 'ｪ': {
-                    transcriptedSyllable = 'э'
+                    let resultVowel = 'э'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
-                    }
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
 
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
+                    }
+                    
                     if (
-                        prevKana === 'に' || prevKana === 'ニ' || 
+                        prevKana === 'に' || prevKana === 'ニ' ||
                         prevKana === 'ひ' || prevKana === 'ヒ' ||
                         prevKana === 'び' || prevKana === 'ビ' ||
                         prevKana === 'ぴ' || prevKana === 'ピ' ||
                         prevKana === 'み' || prevKana === 'ミ' ||
                         prevKana === 'り' || prevKana === 'リ' ||
                         prevKana === 'り゚' || prevKana === 'リ゚'
-                    ) transcriptedSyllable = 'йэ'
+                    ) resultVowel = 'йэ'
 
                     if (
                         system !== 'nonstandard-ru' && (
@@ -791,42 +822,55 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                             prevKana === 'じ' || prevKana === 'ジ' ||
                             prevKana === 'ぢ' || prevKana === 'ヂ' 
                         )
-                    ) transcriptedSyllable = 'йэ'
+                    ) resultVowel = 'йэ'
+
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぉ':
                 case 'ォ':
                 case 'ｫ': {
-                    transcriptedSyllable = 'о'
+                    let resultVowel = 'о'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
-                    
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ゎ':
                 case 'ヮ': {
-                    transcriptedSyllable = 'ва'
+                    let resultVowel = 'ва'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (!prevSyllableConsonants || prevSyllableConsonants.length > 2) break
+                    const needToChangeLastSyllab = !!(prevSyllableConsonants && prevSyllableConsonants.length <= 2)
 
-                    transcriptedSplitedWord[index - 1] = prevSyllableConsonants
-                    
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
+
+                        transcriptedSyllable = prevSyllableConsonants + resultVowel
+                    } else {
+                        transcriptedSyllable = resultVowel                    
+                    }
                     break
                 }
 
@@ -923,9 +967,9 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     if (isUnvoicedSyllable(prevSyllableTranscription)) {
                         const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
 
-                        transcriptedSplitedWord[index - 1] = voicedSyllable
+                        transcriptedSplitedWord[index - 1] = ''
 
-                        transcriptedSyllable = ''
+                        transcriptedSyllable = voicedSyllable
                     }
                     break
                 }
@@ -938,9 +982,9 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     if (isSemivoicePissible(prevSyllableTranscription)) {
                         const semivoicedSyllable = getSemivoicedSyllable(prevSyllableTranscription)
 
-                        transcriptedSplitedWord[index - 1] = semivoicedSyllable
+                        transcriptedSplitedWord[index - 1] = ''
 
-                        transcriptedSyllable = ''
+                        transcriptedSyllable = semivoicedSyllable
                     }
                     break
                 }

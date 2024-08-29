@@ -75,6 +75,10 @@ describe('fromKana function: makes kana transcription to english syllables',  ()
             assert.equal(fromKana('か゚'), 'nga')
             assert.equal(fromKana('か゜'), 'nga')
         })
+        it ('multiple impact on prev syllable', () => {
+            //ゃ needs to change き (ki - kya), but ゝ needs to change not just ゃ, but きゃ (otherwise - 'kyaya') - that is what is meant by 'multiple impact' 
+            assert.equal(fromKana('きゃゝ'), 'kyakya')
+        })
     })
 
     //Остальные слова (и предложения), без группировки; с учётом вышеизложенных особенностей

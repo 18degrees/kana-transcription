@@ -566,73 +566,88 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'ゃ':
                 case 'ャ':
                 case 'ｬ': {
-                    transcriptedSyllable = 'ya'
+                    let resultVowel = 'ya'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
-                    }
-                
-                    if (system === 'hepburn' && prevSyllableConsonants) {
-                        //учёт расширенной каны つゃ/ツャ - tsya
-                        if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') transcriptedSyllable = 'a'
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
 
-                        if (prevSyllableConsonants === 'j') transcriptedSyllable = 'a'
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
+
+                        if (system === 'hepburn') {
+                            //учёт расширенной каны つゃ/ツャ - tsya
+                            if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') resultVowel = 'a'
+
+                            if (prevSyllableConsonants === 'j') resultVowel = 'a'
+                        }
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ゅ':
                 case 'ュ':
                 case 'ｭ': {
-                    transcriptedSyllable = 'yu'
+                    let resultVowel = 'yu'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
-                    }
-                    
-                    if (system === 'hepburn' && prevSyllableConsonants) {
-                        //учёт расширенной каны つゅ/ツュ - tsyu
-                        if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') transcriptedSyllable = 'u'
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
 
-                        if (prevSyllableConsonants === 'j') transcriptedSyllable = 'u'
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
+
+                        if (system === 'hepburn') {
+                            //учёт расширенной каны つゅ/ツュ - tsyu
+                            if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') resultVowel = 'u'
+
+                            if (prevSyllableConsonants === 'j') resultVowel = 'u'
+                        }
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ょ':
                 case 'ョ':
                 case 'ｮ': {
-                    transcriptedSyllable = 'yo'
+                    let resultVowel = 'yo'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
-                    }
-                    
-                    if (system === 'hepburn' && prevSyllableConsonants) {
-                        //учёт расширенной каны つょ/ツョ - tsyo
-                        if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') transcriptedSyllable = 'o'
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
 
-                        if (prevSyllableConsonants === 'j') transcriptedSyllable = 'o'
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
+
+                        if (system === 'hepburn') {
+                            //учёт расширенной каны つょ/ツョ - tsyo
+                            if (prevSyllableConsonants.length === 2 && prevSyllableConsonants !== 'ts') resultVowel = 'o'
+
+                            if (prevSyllableConsonants === 'j') resultVowel = 'o'
+                        }
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'っ':
@@ -716,74 +731,94 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                 case 'ぁ':
                 case 'ァ':
                 case 'ｧ': {
-                    transcriptedSyllable = 'a'
+                    let resultVowel = 'a'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぃ':
                 case 'ィ':
                 case 'ｨ': {
-                    transcriptedSyllable = 'i'
+                    let resultVowel = 'i'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
 
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
-                    
                     const nextSyllable: string | undefined = splitedWord[index + 1]
 
                     if (nextSyllable && isItSmallKana(nextSyllable)) {
-                        transcriptedSyllable = 'y'
+                        resultVowel = 'y'
                     }
+
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぅ':
                 case 'ゥ':
                 case 'ｩ': {
-                    transcriptedSyllable = 'u'
+                    let resultVowel = 'u'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぇ':
                 case 'ェ':
                 case 'ｪ': {
-                    transcriptedSyllable = 'e'
+                    let resultVowel = 'e'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
 
                     if (
@@ -794,7 +829,7 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                         prevKana === 'み' || prevKana === 'ミ' ||
                         prevKana === 'り' || prevKana === 'リ' ||
                         prevKana === 'り゚' || prevKana === 'リ゚'
-                    ) transcriptedSyllable = 'ye'
+                    ) resultVowel = 'ye'
 
                     if (
                         system !== 'hepburn' && (
@@ -803,41 +838,55 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                             prevKana === 'じ' || prevKana === 'ジ' ||
                             prevKana === 'ぢ' || prevKana === 'ヂ' 
                         )
-                    ) transcriptedSyllable = 'ye'
+                    ) resultVowel = 'ye'
+
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ぉ':
                 case 'ォ':
                 case 'ｫ': {
-                    transcriptedSyllable = 'o'
+                    let resultVowel = 'o'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (prevSyllableConsonants) {
-                        transcriptedSplitedWord[index - 1] = prevSyllableConsonants
+                    const needToChangeLastSyllab = !!prevSyllableConsonants
+
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
                     }
+                    transcriptedSyllable = prevSyllableConsonants ? prevSyllableConsonants + resultVowel : resultVowel
                     break
                 }
                 case 'ゎ':
                 case 'ヮ': {
-                    transcriptedSyllable = 'wa'
+                    let resultVowel = 'wa'
 
                     const prevKana: string | undefined = splitedWord[index - 1]
                     const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
 
-                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') break
-
+                    if (!prevSyllableTranscription || !prevKana || prevKana === 'ん') {
+                        transcriptedSyllable = resultVowel
+                        break
+                    }
                     const prevSyllableConsonants = getConsonants(prevSyllableTranscription)
 
-                    if (!prevSyllableConsonants || prevSyllableConsonants.length > 2) break
+                    const needToChangeLastSyllab = !!(prevSyllableConsonants && prevSyllableConsonants.length <= 2)
 
-                    transcriptedSplitedWord[index - 1] = prevSyllableConsonants
-                    
+                    if (needToChangeLastSyllab) {
+                        transcriptedSplitedWord[index - 1] = ''
+
+                        transcriptedSyllable = prevSyllableConsonants + resultVowel
+                    } else {
+                        transcriptedSyllable = resultVowel                    
+                    }
                     break
                 }
 
@@ -932,9 +981,9 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     if (isUnvoicedSyllable(prevSyllableTranscription)) {
                         const voicedSyllable = getVoicedSyllable(prevSyllableTranscription)
 
-                        transcriptedSplitedWord[index - 1] = voicedSyllable
+                        transcriptedSplitedWord[index - 1] = ''
 
-                        transcriptedSyllable = ''
+                        transcriptedSyllable = voicedSyllable
                     }
                     break
                 }
@@ -947,9 +996,9 @@ export function fromKanaEN(kanaText: string, system: systemsEN = 'hepburn'): str
                     if (isSemivoicePissible(prevSyllableTranscription)) {
                         const semivoicedSyllable = getSemivoicedSyllable(prevSyllableTranscription)
 
-                        transcriptedSplitedWord[index - 1] = semivoicedSyllable
+                        transcriptedSplitedWord[index - 1] = ''
 
-                        transcriptedSyllable = ''
+                        transcriptedSyllable = semivoicedSyllable
                     }
                     break
                 }
