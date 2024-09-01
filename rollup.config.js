@@ -5,7 +5,6 @@ export default [{
     output: {
         file: './lib/esm/index.mjs',
         format: 'esm',
-        sourcemap: true
     },
     plugins: [
         typescript({tsconfig: './tsconfig-rollup.json'})
@@ -15,7 +14,6 @@ export default [{
     {
         file: './lib/cjs/index.cjs',
         format: 'cjs',
-        sourcemap: true
     },
     plugins: [
         typescript({tsconfig: './tsconfig-rollup.json'})
