@@ -60,10 +60,16 @@ describe('fromKana function: makes kana transcription to russian syllables',  ()
             assert.Throw(() => fromKana('あいう', {toLang: 'ru', system: 'hepburn'}), /The passed system param incompatible with the language/)
 
         })
-        it('iteration marks', () => {
+        it('iteration marks (monosyllable)', () => {
             assert.equal(fromKana('さゝき', 'ru'), 'сасаки')
             assert.equal(fromKana('みすゞ', 'ru'), 'мисудзу')
             assert.equal(fromKana('じゝ', 'ru'), 'дзиси')
+        })
+        it('iteration marks (polysyllable)', () => {
+            assert.equal(fromKana('ところ〲', 'ru'), 'токородокоро')
+            assert.equal(fromKana('なにとした〱', 'ru'), 'нанитоситананитосита')
+            assert.equal(fromKana('ところ〴〵', 'ru'), 'токородокоро')
+            assert.equal(fromKana('ところ/゛\\', 'ru'), 'токородокоро')
         })
         it('surrogate pair', () => {
             assert.equal(fromKana('𛀁', 'ru'), 'йэ')

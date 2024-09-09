@@ -60,10 +60,16 @@ describe('fromKana function: makes kana transcription to english syllables',  ()
             assert.Throw(() => fromKana('あいう', {toLang: 'en', system: 'polivanov'}), /The passed system param incompatible with the language/)
 
         })
-        it('iteration marks', () => {
+        it('iteration marks (monosyllable)', () => {
             assert.equal(fromKana('さゝき'), 'sasaki')
             assert.equal(fromKana('みすゞ'), 'misuzu')
             assert.equal(fromKana('じゝ'), 'jishi')
+        })
+        it('iteration marks (polysyllable)', () => {
+            assert.equal(fromKana('ところ〲'), 'tokorodokoro')
+            assert.equal(fromKana('なにとした〱'), 'nanitoshitananitoshita')
+            assert.equal(fromKana('ところ〴〵'), 'tokorodokoro')
+            assert.equal(fromKana('ところ/゛\\'), 'tokorodokoro')
         })
         it('surrogate pair', () => {
             assert.equal(fromKana('𛀁'), 'ye')

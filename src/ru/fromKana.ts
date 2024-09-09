@@ -1,7 +1,7 @@
 //supported extended kana - https://wikipedia.org/wiki/Katakana#Extended_katakana
 
 import { spacesRegExp } from '../common/consts.js'
-import { isItSmallKana, isThereKanaAround } from '../common/funcs.js'
+import { isItPolysyllableItrationMark, isItSmallKana, isThereKanaAround } from '../common/funcs.js'
 import { systemsRU } from '../common/types.js'
 
 export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): string {
@@ -944,6 +944,126 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
                     break
                 }
                 
+                //polysyllable iteration marks
+                
+                case '〱': {
+                    const currentWordTranscription: string | undefined = transcriptedSplitedWord.join('')
+
+                    if (!currentWordTranscription) break
+
+                    transcriptedSyllable = currentWordTranscription
+                    break
+                }
+                case '〲': {
+                    const firstSyllabOfTheWordTranscription: string | undefined = transcriptedSplitedWord[0]
+                    const afterFirstSyllabOfTheWordTranscription: string | undefined = transcriptedSplitedWord.slice(1).join('')
+
+                    if (!firstSyllabOfTheWordTranscription) break
+
+                    if (isUnvoicedSyllable(firstSyllabOfTheWordTranscription)) {
+                        const voicedSyllable = getVoicedSyllable(firstSyllabOfTheWordTranscription)
+
+                        transcriptedSyllable = voicedSyllable + afterFirstSyllabOfTheWordTranscription
+                    } else {
+                        transcriptedSyllable = firstSyllabOfTheWordTranscription + afterFirstSyllabOfTheWordTranscription
+                    }
+                    break
+                }
+
+                case '〳': {
+                    const nextSyllable: string | undefined = splitedWord[index + 1]
+                    const syllabAfterTheNext = splitedWord[index + 2]
+
+                    //in case there is a splited voicing mark following the iteration mark
+                    if (!nextSyllable || (nextSyllable !== '〵' && syllabAfterTheNext !== '〵')) break
+
+                    const currentWordTranscription = transcriptedSplitedWord.join('')
+
+                    if (!currentWordTranscription) break
+
+                    transcriptedSyllable = currentWordTranscription
+                    break
+                }
+                case '〴': {
+                    const nextSyllable: string | undefined = splitedWord[index + 1]
+
+                    if (!nextSyllable || (nextSyllable !== '〵')) break
+
+                    const firstSyllabOfTheWordTranscription: string | undefined = transcriptedSplitedWord[0]
+                    const afterFirstSyllabOfTheWordTranscription: string | undefined = transcriptedSplitedWord.slice(1).join('')
+
+                    if (!firstSyllabOfTheWordTranscription) break
+
+                    if (isUnvoicedSyllable(firstSyllabOfTheWordTranscription)) {
+                        const voicedSyllable = getVoicedSyllable(firstSyllabOfTheWordTranscription)
+
+                        transcriptedSyllable = voicedSyllable + afterFirstSyllabOfTheWordTranscription
+                    } else {
+                        transcriptedSyllable = firstSyllabOfTheWordTranscription + afterFirstSyllabOfTheWordTranscription
+                    }
+                    break
+                }
+                case '／': {
+                    const nextSyllable: string | undefined = splitedWord[index + 1]
+                    const syllabAfterTheNext: string | undefined = splitedWord[index + 2]
+
+                    //in case there is a splited voicing mark following the iteration mark
+                    if (!nextSyllable || (nextSyllable !== '＼' && syllabAfterTheNext !== '＼')) break
+
+                    const currentWordTranscription = transcriptedSplitedWord.join('')
+
+                    if (!currentWordTranscription) break
+
+                    transcriptedSyllable = currentWordTranscription
+                    break
+                }
+
+                case '/': {
+                    const nextSyllable: string | undefined = splitedWord[index + 1]
+                    const syllabAfterTheNext: string | undefined = splitedWord[index + 2]
+
+                    //in case there is a splited voicing mark following the iteration mark
+                    if (!nextSyllable || (nextSyllable !== '\\' && syllabAfterTheNext !== '\\')) break
+
+                    const currentWordTranscription = transcriptedSplitedWord.join('')
+
+                    if (!currentWordTranscription) break
+
+                    transcriptedSyllable = currentWordTranscription
+                    break
+                }
+
+                case '〵': {
+                    const prevSyllable: string | undefined = splitedWord[index - 1]
+                    const syllabBeforeThePrev: string | undefined = splitedWord[index - 2]
+
+                    //in case there is a splited voicing mark following the iteration mark
+                    if ((prevSyllable !== '〳' && prevSyllable !== '〴') && syllabBeforeThePrev !== '〳') break
+
+                    transcriptedSyllable = ''
+                    break
+                }
+                case '＼': {
+                    const prevSyllable: string | undefined = splitedWord[index - 1]
+                    const syllabBeforeThePrev: string | undefined = splitedWord[index - 2]
+
+                    //in case there is a splited voicing mark following the iteration mark
+                    if (prevSyllable !== '／' && syllabBeforeThePrev !== '／') break
+
+                    transcriptedSyllable = ''
+                    break
+                }
+                case '\\': {
+                    const prevSyllable: string | undefined = splitedWord[index - 1]
+                    const syllabBeforeThePrev: string | undefined = splitedWord[index - 2]
+
+                    //in case there is a splited voicing mark following the iteration mark
+                    if (prevSyllable !== '/' && syllabBeforeThePrev !== '/') break
+
+                    transcriptedSyllable = ''
+                    break
+                }
+
                 //digraph marks
 
                 case 'ゟ':
@@ -960,8 +1080,13 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
 
                 case '゛':
                 case '\u3099': {
-                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+                    const prevSyllable = splitedWord[index - 1]
+                    const nextSyllable = splitedWord[index + 1]
 
+                    const isPolysyllableItrationMark = isItPolysyllableItrationMark(prevSyllable, nextSyllable)
+
+                    const prevSyllableTranscription: string | undefined = isPolysyllableItrationMark ? transcriptedSplitedWord[0] : transcriptedSplitedWord[index - 1]
+                    
                     if (!prevSyllableTranscription) break
 
                     if (isUnvoicedSyllable(prevSyllableTranscription)) {
@@ -969,22 +1094,27 @@ export function fromKanaRU(kanaText: string, system: systemsRU = 'polivanov'): s
 
                         transcriptedSplitedWord[index - 1] = ''
 
-                        transcriptedSyllable = voicedSyllable
+                        transcriptedSyllable = isPolysyllableItrationMark ? voicedSyllable + transcriptedSplitedWord.slice(1, -1).join('') : voicedSyllable
                     }
                     break
                 }
                 case '゜':
                 case '\u309A': {
-                    const prevSyllableTranscription: string | undefined = transcriptedSplitedWord[index - 1]
+                    const prevSyllable = splitedWord[index - 1]
+                    const nextSyllable = splitedWord[index + 1]
 
+                    const isPolysyllableItrationMark = isItPolysyllableItrationMark(prevSyllable, nextSyllable)
+
+                    const prevSyllableTranscription: string | undefined = isPolysyllableItrationMark ? transcriptedSplitedWord[0] : transcriptedSplitedWord[index - 1]
+                    
                     if (!prevSyllableTranscription) break
 
                     if (isSemivoicePissible(prevSyllableTranscription)) {
-                        const semivoicedSyllable = getSemivoicedSyllable(prevSyllableTranscription)
+                        const voicedSyllable = getSemivoicedSyllable(prevSyllableTranscription)
 
                         transcriptedSplitedWord[index - 1] = ''
 
-                        transcriptedSyllable = semivoicedSyllable
+                        transcriptedSyllable = isPolysyllableItrationMark ? voicedSyllable + transcriptedSplitedWord.slice(1, -1).join('') : voicedSyllable
                     }
                     break
                 }

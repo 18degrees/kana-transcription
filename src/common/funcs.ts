@@ -20,3 +20,18 @@ export function getLangFromSystem(system: string) {
 
     return 'en'
 }
+
+export function isItPolysyllableItrationMark(symbolBefore: string, symbolAfter?: string) {
+    switch (symbolBefore) {
+        case '〱':
+            return true
+        case '〳':
+            return symbolAfter === '〵'
+        case '／':
+            return symbolAfter === '＼'
+        case '/':
+            return symbolAfter === '\\'
+        default:
+            return false
+    }
+}
