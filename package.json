@@ -2,7 +2,7 @@
 	"name": "kana-transformer",
 	"version": "3.4.1",
 
-	"description": "Transform kana to en|ru language or vice versa, using specific transliteration system; convert kana to the other alphabet",
+	"description": "Transform kana to en|ru language or vice versa, using specific transliteration system; convert one kana to the other syllabary",
 	"keywords": [
 		"transcription",
 		"hiragana",
